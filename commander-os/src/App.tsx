@@ -1,5 +1,15 @@
 import { FormEvent, type CSSProperties, useCallback, useEffect, useMemo, useState } from "react";
-import { assessTerminalCommand, launchTarget, runTerminalCommand, type CommandAssessment, type CommanderTarget, type TerminalResult } from "./lib/commander";
+import {
+  assessTerminalCommand,
+  inspectProject,
+  launchTarget,
+  openProject,
+  runTerminalCommand,
+  type CommandAssessment,
+  type CommanderTarget,
+  type ProjectInspection,
+  type TerminalResult,
+} from "./lib/commander";
 import { addMission, loadDashboard, recordAuditEvent, setMissionStatus, startWorkstream, stopActiveSession } from "./lib/db";
 import type { DashboardSnapshot, Mission, Workstream } from "./lib/models";
 
@@ -35,6 +45,9 @@ function App() {
   const [terminalMessage, setTerminalMessage] = useState("Commander terminal bridge ready.");
   const [assessment, setAssessment] = useState<CommandAssessment | null>(null);
   const [commandBusy, setCommandBusy] = useState(false);
+  const [project, setProject] = useState<ProjectInspection | null>(null);
+  const [projectMessage, setProjectMessage] = useState("Inspecting Afluma Commerce…");
+  const [projectBusy, setProjectBusy] = useState(false);
 
   const refresh = useCallback(async () => {
     try {
@@ -47,15 +60,33 @@ function App() {
     }
   }, []);
 
+  const refreshProject = useCallback(async () => {
+    setProjectBusy(true);
+    try {
+      const inspection = await inspectProject(DEFAULT_DEV_PATH);
+      setProject(inspection);
+      if (!inspection.exists) setProjectMessage("Commerce project path was not found on this PC.");
+      else if (!inspection.is_git_repo) setProjectMessage("Project exists, but it is not a Git worktree.");
+      else setProjectMessage("Local repository inspected successfully.");
+    } catch (err) {
+      setProjectMessage(err instanceof Error ? err.message : String(err));
+    } finally {
+      setProjectBusy(false);
+    }
+  }, []);
+
   useEffect(() => {
     void refresh();
+    void refreshProject();
     const clock = window.setInterval(() => setNow(new Date()), 30_000);
     const poll = window.setInterval(() => void refresh(), 60_000);
+    const projectPoll = window.setInterval(() => void refreshProject(), 45_000);
     return () => {
       window.clearInterval(clock);
       window.clearInterval(poll);
+      window.clearInterval(projectPoll);
     };
-  }, [refresh]);
+  }, [refresh, refreshProject]);
 
   const activeSession = useMemo(
     () => snapshot.sessions.find((session) => session.ended_at === null) ?? null,
@@ -105,6 +136,20 @@ function App() {
     await refresh();
   }
 
+  async function openCommerceWorkspace() {
+    try {
+      const result = await openProject(DEFAULT_DEV_PATH);
+      setProjectMessage(result.message);
+      setCwd(DEFAULT_DEV_PATH);
+      await recordAuditEvent("project.open", DEFAULT_DEV_PATH, 1, "success", result.message);
+    } catch (err) {
+      const message = err instanceof Error ? err.message : String(err);
+      setProjectMessage(message);
+      await recordAuditEvent("project.open", DEFAULT_DEV_PATH, 1, "failed", message);
+    }
+    await refresh();
+  }
+
   async function executeCommand(event: FormEvent) {
     event.preventDefault();
     if (!command.trim()) return;
@@ -132,6 +177,7 @@ function App() {
         result.exit_code === 0 ? "success" : "failed",
         `${result.cwd} // exit ${result.exit_code ?? "unknown"}`,
       );
+      await refreshProject();
     } catch (err) {
       const message = err instanceof Error ? err.message : String(err);
       setTerminalMessage(message);
@@ -218,6 +264,29 @@ function App() {
         </div>
       </section>
 
+      <section className="project-card">
+        <div className="control-head">
+          <div><p className="eyebrow">PROJECT REGISTRY // 0.1</p><h2>Afluma Commerce</h2></div>
+          <div className="project-actions">
+            <button onClick={() => void refreshProject()} disabled={projectBusy}>{projectBusy ? "Inspecting…" : "Refresh"}</button>
+            <button className="primary-action" onClick={() => void openCommerceWorkspace()} disabled={!project?.exists}>Open workspace</button>
+          </div>
+        </div>
+        <p className="project-path">{DEFAULT_DEV_PATH}</p>
+        <p className="project-message">{projectMessage}</p>
+        <div className="project-metrics">
+          <div><span>PATH</span><strong>{project?.exists ? "ONLINE" : "MISSING"}</strong></div>
+          <div><span>GIT</span><strong>{project?.is_git_repo ? "READY" : "UNAVAILABLE"}</strong></div>
+          <div><span>BRANCH</span><strong>{project?.branch ?? "—"}</strong></div>
+          <div><span>CHANGES</span><strong>{project?.changed_count ?? 0}</strong></div>
+        </div>
+        <div className="project-detail-grid">
+          <div><span>LAST COMMIT</span><p>{project?.last_commit ?? "No commit information yet."}</p></div>
+          <div><span>ORIGIN</span><p>{project?.origin ?? "No origin detected."}</p></div>
+        </div>
+        {project?.changed_files.length ? <div className="changed-files"><span>MODIFIED / UNTRACKED</span>{project.changed_files.slice(0, 8).map((file) => <code key={file}>{file}</code>)}{project.changed_files.length > 8 ? <small>+{project.changed_files.length - 8} more</small> : null}</div> : null}
+      </section>
+
       <section className="workstream-grid">
         {snapshot.workstreams.map((workstream) => {
           const worked = totals[workstream.id] ?? 0;
@@ -251,7 +320,7 @@ function App() {
         </div>
       </section>
 
-      <footer><span>LOCAL DATA</span><span>SQLite // commander.db</span><span>Terminal bridge guarded</span><span>MCP boundary reserved</span></footer>
+      <footer><span>LOCAL DATA</span><span>SQLite // commander.db</span><span>Project inspector live</span><span>Terminal bridge guarded</span><span>MCP boundary reserved</span></footer>
     </main>
   );
 }
