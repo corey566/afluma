@@ -1,15 +1,16 @@
 import type { DashboardSnapshot } from "./models";
-import type { ProjectInspection, TerminalResult } from "./commander";
+import type { BrokerRequest, EnvironmentInspection, ProjectInspection, TerminalResult } from "./commander";
 
 export type AssistantContextInput = {
   request: string;
   snapshot: DashboardSnapshot;
   project: ProjectInspection | null;
+  environment: EnvironmentInspection | null;
   terminal: TerminalResult | null;
   cwd: string;
 };
 
-export function buildAssistantContext({ request, snapshot, project, terminal, cwd }: AssistantContextInput) {
+export function buildAssistantContext({ request, snapshot, project, environment, terminal, cwd }: AssistantContextInput) {
   const activeSession = snapshot.sessions.find((session) => session.ended_at === null) ?? null;
   const activeWorkstream = activeSession
     ? snapshot.workstreams.find((workstream) => workstream.id === activeSession.workstream_id) ?? null
@@ -21,22 +22,34 @@ export function buildAssistantContext({ request, snapshot, project, terminal, cw
     })
     .join("\n");
   const recentAudit = snapshot.auditEvents
-    .slice(0, 8)
+    .slice(0, 10)
     .map((event) => `- ${event.created_at} L${event.risk_level} ${event.action} ${event.target ?? ""} -> ${event.status}`)
     .join("\n");
 
   const projectBlock = project
     ? [
-        `Path: ${project.path}`,
+        `Configured path: ${project.path}`,
         `Exists: ${project.exists}`,
         `Git repo: ${project.is_git_repo}`,
+        `Resolved Git root: ${project.git_root ?? "unknown"}`,
         `Branch: ${project.branch ?? "unknown"}`,
         `Changed files: ${project.changed_count}`,
         `Last commit: ${project.last_commit ?? "unknown"}`,
         `Origin: ${project.origin ?? "unknown"}`,
+        `Package manager: ${project.package_manager ?? "unknown"}`,
+        `Scripts: ${project.package_scripts.join(", ") || "none detected"}`,
+        `Compose: ${project.compose_files.join(", ") || "none detected"}`,
         project.changed_files.length ? `Changed file list:\n${project.changed_files.map((file) => `- ${file}`).join("\n")}` : "Changed file list: clean/unknown",
       ].join("\n")
     : "Project inspection not available yet.";
+
+  const environmentBlock = environment
+    ? [
+        `Docker: ${environment.docker_available ? "available" : "unavailable"} // ${environment.docker_detail}`,
+        `Dev command: ${environment.dev_command ?? "not detected"}`,
+        ...environment.services.map((service) => `- ${service.label}: ${service.state} // ${service.detail}`),
+      ].join("\n")
+    : "Environment inspection not available yet.";
 
   const terminalBlock = terminal
     ? [
@@ -64,13 +77,37 @@ export function buildAssistantContext({ request, snapshot, project, terminal, cw
     "PROJECT",
     projectBlock,
     "",
+    "ENVIRONMENT",
+    environmentBlock,
+    "",
     "TERMINAL",
     terminalBlock,
     "",
     "RECENT COMMANDER AUDIT",
     recentAudit || "No recent audit events.",
     "",
-    "CONTROL POLICY",
-    "Do not assume direct machine access. Request actions through Commander OS. Read-only diagnostics may be auto-approved; changes must pass Commander risk/approval policy.",
+    "COMMANDER CONTROL CONTRACT",
+    "Commander OS owns machine execution. Never assume unrestricted shell access.",
+    "Read-only diagnostics and bounded development actions can be requested through the Commander Action Broker.",
+    "Do not request destructive/system-level shell commands.",
+    "When a machine action is required, optionally end the response with exactly one action block in this form:",
+    "COMMANDER_ACTION",
+    '{"tool":"run_terminal","target":"C:\\\\www\\\\project","command":"git status"}',
+    "END_COMMANDER_ACTION",
+    "Supported tools: open_app, open_project, start_development, run_terminal.",
+    "start_development always requires Commander approval when assistant-originated.",
   ].join("\n");
+}
+
+export function extractCommanderAction(text: string): BrokerRequest | null {
+  const marker = text.match(/COMMANDER_ACTION\s*([\s\S]*?)\s*END_COMMANDER_ACTION/i);
+  if (!marker) return null;
+  const payload = marker[1].replace(/^```(?:json)?\s*/i, "").replace(/\s*```$/i, "").trim();
+  try {
+    const parsed = JSON.parse(payload) as BrokerRequest;
+    if (!parsed || typeof parsed.tool !== "string" || !parsed.tool.trim()) return null;
+    return parsed;
+  } catch {
+    return null;
+  }
 }
