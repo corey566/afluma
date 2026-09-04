@@ -1,6 +1,8 @@
 use serde::Serialize;
+use std::io::Write;
 use std::path::Path;
 use std::process::{Command, Stdio};
+use tauri::{webview::WebviewWindowBuilder, AppHandle, Manager, WebviewUrl};
 
 #[derive(Debug, Serialize)]
 pub struct ActionResult {
@@ -216,6 +218,71 @@ pub fn launch_target(target: String) -> Result<ActionResult, String> {
         action: "launch".into(),
         target: key.clone(),
         message: format!("Launch request sent for {key}."),
+    })
+}
+
+#[tauri::command]
+pub fn open_chatgpt_dock(app: AppHandle) -> Result<ActionResult, String> {
+    if let Some(window) = app.get_webview_window("chatgpt-dock") {
+        window.show().map_err(|error| error.to_string())?;
+        window.set_focus().map_err(|error| error.to_string())?;
+        return Ok(ActionResult {
+            ok: true,
+            action: "assistant.focus".into(),
+            target: "chatgpt-dock".into(),
+            message: "Focused the existing Commander ChatGPT dock.".into(),
+        });
+    }
+
+    let url = "https://chatgpt.com"
+        .parse()
+        .map_err(|error| format!("Invalid ChatGPT URL: {error}"))?;
+
+    WebviewWindowBuilder::new(&app, "chatgpt-dock", WebviewUrl::External(url))
+        .title("Commander // ChatGPT")
+        .inner_size(620.0, 860.0)
+        .min_inner_size(440.0, 620.0)
+        .resizable(true)
+        .build()
+        .map_err(|error| error.to_string())?;
+
+    Ok(ActionResult {
+        ok: true,
+        action: "assistant.open".into(),
+        target: "chatgpt-dock".into(),
+        message: "Opened ChatGPT inside a Commander-managed dock window.".into(),
+    })
+}
+
+#[tauri::command]
+pub fn copy_text_to_clipboard(text: String) -> Result<ActionResult, String> {
+    if text.trim().is_empty() {
+        return Err("Nothing to copy.".into());
+    }
+
+    let mut child = Command::new("clip.exe")
+        .stdin(Stdio::piped())
+        .stdout(Stdio::null())
+        .stderr(Stdio::piped())
+        .spawn()
+        .map_err(|error| error.to_string())?;
+
+    if let Some(stdin) = child.stdin.as_mut() {
+        stdin
+            .write_all(text.as_bytes())
+            .map_err(|error| error.to_string())?;
+    }
+
+    let output = child.wait_with_output().map_err(|error| error.to_string())?;
+    if !output.status.success() {
+        return Err(String::from_utf8_lossy(&output.stderr).trim().to_string());
+    }
+
+    Ok(ActionResult {
+        ok: true,
+        action: "assistant.context.copy".into(),
+        target: "windows-clipboard".into(),
+        message: "Commander context copied to the Windows clipboard.".into(),
     })
 }
 
