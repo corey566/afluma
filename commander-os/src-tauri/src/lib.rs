@@ -1,5 +1,10 @@
 mod commands;
 
+use tauri::{
+    tray::{MouseButton, MouseButtonState, TrayIconBuilder, TrayIconEvent},
+    Manager,
+};
+use tauri_plugin_global_shortcut::{GlobalShortcutExt, ShortcutState};
 use tauri_plugin_sql::{Migration, MigrationKind};
 
 const DATABASE_URL: &str = "sqlite:commander.db";
@@ -44,6 +49,14 @@ fn migrations() -> Vec<Migration> {
     ]
 }
 
+fn show_main(app: &tauri::AppHandle) {
+    if let Some(window) = app.get_webview_window("main") {
+        let _ = window.unminimize();
+        let _ = window.show();
+        let _ = window.set_focus();
+    }
+}
+
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
@@ -52,14 +65,59 @@ pub fn run() {
                 .add_migrations(DATABASE_URL, migrations())
                 .build(),
         )
+        .setup(|app| {
+            #[cfg(desktop)]
+            {
+                app.handle().plugin(tauri_plugin_autostart::init(
+                    tauri_plugin_autostart::MacosLauncher::LaunchAgent,
+                    None,
+                ))?;
+
+                app.handle().plugin(
+                    tauri_plugin_global_shortcut::Builder::new()
+                        .with_handler(|app, _shortcut, event| {
+                            if event.state() == ShortcutState::Pressed {
+                                show_main(app);
+                            }
+                        })
+                        .build(),
+                )?;
+                app.global_shortcut().register("Ctrl+Alt+C")?;
+
+                let mut tray = TrayIconBuilder::with_id("commander-tray")
+                    .tooltip("Afluma Commander OS")
+                    .on_tray_icon_event(|tray, event| {
+                        if let TrayIconEvent::Click {
+                            button: MouseButton::Left,
+                            button_state: MouseButtonState::Up,
+                            ..
+                        } = event
+                        {
+                            show_main(tray.app_handle());
+                        }
+                    });
+                if let Some(icon) = app.default_window_icon() {
+                    tray = tray.icon(icon.clone());
+                }
+                tray.build(app)?;
+            }
+            Ok(())
+        })
         .invoke_handler(tauri::generate_handler![
             commands::assess_terminal_command,
             commands::launch_target,
-            commands::open_chatgpt_dock,
+            commands::summon_chatgpt,
+            commands::send_text_to_chatgpt,
             commands::copy_text_to_clipboard,
             commands::inspect_project,
+            commands::discover_projects,
+            commands::inspect_environment,
             commands::open_project,
+            commands::start_development,
             commands::run_terminal_command,
+            commands::execute_broker_action,
+            commands::get_autostart,
+            commands::set_autostart,
         ])
         .run(tauri::generate_context!())
         .expect("failed to run Afluma Commander OS");
