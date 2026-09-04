@@ -1,8 +1,11 @@
 import { FormEvent, type CSSProperties, useCallback, useEffect, useMemo, useState } from "react";
+import { buildAssistantContext } from "./lib/assistant";
 import {
   assessTerminalCommand,
+  copyTextToClipboard,
   inspectProject,
   launchTarget,
+  openChatgptDock,
   openProject,
   runTerminalCommand,
   type CommandAssessment,
@@ -48,6 +51,9 @@ function App() {
   const [project, setProject] = useState<ProjectInspection | null>(null);
   const [projectMessage, setProjectMessage] = useState("Inspecting Afluma Commerce…");
   const [projectBusy, setProjectBusy] = useState(false);
+  const [assistantRequest, setAssistantRequest] = useState("Let's continue development from the current Commander OS state.");
+  const [assistantMessage, setAssistantMessage] = useState("Assistant Gateway ready. No OpenAI API is configured or required.");
+  const [assistantBusy, setAssistantBusy] = useState(false);
 
   const refresh = useCallback(async () => {
     try {
@@ -136,6 +142,47 @@ function App() {
     await refresh();
   }
 
+  async function openAssistantDock() {
+    setAssistantBusy(true);
+    try {
+      const result = await openChatgptDock();
+      setAssistantMessage(result.message);
+      await recordAuditEvent("assistant.dock", "chatgpt", 0, "success", result.message);
+    } catch (err) {
+      const message = err instanceof Error ? err.message : String(err);
+      setAssistantMessage(message);
+      await recordAuditEvent("assistant.dock", "chatgpt", 0, "failed", message);
+    } finally {
+      setAssistantBusy(false);
+      await refresh();
+    }
+  }
+
+  async function prepareAssistantContext() {
+    setAssistantBusy(true);
+    try {
+      const packet = buildAssistantContext({
+        request: assistantRequest,
+        snapshot,
+        project,
+        terminal: terminalResult,
+        cwd,
+      });
+      await copyTextToClipboard(packet);
+      const dock = await openChatgptDock();
+      const message = `${dock.message} Live Commander context is on the clipboard; paste it into the dock for this foundation transport.`;
+      setAssistantMessage(message);
+      await recordAuditEvent("assistant.context.prepare", "chatgpt", 0, "success", `Context packet ${packet.length} chars`);
+    } catch (err) {
+      const message = err instanceof Error ? err.message : String(err);
+      setAssistantMessage(message);
+      await recordAuditEvent("assistant.context.prepare", "chatgpt", 0, "failed", message);
+    } finally {
+      setAssistantBusy(false);
+      await refresh();
+    }
+  }
+
   async function openCommerceWorkspace() {
     try {
       const result = await openProject(DEFAULT_DEV_PATH);
@@ -218,6 +265,32 @@ function App() {
         </div>
       </section>
 
+      <section className="assistant-gateway">
+        <div className="control-head">
+          <div><p className="eyebrow">ASSISTANT GATEWAY // 0.1</p><h2>ChatGPT is a Commander subsystem.</h2></div>
+          <span className="assistant-badge">NO OPENAI API</span>
+        </div>
+        <div className="assistant-grid">
+          <div className="assistant-compose">
+            <label>
+              <span>COMMANDER REQUEST</span>
+              <textarea value={assistantRequest} onChange={(event) => setAssistantRequest(event.target.value)} rows={5} />
+            </label>
+            <div className="assistant-actions">
+              <button onClick={() => void openAssistantDock()} disabled={assistantBusy}>Open ChatGPT dock</button>
+              <button className="primary-action" onClick={() => void prepareAssistantContext()} disabled={assistantBusy}>{assistantBusy ? "Preparing…" : "Prepare context + open"}</button>
+            </div>
+          </div>
+          <div className="assistant-status">
+            <div><span>TRANSPORT</span><strong>Logged-in ChatGPT WebView2 dock</strong></div>
+            <div><span>CONTEXT</span><strong>Local Commander context packet</strong></div>
+            <div><span>ACTIONS</span><strong>Commander Action Broker // guarded</strong></div>
+            <div><span>MCP</span><strong>Reserved future transport</strong></div>
+            <p>{assistantMessage}</p>
+          </div>
+        </div>
+      </section>
+
       <section className="control-deck">
         <div className="control-head">
           <div><p className="eyebrow">LOCAL CONTROL DECK // SKELETON 0.1</p><h2>Call, inspect, execute.</h2></div>
@@ -226,7 +299,7 @@ function App() {
 
         <div className="quick-actions">
           <button onClick={() => void launch("gmail")}><strong>Gmail</strong><span>Open inbox</span></button>
-          <button onClick={() => void launch("chatgpt")}><strong>ChatGPT</strong><span>Call assistant</span></button>
+          <button onClick={() => void openAssistantDock()}><strong>ChatGPT Dock</strong><span>Open Commander assistant</span></button>
           <button onClick={() => void launch("powershell")}><strong>PowerShell</strong><span>Open terminal</span></button>
           <button onClick={() => void launch("vscode")}><strong>VS Code</strong><span>Open editor</span></button>
         </div>
@@ -320,7 +393,7 @@ function App() {
         </div>
       </section>
 
-      <footer><span>LOCAL DATA</span><span>SQLite // commander.db</span><span>Project inspector live</span><span>Terminal bridge guarded</span><span>MCP boundary reserved</span></footer>
+      <footer><span>LOCAL DATA</span><span>SQLite // commander.db</span><span>Assistant Gateway live</span><span>Terminal bridge guarded</span><span>MCP boundary reserved</span></footer>
     </main>
   );
 }
