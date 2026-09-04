@@ -26,8 +26,27 @@ export type TerminalResult = {
   assessment: CommandAssessment;
 };
 
+export type ProjectInspection = {
+  path: string;
+  exists: boolean;
+  is_git_repo: boolean;
+  branch: string | null;
+  changed_count: number;
+  changed_files: string[];
+  last_commit: string | null;
+  origin: string | null;
+};
+
 export function launchTarget(target: CommanderTarget) {
   return invoke<ActionResult>("launch_target", { target });
+}
+
+export function inspectProject(path: string) {
+  return invoke<ProjectInspection>("inspect_project", { path });
+}
+
+export function openProject(path: string) {
+  return invoke<ActionResult>("open_project", { path });
 }
 
 export function assessTerminalCommand(command: string) {
