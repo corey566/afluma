@@ -21,8 +21,20 @@ export type WorkSession = {
   ended_at: string | null;
 };
 
+export type AuditEvent = {
+  id: number;
+  actor: string;
+  action: string;
+  target: string | null;
+  risk_level: number;
+  status: string;
+  detail: string | null;
+  created_at: string;
+};
+
 export type DashboardSnapshot = {
   workstreams: Workstream[];
   missions: Mission[];
   sessions: WorkSession[];
+  auditEvents: AuditEvent[];
 };
