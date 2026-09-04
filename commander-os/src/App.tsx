@@ -1,8 +1,10 @@
-import { FormEvent, useCallback, useEffect, useMemo, useState } from "react";
-import { addMission, loadDashboard, setMissionStatus, startWorkstream, stopActiveSession } from "./lib/db";
+import { FormEvent, type CSSProperties, useCallback, useEffect, useMemo, useState } from "react";
+import { assessTerminalCommand, launchTarget, runTerminalCommand, type CommandAssessment, type CommanderTarget, type TerminalResult } from "./lib/commander";
+import { addMission, loadDashboard, recordAuditEvent, setMissionStatus, startWorkstream, stopActiveSession } from "./lib/db";
 import type { DashboardSnapshot, Mission, Workstream } from "./lib/models";
 
-const EMPTY: DashboardSnapshot = { workstreams: [], missions: [], sessions: [] };
+const EMPTY: DashboardSnapshot = { workstreams: [], missions: [], sessions: [], auditEvents: [] };
+const DEFAULT_DEV_PATH = "C:\\www\\afluma-commerce";
 
 function minutesBetween(start: string, end: string | null, now: Date) {
   const startMs = new Date(`${start}Z`).getTime();
@@ -27,6 +29,12 @@ function App() {
   const [error, setError] = useState<string | null>(null);
   const [now, setNow] = useState(new Date());
   const [newMission, setNewMission] = useState<Record<string, string>>({});
+  const [command, setCommand] = useState("git status");
+  const [cwd, setCwd] = useState(DEFAULT_DEV_PATH);
+  const [terminalResult, setTerminalResult] = useState<TerminalResult | null>(null);
+  const [terminalMessage, setTerminalMessage] = useState("Commander terminal bridge ready.");
+  const [assessment, setAssessment] = useState<CommandAssessment | null>(null);
+  const [commandBusy, setCommandBusy] = useState(false);
 
   const refresh = useCallback(async () => {
     try {
@@ -84,6 +92,56 @@ function App() {
     await refresh();
   }
 
+  async function launch(target: CommanderTarget) {
+    try {
+      const result = await launchTarget(target);
+      setTerminalMessage(result.message);
+      await recordAuditEvent("system.launch", target, 1, "success", result.message);
+    } catch (err) {
+      const message = err instanceof Error ? err.message : String(err);
+      setTerminalMessage(message);
+      await recordAuditEvent("system.launch", target, 1, "failed", message);
+    }
+    await refresh();
+  }
+
+  async function executeCommand(event: FormEvent) {
+    event.preventDefault();
+    if (!command.trim()) return;
+
+    setCommandBusy(true);
+    setTerminalResult(null);
+    try {
+      const commandAssessment = await assessTerminalCommand(command);
+      setAssessment(commandAssessment);
+
+      if (!commandAssessment.allowed) {
+        const message = `BLOCKED // ${commandAssessment.label}\n${commandAssessment.reason}`;
+        setTerminalMessage(message);
+        await recordAuditEvent("terminal.blocked", command, commandAssessment.risk_level, "blocked", commandAssessment.reason);
+        return;
+      }
+
+      const result = await runTerminalCommand(command, cwd);
+      setTerminalResult(result);
+      setTerminalMessage(result.exit_code === 0 ? "Command completed." : `Command exited with code ${result.exit_code ?? "unknown"}.`);
+      await recordAuditEvent(
+        "terminal.run",
+        command,
+        result.assessment.risk_level,
+        result.exit_code === 0 ? "success" : "failed",
+        `${result.cwd} // exit ${result.exit_code ?? "unknown"}`,
+      );
+    } catch (err) {
+      const message = err instanceof Error ? err.message : String(err);
+      setTerminalMessage(message);
+      await recordAuditEvent("terminal.error", command, assessment?.risk_level ?? 2, "failed", message);
+    } finally {
+      setCommandBusy(false);
+      await refresh();
+    }
+  }
+
   if (loading) return <main className="boot-screen">COMMANDER OS // INITIALIZING</main>;
 
   return (
@@ -103,7 +161,7 @@ function App() {
           <p className="eyebrow">TODAY'S OPERATION</p>
           <div className="operation-row">
             <div><h2>{formatDuration(totalWorked)}</h2><span>tracked of {formatDuration(totalTarget)} target</span></div>
-            <div className="ring" style={{ "--progress": `${progress(totalWorked, totalTarget) * 3.6}deg` } as React.CSSProperties}><span>{progress(totalWorked, totalTarget)}%</span></div>
+            <div className="ring" style={{ "--progress": `${progress(totalWorked, totalTarget) * 3.6}deg` } as CSSProperties}><span>{progress(totalWorked, totalTarget)}%</span></div>
           </div>
           <div className="progress-track"><div style={{ width: `${progress(totalWorked, totalTarget)}%` }} /></div>
         </div>
@@ -111,6 +169,52 @@ function App() {
         <div className="hero-card status-card">
           <p className="eyebrow">ACTIVE SHIFT</p>
           {activeSession ? <><h2>{snapshot.workstreams.find((item) => item.id === activeSession.workstream_id)?.name}</h2><span>{formatDuration(minutesBetween(activeSession.started_at, null, now))} in this session</span><button className="danger-button" onClick={() => void stop()}>End shift</button></> : <><h2>Standby</h2><span>No work session is currently running.</span></>}
+        </div>
+      </section>
+
+      <section className="control-deck">
+        <div className="control-head">
+          <div><p className="eyebrow">LOCAL CONTROL DECK // SKELETON 0.1</p><h2>Call, inspect, execute.</h2></div>
+          <span className="guard-badge">GUARDED EXECUTION</span>
+        </div>
+
+        <div className="quick-actions">
+          <button onClick={() => void launch("gmail")}><strong>Gmail</strong><span>Open inbox</span></button>
+          <button onClick={() => void launch("chatgpt")}><strong>ChatGPT</strong><span>Call assistant</span></button>
+          <button onClick={() => void launch("powershell")}><strong>PowerShell</strong><span>Open terminal</span></button>
+          <button onClick={() => void launch("vscode")}><strong>VS Code</strong><span>Open editor</span></button>
+        </div>
+
+        <div className="terminal-layout">
+          <form className="terminal-form" onSubmit={(event) => void executeCommand(event)}>
+            <label>
+              <span>WORKING DIRECTORY</span>
+              <input value={cwd} onChange={(event) => setCwd(event.target.value)} spellCheck={false} />
+            </label>
+            <label>
+              <span>POWERSHELL COMMAND</span>
+              <div className="command-input-row">
+                <input value={command} onChange={(event) => setCommand(event.target.value)} spellCheck={false} />
+                <button disabled={commandBusy} type="submit">{commandBusy ? "Running…" : "Run"}</button>
+              </div>
+            </label>
+            <div className="safe-command-row">
+              {["git status", "git branch --show-current", "docker ps", "node --version"].map((item) => <button type="button" key={item} onClick={() => setCommand(item)}>{item}</button>)}
+            </div>
+          </form>
+
+          <div className="terminal-output">
+            <div className="terminal-title">
+              <span>COMMANDER TERMINAL BRIDGE</span>
+              {assessment ? <span className={`risk risk-${assessment.risk_level}`}>L{assessment.risk_level} // {assessment.label}</span> : null}
+            </div>
+            <pre>{terminalResult ? [
+              `PS ${terminalResult.cwd}> ${terminalResult.command}`,
+              terminalResult.stdout,
+              terminalResult.stderr ? `STDERR\n${terminalResult.stderr}` : "",
+              `EXIT ${terminalResult.exit_code ?? "UNKNOWN"}`,
+            ].filter(Boolean).join("\n\n") : terminalMessage}</pre>
+          </div>
         </div>
       </section>
 
@@ -132,7 +236,22 @@ function App() {
         })}
       </section>
 
-      <footer><span>LOCAL DATA</span><span>SQLite // commander.db</span><span>MCP boundary reserved</span></footer>
+      <section className="audit-card">
+        <div className="control-head"><div><p className="eyebrow">LOCAL AUDIT</p><h2>Recent Commander actions</h2></div><span>{snapshot.auditEvents.length} shown</span></div>
+        <div className="audit-list">
+          {snapshot.auditEvents.length ? snapshot.auditEvents.map((event) => (
+            <div className="audit-row" key={event.id}>
+              <span className={`risk risk-${event.risk_level}`}>L{event.risk_level}</span>
+              <strong>{event.action}</strong>
+              <span>{event.target ?? "—"}</span>
+              <span>{event.status}</span>
+              <time>{event.created_at}</time>
+            </div>
+          )) : <p className="empty-copy">No local actions recorded yet.</p>}
+        </div>
+      </section>
+
+      <footer><span>LOCAL DATA</span><span>SQLite // commander.db</span><span>Terminal bridge guarded</span><span>MCP boundary reserved</span></footer>
     </main>
   );
 }
