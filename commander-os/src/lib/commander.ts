@@ -41,6 +41,14 @@ export function launchTarget(target: CommanderTarget) {
   return invoke<ActionResult>("launch_target", { target });
 }
 
+export function openChatgptDock() {
+  return invoke<ActionResult>("open_chatgpt_dock");
+}
+
+export function copyTextToClipboard(text: string) {
+  return invoke<ActionResult>("copy_text_to_clipboard", { text });
+}
+
 export function inspectProject(path: string) {
   return invoke<ProjectInspection>("inspect_project", { path });
 }
