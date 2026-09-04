@@ -55,6 +55,8 @@ pub fn run() {
         .invoke_handler(tauri::generate_handler![
             commands::assess_terminal_command,
             commands::launch_target,
+            commands::open_chatgpt_dock,
+            commands::copy_text_to_clipboard,
             commands::inspect_project,
             commands::open_project,
             commands::run_terminal_command,
