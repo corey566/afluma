@@ -29,6 +29,18 @@ pub struct TerminalResult {
     pub assessment: CommandAssessment,
 }
 
+#[derive(Debug, Serialize)]
+pub struct ProjectInspection {
+    pub path: String,
+    pub exists: bool,
+    pub is_git_repo: bool,
+    pub branch: Option<String>,
+    pub changed_count: usize,
+    pub changed_files: Vec<String>,
+    pub last_commit: Option<String>,
+    pub origin: Option<String>,
+}
+
 fn normalized(command: &str) -> String {
     command.trim().to_ascii_lowercase()
 }
@@ -163,6 +175,25 @@ fn spawn_detached(program: &str, args: &[&str]) -> Result<(), String> {
         .map_err(|error| error.to_string())
 }
 
+fn git_output(path: &Path, args: &[&str]) -> Result<String, String> {
+    let output = Command::new("git")
+        .args(args)
+        .current_dir(path)
+        .output()
+        .map_err(|error| error.to_string())?;
+
+    if !output.status.success() {
+        let stderr = String::from_utf8_lossy(&output.stderr).trim().to_string();
+        return Err(if stderr.is_empty() {
+            format!("git {:?} failed", args)
+        } else {
+            stderr
+        });
+    }
+
+    Ok(String::from_utf8_lossy(&output.stdout).trim().to_string())
+}
+
 #[tauri::command]
 pub fn assess_terminal_command(command: String) -> CommandAssessment {
     assess(&command)
@@ -185,6 +216,100 @@ pub fn launch_target(target: String) -> Result<ActionResult, String> {
         action: "launch".into(),
         target: key.clone(),
         message: format!("Launch request sent for {key}."),
+    })
+}
+
+#[tauri::command]
+pub fn inspect_project(path: String) -> Result<ProjectInspection, String> {
+    let trimmed = path.trim().to_string();
+    let project_path = Path::new(&trimmed);
+
+    if !project_path.exists() {
+        return Ok(ProjectInspection {
+            path: trimmed,
+            exists: false,
+            is_git_repo: false,
+            branch: None,
+            changed_count: 0,
+            changed_files: Vec::new(),
+            last_commit: None,
+            origin: None,
+        });
+    }
+
+    if !project_path.is_dir() {
+        return Err(format!("Project path is not a directory: {trimmed}"));
+    }
+
+    let is_git_repo = git_output(project_path, &["rev-parse", "--is-inside-work-tree"])
+        .map(|value| value == "true")
+        .unwrap_or(false);
+
+    if !is_git_repo {
+        return Ok(ProjectInspection {
+            path: trimmed,
+            exists: true,
+            is_git_repo: false,
+            branch: None,
+            changed_count: 0,
+            changed_files: Vec::new(),
+            last_commit: None,
+            origin: None,
+        });
+    }
+
+    let branch = git_output(project_path, &["branch", "--show-current"])
+        .ok()
+        .filter(|value| !value.is_empty());
+    let status = git_output(project_path, &["status", "--porcelain"]).unwrap_or_default();
+    let changed_files: Vec<String> = status
+        .lines()
+        .filter_map(|line| {
+            let value = line.get(3..).unwrap_or(line).trim();
+            if value.is_empty() { None } else { Some(value.to_string()) }
+        })
+        .collect();
+    let last_commit = git_output(project_path, &["log", "-1", "--pretty=format:%h  %s  (%cr)"])
+        .ok()
+        .filter(|value| !value.is_empty());
+    let origin = git_output(project_path, &["remote", "get-url", "origin"])
+        .ok()
+        .filter(|value| !value.is_empty());
+
+    Ok(ProjectInspection {
+        path: trimmed,
+        exists: true,
+        is_git_repo: true,
+        branch,
+        changed_count: changed_files.len(),
+        changed_files,
+        last_commit,
+        origin,
+    })
+}
+
+#[tauri::command]
+pub fn open_project(path: String) -> Result<ActionResult, String> {
+    let trimmed = path.trim().to_string();
+    let project_path = Path::new(&trimmed);
+    if !project_path.exists() || !project_path.is_dir() {
+        return Err(format!("Project path does not exist: {trimmed}"));
+    }
+
+    Command::new("cmd")
+        .args(["/C", "start", "", "code", "."])
+        .current_dir(project_path)
+        .stdin(Stdio::null())
+        .stdout(Stdio::null())
+        .stderr(Stdio::null())
+        .spawn()
+        .map_err(|error| error.to_string())?;
+
+    Ok(ActionResult {
+        ok: true,
+        action: "open_project".into(),
+        target: trimmed.clone(),
+        message: format!("Opened project workspace: {trimmed}"),
     })
 }
 
