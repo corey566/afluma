@@ -14,9 +14,23 @@ export async function loadDashboard(): Promise<DashboardSnapshot> {
     connection.select<Workstream[]>("SELECT id, name, slug, daily_target_minutes FROM workstreams ORDER BY sort_order ASC"),
     connection.select<Mission[]>("SELECT id, workstream_id, title, status, priority FROM missions WHERE status != 'done' ORDER BY priority ASC, id ASC"),
     connection.select<WorkSession[]>("SELECT id, workstream_id, mission_id, started_at, ended_at FROM work_sessions WHERE date(started_at, 'localtime') = date('now', 'localtime') ORDER BY started_at ASC"),
-    connection.select<AuditEvent[]>("SELECT id, actor, action, target, risk_level, status, detail, created_at FROM audit_events ORDER BY id DESC LIMIT 12"),
+    connection.select<AuditEvent[]>("SELECT id, actor, action, target, risk_level, status, detail, created_at FROM audit_events ORDER BY id DESC LIMIT 20"),
   ]);
   return { workstreams, missions, sessions, auditEvents };
+}
+
+export async function getSetting(key: string, fallback = "") {
+  const connection = await db();
+  const rows = await connection.select<Array<{ value: string }>>("SELECT value FROM settings WHERE key = $1 LIMIT 1", [key]);
+  return rows[0]?.value ?? fallback;
+}
+
+export async function setSetting(key: string, value: string) {
+  const connection = await db();
+  await connection.execute(
+    "INSERT INTO settings (key, value) VALUES ($1, $2) ON CONFLICT(key) DO UPDATE SET value = excluded.value",
+    [key, value],
+  );
 }
 
 export async function startWorkstream(workstreamId: string) {
