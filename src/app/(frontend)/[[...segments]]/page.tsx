@@ -5,6 +5,7 @@ import { RefreshRouteOnSave } from '@/components/RefreshRouteOnSave'
 import { getPageBySlug, normalizeSlug } from '@/lib/content'
 import { aliases, findPage, findPersona, products } from '@/site/content'
 import { SitePage, PersonaPage, LaunchPage } from '@/site/SitePage'
+import { AflumaCorePage, corePageMeta, isAflumaCoreRoute } from '@/site/AflumaCorePages'
 import { absoluteUrl, structuredPage, searchTitles } from '@/site/seo'
 import { CmsPage, LegalPage, hasReviewedContent, legalTitles } from '@/site/CmsPage'
 
@@ -14,6 +15,16 @@ type Props = { params: Promise<{ segments?: string[] }> }
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { segments } = await params
   const slug = normalizeSlug(segments)
+  const core = corePageMeta[slug]
+  if (core) {
+    return {
+      title: core.title,
+      description: core.description,
+      alternates: { canonical: absoluteUrl(`/${slug}`) },
+      twitter: { card: 'summary_large_image', title: core.title, description: core.description, images: ['/assets/brand/afluma-logo.png'] },
+      openGraph: { type: 'website', siteName: 'Afluma', title: core.title, description: core.description, images: [{ url: '/assets/brand/afluma-logo.png', alt: 'Afluma' }] },
+    }
+  }
   const page = findPage(slug)
   const persona = findPersona(slug)
   if (slug.startsWith('launch/')) { const product = products.find((item) => slug === 'launch/' + item.slug); if (product) return { title: product.name + ' — Coming soon', description: product.description, robots: { index: false, follow: true } } }
@@ -32,6 +43,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function DynamicPage({ params }: Props) {
   const { segments } = await params
   const slug = normalizeSlug(segments)
+
+  if (isAflumaCoreRoute(slug)) {
+    const meta = corePageMeta[slug]
+    return <><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredPage(slug, meta.title, meta.description)).replace(/</g, '\u003c') }} /><AflumaCorePage slug={slug} /></>
+  }
+
   if (Object.hasOwn(aliases, slug)) permanentRedirect(`/${aliases[slug]}`)
   const { isEnabled } = await draftMode()
   // Explicit CMS previews remain available for editors, including core route records.
@@ -53,5 +70,3 @@ export default async function DynamicPage({ params }: Props) {
   if (!result || !hasReviewedContent(result.doc)) notFound()
   return <CmsPage doc={result.doc} />
 }
-
-
