@@ -1,4 +1,5 @@
 import { pages, workforce } from './content'
+import { flagshipRoutes, sitemapExcludedRoutes } from './routing'
 
 export const siteOrigin = process.env.SEO_SITE_URL || 'https://afluma.com'
 export const absoluteUrl = (path: string) => new URL(path, siteOrigin).toString()
@@ -25,23 +26,9 @@ export const searchTitles: Record<string, string> = {
   careers: 'Careers & Talent Enquiries — Afluma',
 }
 
-const flagshipRoutes = [
-  '',
-  'workforce',
-  'platform/agenticos',
-  'products',
-  'research',
-  'proof',
-  'proof/afluma-runs-on-afluma',
-  'company',
-  'trust',
-]
-
-const legacyRedirectRoutes = new Set(['about', 'work'])
-
 export const publicRoutes = () => Array.from(new Set([
   ...flagshipRoutes,
-  ...pages.map((page) => page.slug).filter((slug) => !legacyRedirectRoutes.has(slug)),
+  ...pages.map((page) => page.slug).filter((slug) => !sitemapExcludedRoutes.has(slug)),
   ...workforce.map((agent) => `workforce/${agent.slug}`),
 ]))
 
