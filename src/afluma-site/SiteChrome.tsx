@@ -1,8 +1,9 @@
 import AflumaHeaderClient from './AflumaHeaderClient'
+import HeaderRuntimeGuard from './HeaderRuntimeGuard'
 import Link from 'next/link'
 
 export function AflumaHeader() {
-  return <AflumaHeaderClient />
+  return <><AflumaHeaderClient /><HeaderRuntimeGuard /></>
 }
 
 export function AflumaFooter() {
