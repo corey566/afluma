@@ -15,6 +15,11 @@ import { CmsPage, LegalPage, hasReviewedContent, legalTitles } from '@/site/CmsP
 export const revalidate = 300
 type Props = { params: Promise<{ segments?: string[] }> }
 
+const legacyFlagshipAliases: Record<string, string> = {
+  about: 'company',
+  work: 'proof',
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { segments } = await params
   const slug = normalizeSlug(segments)
@@ -69,7 +74,9 @@ export default async function DynamicPage({ params }: Props) {
     return <><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredPage(slug, title, description)).replace(/</g, '\u003c') }} /><AflumaPersonaPage slug={slug} /></>
   }
 
+  if (Object.hasOwn(legacyFlagshipAliases, slug)) permanentRedirect(`/${legacyFlagshipAliases[slug]}`)
   if (Object.hasOwn(aliases, slug)) permanentRedirect(`/${aliases[slug]}`)
+
   const { isEnabled } = await draftMode()
   // Long-tail CMS records remain previewable without replacing the flagship public experience.
   if (isEnabled) {
