@@ -1,0 +1,15 @@
+node_modules/
+.next/
+.env
+.env.*
+!.env.example
+!.env.development.example
+*.tsbuildinfo
+backups/
+work/
+source-fidelity/reference/
+source-fidelity/templates/
+public/source-media/
+public/nexsas-runtime/
+*.zip
+*.rar

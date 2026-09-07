@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "errors": [],
+  "uniqueAssets": 1544,
+  "eligibleAssets": 1528,
+  "excludedAssets": 16,
+  "assetAssignments": 1528,
+  "routesMapped": 1669,
+  "sourcePages": 158,
+  "sourceComponents": 565
+}

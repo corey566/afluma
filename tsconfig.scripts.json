@@ -1,0 +1,24 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": false,
+    "incremental": false,
+    "noEmit": true
+  },
+  "include": [
+    "payload.config.ts",
+    "scripts/import-source-catalog.ts",
+    "scripts/verify-source-import.ts",
+    "src/**/*.ts",
+    "src/**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules",
+    "legacy-static",
+    "src/app/**/*",
+    "scripts/import-architecture.ts",
+    "scripts/check-content-gates.ts",
+    "scripts/verify-runtime.ts"
+  ]
+}

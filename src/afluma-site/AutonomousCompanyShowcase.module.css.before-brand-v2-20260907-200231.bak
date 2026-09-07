@@ -1,0 +1,486 @@
+.section {
+  --ink: #0b0b18;
+  --paper: #fbfaff;
+  --violet: #6f42ff;
+  --violet-bright: #8b63ff;
+  --lavender: #ded7ff;
+  --deep: #120d1c;
+  --deep-2: #1b1029;
+
+  padding: clamp(72px, 8vw, 136px) 22px;
+  background:
+    radial-gradient(
+      circle at 82% 16%,
+      rgba(120, 77, 255, 0.15),
+      transparent 31%
+    ),
+    linear-gradient(
+      180deg,
+      #ffffff 0%,
+      #f7f3ff 100%
+    );
+  color: var(--ink);
+}
+
+.shell {
+  width: min(1440px, 100%);
+  margin: 0 auto;
+  padding: clamp(26px, 3vw, 46px);
+  border-radius: clamp(26px, 3vw, 46px);
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(138, 92, 255, 0.22),
+      transparent 28%
+    ),
+    linear-gradient(
+      145deg,
+      #17101f 0%,
+      #0d0b13 56%,
+      #171021 100%
+    );
+  box-shadow:
+    0 28px 90px rgba(38, 20, 70, 0.12);
+  overflow: hidden;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+  gap: clamp(40px, 7vw, 120px);
+  align-items: end;
+  margin-bottom: clamp(34px, 5vw, 72px);
+}
+
+.headingBlock h2 {
+  max-width: 900px;
+  margin: 18px 0 0;
+  color: #ffffff;
+  font-size: clamp(3.2rem, 5.1vw, 6.4rem);
+  font-weight: 500;
+  line-height: 0.91;
+  letter-spacing: -0.065em;
+}
+
+.headingBlock h2 span {
+  color: #a98aff;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #cfc5ef;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: #885bff;
+  box-shadow: 0 0 18px rgba(136, 91, 255, 0.85);
+}
+
+.intro {
+  padding-bottom: 6px;
+}
+
+.intro p {
+  max-width: 590px;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: clamp(0.98rem, 1.18vw, 1.15rem);
+  line-height: 1.72;
+}
+
+.statusLine {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 24px;
+}
+
+.statusLine span {
+  padding: 9px 13px;
+  border: 1px solid rgba(208, 194, 255, 0.18);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.045);
+  color: rgba(255, 255, 255, 0.76);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.composition {
+  display: grid;
+  grid-template-columns: minmax(0, 1.06fr) minmax(430px, 0.94fr);
+  gap: 16px;
+}
+
+.visual {
+  position: relative;
+  min-height: 680px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 30px;
+  background: #241738;
+  color: white;
+  text-decoration: none;
+  isolation: isolate;
+}
+
+.visual img {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1.01);
+  transition: transform 800ms cubic-bezier(.2,.8,.2,1);
+}
+
+.visual:hover img {
+  transform: scale(1.045);
+}
+
+.visualShade {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(14, 8, 24, 0.08) 20%,
+      rgba(14, 8, 24, 0.18) 50%,
+      rgba(10, 7, 17, 0.92) 100%
+    );
+}
+
+.visualTop,
+.visualBottom {
+  position: absolute;
+  left: clamp(20px, 3vw, 34px);
+  right: clamp(20px, 3vw, 34px);
+}
+
+.visualTop {
+  top: clamp(20px, 3vw, 32px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.status {
+  padding: 8px 11px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+  background: rgba(18, 10, 31, 0.32);
+  backdrop-filter: blur(12px);
+}
+
+.visualBottom {
+  bottom: clamp(22px, 3vw, 36px);
+}
+
+.visualBottom p {
+  max-width: 500px;
+  margin: 0 0 24px;
+  color: rgba(255, 255, 255, 0.84);
+  font-size: clamp(1rem, 1.3vw, 1.24rem);
+  line-height: 1.55;
+}
+
+.visualLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.statement {
+  min-height: 222px;
+  padding: clamp(26px, 3vw, 38px);
+  border: 1px solid rgba(204, 189, 255, 0.15);
+  border-radius: 28px;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(126, 81, 255, 0.16),
+      rgba(255, 255, 255, 0.045)
+    );
+}
+
+.microLabel {
+  color: #9f82ff;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.statement p {
+  margin: 52px 0 0;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: clamp(1rem, 1.22vw, 1.16rem);
+  line-height: 1.68;
+}
+
+.statement strong {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.systemCard,
+.governanceCard {
+  min-height: 208px;
+  padding: 22px;
+  border: 1px solid rgba(205, 190, 255, 0.15);
+  border-radius: 24px;
+}
+
+.systemCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: white;
+  text-decoration: none;
+  transition:
+    transform 240ms ease,
+    border-color 240ms ease;
+}
+
+.systemCard:hover {
+  transform: translateY(-3px);
+  border-color: rgba(166, 137, 255, 0.5);
+}
+
+.cardTop {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: rgba(255, 255, 255, 0.52);
+  font-size: 0.64rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.systemCard strong {
+  display: block;
+  margin-bottom: 9px;
+  font-size: clamp(1.18rem, 1.5vw, 1.45rem);
+  font-weight: 600;
+}
+
+.systemCard p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.64);
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.agenticCard {
+  background:
+    radial-gradient(
+      circle at 100% 100%,
+      rgba(143, 87, 255, 0.42),
+      transparent 48%
+    ),
+    rgba(255, 255, 255, 0.045);
+}
+
+.serenCard {
+  background:
+    radial-gradient(
+      circle at 0% 100%,
+      rgba(112, 84, 255, 0.26),
+      transparent 52%
+    ),
+    rgba(255, 255, 255, 0.04);
+}
+
+.commerceCard {
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(183, 130, 255, 0.25),
+      transparent 53%
+    ),
+    rgba(255, 255, 255, 0.04);
+}
+
+.governanceCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #14101d;
+  background:
+    radial-gradient(
+      circle at 92% 18%,
+      rgba(122, 76, 255, 0.24),
+      transparent 38%
+    ),
+    #f4f0ff;
+}
+
+.governanceCard > div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.governanceIcon {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border-radius: 999px;
+  background: #7951ff;
+  color: white;
+}
+
+.governanceCard p {
+  margin: 32px 0 0;
+  font-size: 0.93rem;
+  line-height: 1.54;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 22px;
+  min-height: 72px;
+  padding: 0 10px;
+  color: rgba(255, 255, 255, 0.54);
+  font-size: 0.74rem;
+}
+
+.footer a {
+  color: white;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+@media (max-width: 1050px) {
+  .header,
+  .composition {
+    grid-template-columns: 1fr;
+  }
+
+  .intro {
+    max-width: 720px;
+  }
+
+  .visual {
+    min-height: 620px;
+  }
+}
+
+@media (max-width: 700px) {
+  .section {
+    padding: 10px 8px 76px;
+    background: #ffffff;
+  }
+
+  .shell {
+    padding: 24px 14px 18px;
+    border-radius: 24px;
+  }
+
+  .header {
+    gap: 26px;
+    margin-bottom: 26px;
+  }
+
+  .headingBlock h2 {
+    margin-top: 14px;
+    font-size: clamp(2.6rem, 12vw, 4rem);
+    line-height: 0.94;
+  }
+
+  .intro p {
+    font-size: 0.92rem;
+    line-height: 1.58;
+  }
+
+  .statusLine {
+    margin-top: 18px;
+  }
+
+  .visual {
+    min-height: 510px;
+    border-radius: 22px;
+  }
+
+  .visualTop {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .visualBottom p {
+    font-size: 0.94rem;
+  }
+
+  .statement {
+    min-height: auto;
+    padding: 24px 20px;
+    border-radius: 22px;
+  }
+
+  .statement p {
+    margin-top: 34px;
+    font-size: 0.95rem;
+  }
+
+  .cardGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .systemCard,
+  .governanceCard {
+    min-height: 188px;
+    border-radius: 20px;
+  }
+
+  .footer {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 10px 4px 6px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .visual img,
+  .systemCard {
+    transition: none;
+  }
+}

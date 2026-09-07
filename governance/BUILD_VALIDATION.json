@@ -1,0 +1,11 @@
+{
+  "architecture_records": 1669,
+  "unique_slugs": 1669,
+  "recommended_indexable": 169,
+  "cms_import_policy": "All imported records begin as drafts and noindex.",
+  "collections": 15,
+  "globals": 5,
+  "blocks": 17,
+  "roles": 6,
+  "status": "Scaffold and source validation complete; dependency installation and deployed integration tests remain."
+}

@@ -1,0 +1,87 @@
+:root {
+    --theme-elevation-0: #fffdfc;
+    --theme-elevation-50: #fbf8ff;
+    --theme-elevation-100: #eee8ff;
+    --theme-elevation-800: #1e0363;
+    --theme-success-500: #681ee3;
+}
+
+body {
+    background: #fbf8f2;
+}
+
+.template-default {
+    --nav-width: 300px;
+}
+
+.nav {
+    border-right: 1px solid rgba(30, 3, 99, .12);
+    background: #fffdfc;
+}
+
+.nav__brand {
+    padding-top: 24px;
+}
+
+.btn--style-primary {
+    background: linear-gradient(135deg, #7d28fd, #4f0dc6);
+    border: 0;
+}
+
+.afluma-admin-welcome {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 28px;
+    margin: 0 0 28px;
+    padding: 32px;
+    border-radius: 24px;
+    color: white;
+    background: radial-gradient(circle at 88% 10%, rgba(125, 40, 253, .5), transparent 35%), #080b20;
+    box-shadow: 0 24px 70px rgba(30, 3, 99, .2);
+}
+
+.afluma-admin-welcome h1 {
+    margin: .5rem 0 1rem;
+    max-width: 18ch;
+    font-size: clamp(2rem, 4vw, 4rem);
+    line-height: .95;
+    letter-spacing: -.055em;
+}
+
+.afluma-admin-welcome p {
+    max-width: 680px;
+    color: #c4c2d2;
+}
+
+.afluma-admin-kicker {
+    color: #c7aaff;
+    font-size: .72rem;
+    text-transform: uppercase;
+    letter-spacing: .14em;
+    font-weight: 800;
+}
+
+.afluma-admin-actions {
+    display: grid;
+    gap: 10px;
+    align-content: center;
+}
+
+.afluma-admin-actions a {
+    padding: 14px 16px;
+    border: 1px solid rgba(255, 255, 255, .15);
+    border-radius: 12px;
+    color: white;
+    text-decoration: none;
+    background: rgba(255, 255, 255, .06);
+}
+
+.afluma-admin-actions a:hover {
+    background: rgba(125, 40, 253, .2);
+}
+
+@media (max-width:800px) {
+    .afluma-admin-welcome {
+        grid-template-columns: 1fr
+    }
+}

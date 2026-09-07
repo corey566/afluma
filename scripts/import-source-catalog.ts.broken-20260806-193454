@@ -1,0 +1,154 @@
+import fs from 'node:fs/promises'
+import path from 'node:path'
+import { getPayload } from 'payload'
+import config from '@payload-config'
+
+type SourceFamily =
+  | 'creative-portfolio'
+  | 'ai-agency'
+  | 'automation-saas'
+  | 'app-development'
+
+type SourcePage = {
+  key: string
+  family: SourceFamily
+  page: string
+  sourcePath: string
+  resolvedPath: string
+}
+type BindingMode =
+  | 'text'
+  | 'html'
+  | 'image-src'
+  | 'video-src'
+  | 'href'
+  | 'class'
+
+const contentBindings: {
+  slot: string
+  selector: string
+  mode: BindingMode
+}[] = [
+    { slot: 'title', selector: '[data-afluma-slot="title"]', mode: 'text' },
+    { slot: 'summary', selector: '[data-afluma-slot="summary"]', mode: 'text' },
+    { slot: 'primaryActionLabel', selector: '[data-afluma-slot="primary-action"]', mode: 'text' },
+    { slot: 'primaryActionHref', selector: '[data-afluma-slot="primary-action"]', mode: 'href' },
+    { slot: 'primaryMedia', selector: '[data-afluma-slot="primary-media"]', mode: 'image-src' },
+    { slot: 'primaryVideo', selector: '[data-afluma-slot="primary-video"]', mode: 'video-src' },
+  ]
+type AssetStatus =
+  | 'approved'
+  | 'available'
+  | 'deprecated'
+
+type Asset = {
+  assetId: string
+  canonicalPath: string
+  publicPath?: string | null
+  family: string
+  kind: string
+  status: AssetStatus
+  exclusionReason?: string | null
+  sourceArchive: string
+  crc32: string
+  bytes: number
+  licenseStatus: string
+  duplicatePaths: string[]
+}
+type Assignment = { assetId: string; route: string; slot: string; publicUseAllowed: boolean }
+
+const readJSON = async <T,>(name: string): Promise<T> => JSON.parse(await fs.readFile(path.join(process.cwd(), 'source-fidelity/catalog', name), 'utf8'))
+
+const run = async () => {
+  const payload = await getPayload({ config })
+  const [templates, assets, assignments, routeTemplates] = await Promise.all([
+    readJSON<SourcePage[]>('source-pages.json'),
+    readJSON<Asset[]>('media-assets.json'),
+    readJSON<Assignment[]>('asset-assignments.json'),
+    readJSON<any[]>('route-template-map.json')
+  ])
+  const assignmentById = new Map(assignments.map(item => [item.assetId, item]))
+
+  for (const template of templates) {
+    const existing = await payload.find({
+      collection: 'source-templates',
+      where: { key: { equals: template.key } },
+      limit: 1,
+    })
+
+    const data = {
+      key: template.key,
+      family: template.family,
+      page: template.page,
+      sourcePath: template.sourcePath,
+      resolvedPath: template.resolvedPath,
+      status: 'available' as const,
+      contentBindings,
+    }
+
+    if (existing.docs[0]) {
+      await payload.update({
+        collection: 'source-templates',
+        id: existing.docs[0].id,
+        data,
+      })
+    } else {
+      await payload.create({
+        collection: 'source-templates',
+        data,
+      })
+    }
+  }
+}
+
+for (const asset of assets) {
+  const assigned = assignmentById.get(asset.assetId)
+  const existing = await payload.find({ collection: 'asset-library', where: { assetId: { equals: asset.assetId } }, limit: 1 })
+  const data = {
+    assetId: asset.assetId, canonicalPath: asset.canonicalPath, family: asset.family, kind: asset.kind,
+    status: asset.status, exclusionReason: asset.exclusionReason || undefined, sourceArchive: asset.sourceArchive,
+    sourceCRC32: asset.crc32, sourceBytes: asset.bytes, publicPath: asset.publicPath || undefined, licenseStatus: asset.licenseStatus,
+    assignedRoute: assigned?.route, assignedSlot: assigned?.slot, publicUseAllowed: Boolean(assigned?.publicUseAllowed),
+    duplicatePaths: asset.duplicatePaths.map(path => ({ path }))
+  }
+  if (existing.docs[0]) await payload.update({ collection: 'asset-library', id: existing.docs[0].id, data })
+  else await payload.create({ collection: 'asset-library', data })
+}
+const templateDocs = await payload.find({ collection: 'source-templates', limit: 1000, pagination: false })
+const templateByKey = new Map(templateDocs.docs.map((doc: any) => [doc.key, doc.id]))
+const assetDocs = await payload.find({ collection: 'asset-library', limit: 2000, pagination: false })
+const assetById = new Map(assetDocs.docs.map((doc: any) => [doc.assetId, doc.id]))
+const assetDocById = new Map(assetDocs.docs.map((doc: any) => [doc.assetId, doc]))
+const assetsByRoute = new Map<string, string[]>()
+for (const item of assignments) {
+  const id = assetById.get(item.assetId)
+  if (!id) continue
+  const bucket = assetsByRoute.get(item.route) || []
+  bucket.push(String(id))
+  assetsByRoute.set(item.route, bucket)
+}
+for (const item of routeTemplates) {
+  const slug = item.route === '/' ? '' : String(item.route).replace(/^\//, '').replace(/\/$/, '')
+  const found = await payload.find({ collection: 'pages', where: { slug: { equals: slug } }, limit: 1 })
+  const page: any = found.docs[0]
+  if (!page) continue
+  const assignmentRecords = assignments.filter(record => record.route === item.route)
+  const firstAsset = assignmentRecords.map(record => assetDocById.get(record.assetId)).find((asset: any) => asset?.publicPath && asset?.status === 'production-candidate')
+  await payload.update({
+    collection: 'pages', id: page.id, data: {
+      presentationMode: 'hybrid',
+      sourceTemplate: templateByKey.get(item.sourceTemplateKey),
+      assetAssignments: assetsByRoute.get(item.route) || [],
+      sourceSlots: [
+        { slot: 'title', value: page.title || '' },
+        { slot: 'summary', value: page.summary || '' },
+        { slot: 'primaryActionLabel', value: 'Explore Afluma' },
+        { slot: 'primaryActionHref', value: '/start-project' },
+        ...(firstAsset?.publicPath ? [{ slot: 'primaryMedia', value: firstAsset.publicPath }] : [])
+      ]
+    }
+  })
+}
+console.log(`Imported ${templates.length} source templates, ${assets.length} unique media records, and linked ${routeTemplates.length} routes.`)
+}
+run().catch(error => { console.error(error); process.exit(1) })

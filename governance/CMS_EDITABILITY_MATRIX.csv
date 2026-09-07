@@ -1,0 +1,20 @@
+﻿Area,CMS location,Editable without code,Role,Safety
+Global navigation,Header global,"Menu labels, links, mega-menu columns, CTA",Editor,Live preview + publish
+Footer,Footer global,"Columns, legal links, newsletter state",Editor,Draft + publish
+Company details,Site Settings,"Logo, description, contact, social links",Editor,Draft + publish
+Homepage and all pages,Pages,"Hero, sections, bento blocks, CTAs, media, SEO",Author/Editor,"Draft, review, preview, publish"
+Services,Services,"Copy, layouts, media, relationships, SEO",Author/Editor,Draft + approval
+Solutions,Solutions,"Copy, services, industries, layouts, SEO",Author/Editor,Draft + approval
+Industries,Industries,"Challenges, solutions, media, SEO",Author/Editor,Draft + approval
+Products,Products,"Availability, features, screenshots, docs, SEO",Editor,Honest product-state gate
+Case studies,Case Studies,"Client, challenge, solution, evidence, permissions",Editor/Reviewer,Permission + evidence gate
+Insights,Posts,"Articles, sources, authors, covers, SEO",Author/Reviewer/Editor,Source + fact-check gate
+Team and leadership,People,"Names, roles, bios, photos, public profiles",Editor,Verification field
+Careers,Jobs,"Open roles, locations, type, copy, application URL",Recruiter,Draft/open/paused/closed
+Locations,Locations,"Addresses, contact, maps, public office state",Editor,Verification workflow
+Media and videos,Media,"Uploads, alt text, licence, provenance, motion settings",Media manager,Production-status gate
+FAQs,FAQs,Reusable approved Q&A,Author/Editor,Approved flag
+Redirects,Redirects,301/302/307/308 route changes,Editor,Active toggle
+Enquiries,Enquiries,"Lead status, assignment, notes",Editor/Admin,Protected admin access
+SEO defaults,SEO Settings,"Title template, OG image, organization schema",Editor,Draft + publish
+Analytics and webhooks,Integrations,Provider IDs and webhook configuration,Administrator,Admin-only

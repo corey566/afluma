@@ -1,0 +1,26 @@
+{
+  "total": 1669,
+  "indexable": 169,
+  "draft_insights": 1500,
+  "types": {
+    "Home": 1,
+    "Company": 14,
+    "Service Hub": 1,
+    "Service": 15,
+    "Subservice": 45,
+    "Solution Hub": 1,
+    "Solution": 30,
+    "Industry Hub": 1,
+    "Industry": 20,
+    "Location Hub": 1,
+    "Location": 4,
+    "Product Hub": 1,
+    "Product": 3,
+    "Work Hub": 1,
+    "Case Study": 10,
+    "Insights Hub": 1,
+    "Pillar Hub": 15,
+    "Legal": 5,
+    "Insight Article": 1500
+  }
+}

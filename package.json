@@ -1,0 +1,57 @@
+{
+  "name": "afluma-production-cms",
+  "version": "0.4.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20.9.0"
+  },
+  "scripts": {
+    "dev": "cross-env NODE_OPTIONS=--no-deprecation next dev",
+    "build": "cross-env NODE_OPTIONS=--no-deprecation next build",
+    "start": "next start",
+    "payload": "payload",
+    "generate:types": "payload generate:types",
+    "generate:importmap": "payload generate:importmap",
+    "migrate": "payload migrate",
+    "migrate:create": "payload migrate:create",
+    "import:architecture": "payload run scripts/import-architecture.ts",
+    "check:gates": "node --env-file=.env --import tsx scripts/check-content-gates.ts",
+    "validate:source": "python legacy-static/test_site.py",
+    "catalog:source": "python scripts/build-source-fidelity-catalog.py",
+    "import:source": "payload run scripts/import-source-catalog.ts",
+    "verify:source-fidelity": "python scripts/verify-source-fidelity.py",
+    "verify:runtime": "node --env-file=.env --import tsx scripts/verify-runtime.ts",
+    "typecheck:app": "tsc --noEmit --pretty false",
+    "typecheck:source": "tsc --noEmit -p tsconfig.scripts.json --pretty false",
+    "verify:source-import": "payload run scripts/verify-source-import.ts",
+    "core:seed": "payload run scripts/seed-afluma-core.ts",
+    "core:verify": "payload run scripts/verify-afluma-core.ts",
+    "jobs:agentic": "payload jobs:run --cron \"* * * * *\" --queue agentic"
+  },
+  "dependencies": {
+    "@payloadcms/db-postgres": "3.75.0",
+    "@payloadcms/live-preview-react": "3.75.0",
+    "@payloadcms/next": "3.75.0",
+    "@payloadcms/richtext-lexical": "3.75.0",
+    "@payloadcms/storage-s3": "3.75.0",
+    "cross-env": "7.0.3",
+    "graphql": "16.11.0",
+    "next": "16.2.6",
+    "payload": "3.75.0",
+    "postcss": "^8.5.26",
+    "postprocessing": "6.39.4",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "sharp": "0.34.3",
+    "three": "^0.180.0"
+  },
+  "devDependencies": {
+    "@types/node": "22.15.30",
+    "@types/react": "19.1.8",
+    "@types/react-dom": "19.1.6",
+    "@types/three": "^0.185.4",
+    "tsx": "4.20.3",
+    "typescript": "5.8.3"
+  }
+}
