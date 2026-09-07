@@ -1,0 +1,35 @@
+name: Website completion checks
+
+on:
+  push:
+    branches:
+      - website-completion
+  pull_request:
+    branches:
+      - website-fidelity
+
+jobs:
+  static-checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Typecheck application
+        run: npm run typecheck:app
+
+      - name: Typecheck scripts
+        run: npm run typecheck:source
+
+      - name: Lint
+        run: npm run lint
