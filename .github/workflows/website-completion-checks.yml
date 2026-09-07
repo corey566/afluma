@@ -1,0 +1,63 @@
+name: Website completion checks
+
+on:
+  push:
+    branches:
+      - website-completion
+  pull_request:
+    branches:
+      - website-fidelity
+
+jobs:
+  completion-gates:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: afluma_ci
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d afluma_ci"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      DATABASE_URL: postgresql://postgres:postgres@127.0.0.1:5432/afluma_ci
+      PAYLOAD_SECRET: afluma-ci-only-secret-not-for-production-2026
+      SERVER_URL: http://localhost:3000
+      SEO_SITE_URL: http://localhost:3000
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Typecheck application
+        run: npm run typecheck:app
+
+      - name: Typecheck scripts
+        run: npm run typecheck:source
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Test public route model
+        run: npm run test:site
+
+      - name: Production build
+        run: npm run build

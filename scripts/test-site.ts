@@ -1,6 +1,8 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
 import { aliases, findPage, findPersona, pages, products, workforce } from '../src/site/content'
+import { publicRoutes } from '../src/site/seo'
+import { flagshipRoutes, legacyFlagshipAliases } from '../src/site/routing'
 
 const personaRoutes = workforce.map((agent) => `workforce/${agent.slug}`)
 const canonicalRoutes = [...pages.map((page) => page.slug), ...personaRoutes]
@@ -15,9 +17,9 @@ test('canonical public routes are unique and use clean URL paths', () => {
   }
 })
 
-test('the workforce and connected ecosystem have dedicated pages', () => {
+test('the workforce and connected ecosystem have dedicated content records', () => {
   for (const route of ['workforce', 'platform/agenticos', 'products', 'services', 'about', 'contact']) {
-    assert.ok(findPage(route), `Missing core page: /${route}`)
+    assert.ok(findPage(route), `Missing core content record: /${route}`)
   }
 
   assert.ok(products.length > 0, 'The ecosystem must include products')
@@ -27,6 +29,21 @@ test('the workforce and connected ecosystem have dedicated pages', () => {
     assert.ok(page, `Missing product page for ${product.name}`)
     assert.equal(page.title, product.name, 'Product navigation and page identity must agree')
     assert.ok(page.sections.length > 0, `${product.name} needs explanatory content`)
+  }
+})
+
+test('flagship routes are public and legacy company URLs do not compete in the sitemap', () => {
+  const sitemapRoutes = new Set(publicRoutes())
+
+  for (const route of flagshipRoutes) {
+    assert.ok(sitemapRoutes.has(route), `Flagship route missing from sitemap: /${route}`)
+    assert.match(route, /^(?:[a-z0-9]+(?:-[a-z0-9]+)*(?:\/[a-z0-9]+(?:-[a-z0-9]+)*)*)?$/, `Invalid flagship route: ${route}`)
+  }
+
+  for (const [source, target] of Object.entries(legacyFlagshipAliases)) {
+    assert.ok(!sitemapRoutes.has(source), `Legacy redirect must not be published in sitemap: /${source}`)
+    assert.ok(sitemapRoutes.has(target), `Legacy redirect target is not public: /${target}`)
+    assert.notEqual(source, target, `Legacy flagship redirect loops to itself: /${source}`)
   }
 })
 
@@ -63,11 +80,11 @@ test('persona identities and every collaboration handoff resolve to public profi
   }
 })
 
-test('legacy aliases resolve directly to canonical pages without collisions or chains', () => {
+test('legacy content aliases resolve directly without collisions or chains', () => {
   for (const [source, target] of Object.entries(aliases)) {
-    assert.ok(!canonicalRouteSet.has(source), `Alias hides a canonical route: /${source}`)
-    assert.ok(canonicalRouteSet.has(target), `Alias /${source} points to missing route /${target}`)
-    assert.ok(!Object.hasOwn(aliases, target), `Alias /${source} introduces a redirect chain`)
-    assert.notEqual(source, target, `Alias loops to itself: /${source}`)
+    assert.ok(!canonicalRouteSet.has(source), `Content alias hides a canonical content route: /${source}`)
+    assert.ok(canonicalRouteSet.has(target), `Content alias /${source} points to missing route /${target}`)
+    assert.ok(!Object.hasOwn(aliases, target), `Content alias /${source} introduces a redirect chain`)
+    assert.notEqual(source, target, `Content alias loops to itself: /${source}`)
   }
 })

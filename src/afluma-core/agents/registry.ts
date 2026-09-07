@@ -2,26 +2,6 @@ import type { AgentDefinition } from '../contracts/agent'
 
 export const agents: readonly AgentDefinition[] = [
   {
-    id: 'agent.mei.nova',
-    name: 'Mei Nova',
-    role: 'AI Client Concierge & Experience Architect',
-    mission: 'Understand visitor intent, guide clearly, capture minimum useful context and route to the right next step.',
-    defaultAuthority: 2,
-    capabilities: [
-      'conversation.fast',
-      'conversation.realtime',
-      'reasoning.business',
-      'knowledge.retrieve',
-      'crm.read',
-      'crm.write',
-      'schedule',
-    ],
-    canWriteLongTermMemory: false,
-    publicPersona: true,
-    disclosure: 'AI teammate at Afluma',
-    escalationAgentIds: ['agent.yara.halo','agent.aether.rahm','agent.esme.echo'],
-  },
-  {
     id: 'agent.yara.halo',
     name: 'Yara Halo',
     role: 'Senior AI Business Development Executive',
@@ -41,6 +21,26 @@ export const agents: readonly AgentDefinition[] = [
     publicPersona: true,
     disclosure: 'AI business development executive at Afluma',
     escalationAgentIds: ['agent.aether.rahm','agent.leila.orbit'],
+  },
+  {
+    id: 'agent.mei.nova',
+    name: 'Mei Nova',
+    role: 'AI Client Concierge & Experience Architect',
+    mission: 'Understand visitor intent, guide clearly, capture minimum useful context and route to the right next step.',
+    defaultAuthority: 2,
+    capabilities: [
+      'conversation.fast',
+      'conversation.realtime',
+      'reasoning.business',
+      'knowledge.retrieve',
+      'crm.read',
+      'crm.write',
+      'schedule',
+    ],
+    canWriteLongTermMemory: false,
+    publicPersona: true,
+    disclosure: 'AI teammate at Afluma',
+    escalationAgentIds: ['agent.yara.halo','agent.aether.rahm','agent.esme.echo'],
   },
   {
     id: 'agent.aether.rahm',
