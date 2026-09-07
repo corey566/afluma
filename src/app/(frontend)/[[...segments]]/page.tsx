@@ -6,6 +6,7 @@ import { getPageBySlug, normalizeSlug } from '@/lib/content'
 import { aliases, findPage, findPersona, products } from '@/site/content'
 import { SitePage, PersonaPage, LaunchPage } from '@/site/SitePage'
 import { AflumaCorePage, corePageMeta, isAflumaCoreRoute } from '@/site/AflumaCorePages'
+import { AflumaProductPage, isAflumaProductRoute, productPageMeta } from '@/site/AflumaProductPages'
 import { absoluteUrl, structuredPage, searchTitles } from '@/site/seo'
 import { CmsPage, LegalPage, hasReviewedContent, legalTitles } from '@/site/CmsPage'
 
@@ -15,14 +16,14 @@ type Props = { params: Promise<{ segments?: string[] }> }
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { segments } = await params
   const slug = normalizeSlug(segments)
-  const core = corePageMeta[slug]
-  if (core) {
+  const flagship = corePageMeta[slug] || productPageMeta[slug]
+  if (flagship) {
     return {
-      title: core.title,
-      description: core.description,
+      title: flagship.title,
+      description: flagship.description,
       alternates: { canonical: absoluteUrl(`/${slug}`) },
-      twitter: { card: 'summary_large_image', title: core.title, description: core.description, images: ['/assets/brand/afluma-logo.png'] },
-      openGraph: { type: 'website', siteName: 'Afluma', title: core.title, description: core.description, images: [{ url: '/assets/brand/afluma-logo.png', alt: 'Afluma' }] },
+      twitter: { card: 'summary_large_image', title: flagship.title, description: flagship.description, images: ['/assets/brand/afluma-logo.png'] },
+      openGraph: { type: 'website', siteName: 'Afluma', title: flagship.title, description: flagship.description, images: [{ url: '/assets/brand/afluma-logo.png', alt: 'Afluma' }] },
     }
   }
   const page = findPage(slug)
@@ -47,6 +48,11 @@ export default async function DynamicPage({ params }: Props) {
   if (isAflumaCoreRoute(slug)) {
     const meta = corePageMeta[slug]
     return <><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredPage(slug, meta.title, meta.description)).replace(/</g, '\u003c') }} /><AflumaCorePage slug={slug} /></>
+  }
+
+  if (isAflumaProductRoute(slug)) {
+    const meta = productPageMeta[slug]
+    return <><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredPage(slug, meta.title, meta.description)).replace(/</g, '\u003c') }} /><AflumaProductPage slug={slug} /></>
   }
 
   if (Object.hasOwn(aliases, slug)) permanentRedirect(`/${aliases[slug]}`)
