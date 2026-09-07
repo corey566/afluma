@@ -4,9 +4,10 @@ import { notFound, permanentRedirect } from 'next/navigation'
 import { RefreshRouteOnSave } from '@/components/RefreshRouteOnSave'
 import { getPageBySlug, normalizeSlug } from '@/lib/content'
 import { aliases, findPage, findPersona, products } from '@/site/content'
-import { SitePage, PersonaPage, LaunchPage } from '@/site/SitePage'
+import { SitePage, LaunchPage } from '@/site/SitePage'
 import { AflumaCorePage, corePageMeta, isAflumaCoreRoute } from '@/site/AflumaCorePages'
 import { AflumaProductPage, isAflumaProductRoute, productPageMeta } from '@/site/AflumaProductPages'
+import { AflumaPersonaPage } from '@/site/AflumaPersonaPage'
 import { absoluteUrl, structuredPage, searchTitles } from '@/site/seo'
 import { CmsPage, LegalPage, hasReviewedContent, legalTitles } from '@/site/CmsPage'
 
@@ -55,9 +56,16 @@ export default async function DynamicPage({ params }: Props) {
     return <><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredPage(slug, meta.title, meta.description)).replace(/</g, '\u003c') }} /><AflumaProductPage slug={slug} /></>
   }
 
+  const persona = findPersona(slug)
+  if (persona) {
+    const title = persona.name
+    const description = `${persona.role}. AI teammate at Afluma. ${persona.mission}`
+    return <><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredPage(slug, title, description)).replace(/</g, '\u003c') }} /><AflumaPersonaPage slug={slug} /></>
+  }
+
   if (Object.hasOwn(aliases, slug)) permanentRedirect(`/${aliases[slug]}`)
   const { isEnabled } = await draftMode()
-  // Explicit CMS previews remain available for editors, including core route records.
+  // Long-tail CMS records remain previewable without replacing the flagship public experience.
   if (isEnabled) {
     const draft = await getPageBySlug(slug, true)
     if (draft) return <><RefreshRouteOnSave /><CmsPage doc={draft.doc} /></>
@@ -66,8 +74,6 @@ export default async function DynamicPage({ params }: Props) {
   if (page) return <><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredPage(slug, page.title, page.description)).replace(/</g, '\u003c') }} /><SitePage page={page} /></>
   const launchProduct = products.find((item) => slug === 'launch/' + item.slug)
   if (launchProduct) return <LaunchPage product={launchProduct} />
-  const persona = findPersona(slug)
-  if (persona) return <PersonaPage agent={persona} />
   if (legalTitles[slug]) {
     const result = await getPageBySlug(slug)
     return <LegalPage slug={slug} doc={result?.doc} />
