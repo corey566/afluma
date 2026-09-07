@@ -9,16 +9,12 @@ import { AflumaCorePage, corePageMeta, isAflumaCoreRoute } from '@/site/AflumaCo
 import { AflumaProductPage, isAflumaProductRoute, productPageMeta } from '@/site/AflumaProductPages'
 import { AflumaPersonaPage } from '@/site/AflumaPersonaPage'
 import { AflumaUtilityPage, isAflumaUtilityRoute, utilityPageMeta } from '@/site/AflumaUtilityPages'
+import { legacyFlagshipAliases } from '@/site/routing'
 import { absoluteUrl, structuredPage, searchTitles } from '@/site/seo'
 import { CmsPage, LegalPage, hasReviewedContent, legalTitles } from '@/site/CmsPage'
 
 export const revalidate = 300
 type Props = { params: Promise<{ segments?: string[] }> }
-
-const legacyFlagshipAliases: Record<string, string> = {
-  about: 'company',
-  work: 'proof',
-}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { segments } = await params
