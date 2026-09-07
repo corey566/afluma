@@ -37,9 +37,11 @@ const flagshipRoutes = [
   'trust',
 ]
 
+const legacyRedirectRoutes = new Set(['about', 'work'])
+
 export const publicRoutes = () => Array.from(new Set([
   ...flagshipRoutes,
-  ...pages.map((page) => page.slug),
+  ...pages.map((page) => page.slug).filter((slug) => !legacyRedirectRoutes.has(slug)),
   ...workforce.map((agent) => `workforce/${agent.slug}`),
 ]))
 
