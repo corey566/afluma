@@ -8,6 +8,7 @@ import { SitePage, LaunchPage } from '@/site/SitePage'
 import { AflumaCorePage, corePageMeta, isAflumaCoreRoute } from '@/site/AflumaCorePages'
 import { AflumaProductPage, isAflumaProductRoute, productPageMeta } from '@/site/AflumaProductPages'
 import { AflumaPersonaPage } from '@/site/AflumaPersonaPage'
+import { AflumaUtilityPage, isAflumaUtilityRoute, utilityPageMeta } from '@/site/AflumaUtilityPages'
 import { absoluteUrl, structuredPage, searchTitles } from '@/site/seo'
 import { CmsPage, LegalPage, hasReviewedContent, legalTitles } from '@/site/CmsPage'
 
@@ -17,7 +18,7 @@ type Props = { params: Promise<{ segments?: string[] }> }
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { segments } = await params
   const slug = normalizeSlug(segments)
-  const flagship = corePageMeta[slug] || productPageMeta[slug]
+  const flagship = corePageMeta[slug] || productPageMeta[slug] || utilityPageMeta[slug]
   if (flagship) {
     return {
       title: flagship.title,
@@ -54,6 +55,11 @@ export default async function DynamicPage({ params }: Props) {
   if (isAflumaProductRoute(slug)) {
     const meta = productPageMeta[slug]
     return <><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredPage(slug, meta.title, meta.description)).replace(/</g, '\u003c') }} /><AflumaProductPage slug={slug} /></>
+  }
+
+  if (isAflumaUtilityRoute(slug)) {
+    const meta = utilityPageMeta[slug]
+    return <><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredPage(slug, meta.title, meta.description)).replace(/</g, '\u003c') }} /><AflumaUtilityPage slug={slug} /></>
   }
 
   const persona = findPersona(slug)
