@@ -1,3 +1,4 @@
+import { pages as websitePages } from '@/site/content'
 import type {
   Payload,
   Where,
@@ -1999,6 +2000,21 @@ export async function retrieveAflumaKnowledge(
           ),
         ),
     })
+  }
+
+  // The rebuilt website catalogue is the source for current public positioning.
+  // Remove older CMS candidates for the same canonical route to avoid conflicting answers.
+  const rebuiltPaths = new Set(websitePages.map((page) => '/' + page.slug))
+  for (let index = candidates.length - 1; index >= 0; index--) {
+    const url = candidates[index].url
+    if (!url) continue
+    try {
+      const pathname = new URL(url, 'https://afluma.com').pathname.replace(/\/$/, '') || '/'
+      if (rebuiltPaths.has(pathname)) candidates.splice(index, 1)
+    } catch { /* Non-URL CMS references are retained for the existing scorer. */ }
+  }
+  for (const page of websitePages) {
+    add({ id: 'website:' + (page.slug || 'home'), type: 'page', pageType: page.slug.startsWith('products/') ? 'product' : page.slug.startsWith('services/') ? 'service' : 'company', title: page.title, url: 'https://afluma.com/' + page.slug, text: [page.description, ...page.sections.flatMap((section) => [section.title, section.body, ...(section.items || [])]), ...(page.slug.startsWith('products/') ? ['Coming soon. Register interest on the product launch page. Pricing and launch date are not announced.'] : [])].join('\n') })
   }
 
   const ranked =

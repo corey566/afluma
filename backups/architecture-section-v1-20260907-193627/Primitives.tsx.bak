@@ -1,0 +1,35 @@
+import Link from 'next/link'
+import { drive, generated, shapeSet } from './assets'
+import { capabilityCopy, operatingSteps, pageHref, sectionBody, summaryOf, titleOf } from './copy'
+import type { AnyDoc } from './types'
+
+export function SectionHead({eyebrow,title,intro,invert=false,action}:{eyebrow?:string,title:string,intro?:string,invert?:boolean,action?:{label:string,href:string}}) {
+  return <div className={`a7-section-head ${invert?'a7-section-head--invert':''}`}><div><span className="a7-kicker">{eyebrow}</span><h2>{title}</h2></div>{intro?<p>{intro}</p>:null}{action?<Link href={action.href}>{action.label} →</Link>:null}</div>
+}
+
+export function CapabilityGrid() {
+  return <div className="a7-cap-grid">{capabilityCopy.map(([title,body],i)=><Link className="a7-cap-card" href={["/services/custom-software-development/","/services/ai-automation/","/services/managed-business-operations/","/services/data-analytics-reporting/"][i]} key={title}><div><span>0{i+1}</span><h3>{title}</h3><p>{body}</p><b>Explore →</b></div><img src={shapeSet[[3,0,9,1][i]]} alt=""/></Link>)}</div>
+}
+
+export function ProcessRail({dark=false}:{dark?:boolean}) {
+  return <div className={`a7-process ${dark?'a7-process--dark':''}`}><div className="a7-process__intro"><span className="a7-kicker">Our approach</span><h2>A proven process.<br/>Predictable control.</h2></div>{operatingSteps.map(([n,title,body])=><div className="a7-process__step" key={n}><b>{n}</b><h3>{title}</h3><p>{body}</p></div>)}</div>
+}
+
+export function PageCards({pages,limit=6,dark=false}:{pages:AnyDoc[],limit?:number,dark?:boolean}) {
+  const candidates=pages.filter((p)=>p?.title && p?.slug).slice(0,limit)
+  return <div className={`a7-page-cards ${dark?'a7-page-cards--dark':''}`}>{candidates.map((p,i)=><Link href={pageHref(p)} className="a7-page-card" key={`${p.id}-${p.slug}`}><div className="a7-page-card__media"><img src={shapeSet[i%shapeSet.length]} alt=""/></div><span>{String(p.pageType||'Explore').replace('-', ' ')}</span><h3>{titleOf(p)}</h3><p>{summaryOf(p)}</p><b>Explore →</b></Link>)}</div>
+}
+
+export function EditorialSections({doc,outline}:{doc:AnyDoc,outline:string[]}) {
+  const sections=(outline.length?outline:['Business context','What the system needs to do','Delivery approach','Technology and integration','Operations and continuous improvement']).slice(0,7)
+  return <div className="a7-article-layout"><aside className="a7-toc"><strong>On this page</strong>{sections.map((h,i)=><a href={`#section-${i+1}`} key={h}><span>0{i+1}</span>{h}</a>)}</aside><article className="a7-prose">{sections.map((heading,i)=><section id={`section-${i+1}`} key={heading}><span className="a7-prose__index">0{i+1}</span><h2>{heading}</h2><p>{sectionBody(heading,doc)}</p>{i===1||i===4?<figure className="a7-prose__media"><img src={i===1?generated.violetRings:drive.shapeA} alt=""/></figure>:null}</section>)}</article></div>
+}
+
+export function PrinciplesBand() {
+  const items=[['Human oversight','Important decisions and exceptions stay visible to people.'],['Secure by design','Identity, access, privacy and data handling are considered early.'],['Evidence over claims','Results, metrics and customer proof are published only when verified.'],['Operational ownership','A system needs clear owners, support paths and improvement loops.']]
+  return <div className="a7-principles">{items.map(([t,b])=><div key={t}><span>✦</span><h3>{t}</h3><p>{b}</p></div>)}</div>
+}
+
+export function VisualPair({dark=false}:{dark?:boolean}) {
+  return <div className={`a7-visual-pair ${dark?'a7-visual-pair--dark':''}`}><div><img src={generated.ribbonLoop} alt=""/></div><div><img src={drive.interface} alt="Illustrative interface concept from the supplied source library"/><small>Illustrative interface concept — not a production metric dashboard.</small></div></div>
+}

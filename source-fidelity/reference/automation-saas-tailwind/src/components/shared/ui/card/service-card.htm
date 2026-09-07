@@ -1,0 +1,25 @@
+<div
+  class="bg-accent flex min-h-[370px] flex-col justify-between space-y-2 rounded-xl p-7 md:p-10"
+>
+  <div
+    class="bg-secondary flex size-17 items-center justify-center rounded-3xl p-4"
+  >
+    <span class="{=$icon} shrink-0 text-[35px] text-white"></span>
+  </div>
+  <div class="space-y-2 text-left">
+    <h3
+      data-text-reveal
+      data-delay="0.2"
+      class="text-heading-5 text-secondary/80"
+    >
+      <a href="{=$href}">{=$title}</a>
+    </h3>
+    <p
+      data-text-reveal
+      data-delay="0.3"
+      class="text-tagline-2 text-secondary/50"
+    >
+      {=$description}
+    </p>
+  </div>
+</div>

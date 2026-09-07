@@ -1,51 +1,57 @@
 import type { Metadata } from 'next'
 import { draftMode } from 'next/headers'
-import { notFound } from 'next/navigation'
+import { notFound, permanentRedirect } from 'next/navigation'
 import { RefreshRouteOnSave } from '@/components/RefreshRouteOnSave'
-import { AflumaPage } from '@/afluma-site/AflumaPage'
 import { getPageBySlug, normalizeSlug } from '@/lib/content'
+import { aliases, findPage, findPersona, products } from '@/site/content'
+import { SitePage, PersonaPage, LaunchPage } from '@/site/SitePage'
+import { absoluteUrl, structuredPage, searchTitles } from '@/site/seo'
+import { CmsPage, LegalPage, hasReviewedContent, legalTitles } from '@/site/CmsPage'
 
 export const revalidate = 300
-export const dynamicParams = true
+type Props = { params: Promise<{ segments?: string[] }> }
 
-type Props={params:Promise<{segments?:string[]}>}
-
-export async function generateMetadata({params}:Props):Promise<Metadata>{
-  const {segments}=await params
-  const {isEnabled}=await draftMode()
-  const result=await getPageBySlug(normalizeSlug(segments),isEnabled)
-  if(!result) return {}
-  const doc=result.doc as any
-  const seo=doc.seo||{}
-  const indexable=Boolean(doc.recommendedIndexable)&&doc._status==='published'
-  const canonical=seo.canonicalURL||undefined
-  const title=seo.title||doc.title||'Afluma'
-  const description=seo.description||doc.summary||'Afluma designs, builds and operates intelligent digital systems.'
-  return {
-    title,
-    description,
-    alternates:canonical?{canonical}:undefined,
-    robots:indexable?{index:true,follow:true,googleBot:{index:true,follow:true,'max-image-preview':'large','max-video-preview':-1,'max-snippet':-1}}:{index:false,follow:true},
-    openGraph:{type:'website',siteName:'Afluma',title,description,images:[{url:'/afluma-v07/generated/hero-android.png',alt:'Afluma intelligent digital systems'}]},
-    twitter:{card:'summary_large_image',title,description,images:['/afluma-v07/generated/hero-android.png']},
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { segments } = await params
+  const slug = normalizeSlug(segments)
+  const page = findPage(slug)
+  const persona = findPersona(slug)
+  if (slug.startsWith('launch/')) { const product = products.find((item) => slug === 'launch/' + item.slug); if (product) return { title: product.name + ' — Coming soon', description: product.description, robots: { index: false, follow: true } } }
+  if (page || persona) {
+    const title = searchTitles[slug] || page?.title || persona?.name || 'Afluma'
+    const description = page?.description || `${persona?.role}. AI teammate at Afluma. ${persona?.mission}`
+    return { title, description, alternates: { canonical: absoluteUrl(`/${slug}`) }, twitter: { card: 'summary_large_image', title, description, images: ['/assets/brand/afluma-logo.png'] }, openGraph: { type: 'website', siteName: 'Afluma', title, description, images: [{ url: '/assets/brand/afluma-logo.png', alt: 'Afluma' }] } }
   }
+  if (legalTitles[slug]) return { title: legalTitles[slug], robots: { index: false, follow: true } }
+  const { isEnabled } = await draftMode()
+  const result = await getPageBySlug(slug, isEnabled)
+  if (!result || (!isEnabled && !hasReviewedContent(result.doc))) return { title: 'Page not found', robots: { index: false, follow: true } }
+  return { title: result.doc.seo?.title || result.doc.title, description: result.doc.seo?.description || result.doc.summary, robots: { index: !isEnabled && Boolean(result.doc.recommendedIndexable), follow: true } }
 }
 
-export default async function DynamicPage({params}:Props){
-  const {segments}=await params
-  const {isEnabled}=await draftMode()
-  const result=await getPageBySlug(normalizeSlug(segments),isEnabled)
-  if(!result) notFound()
-  const doc=result.doc as any
-  const schema={
-    '@context':'https://schema.org',
-    '@type':doc.pageType==='article'?'Article':doc.pageType==='service'?'Service':'WebPage',
-    name:doc.title,
-    headline:doc.title,
-    description:doc.seo?.description||doc.summary,
-    url:doc.seo?.canonicalURL,
-    isPartOf:{'@type':'WebSite',name:'Afluma',url:'https://afluma.com'},
-    publisher:{'@type':'Organization',name:'Afluma',url:'https://afluma.com'},
+export default async function DynamicPage({ params }: Props) {
+  const { segments } = await params
+  const slug = normalizeSlug(segments)
+  if (Object.hasOwn(aliases, slug)) permanentRedirect(`/${aliases[slug]}`)
+  const { isEnabled } = await draftMode()
+  // Explicit CMS previews remain available for editors, including core route records.
+  if (isEnabled) {
+    const draft = await getPageBySlug(slug, true)
+    if (draft) return <><RefreshRouteOnSave /><CmsPage doc={draft.doc} /></>
   }
-  return <>{isEnabled?<RefreshRouteOnSave/>:null}<script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(schema)}}/><AflumaPage doc={doc} kind={result.kind}/></>
+  const page = findPage(slug)
+  if (page) return <><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredPage(slug, page.title, page.description)).replace(/</g, '\u003c') }} /><SitePage page={page} /></>
+  const launchProduct = products.find((item) => slug === 'launch/' + item.slug)
+  if (launchProduct) return <LaunchPage product={launchProduct} />
+  const persona = findPersona(slug)
+  if (persona) return <PersonaPage agent={persona} />
+  if (legalTitles[slug]) {
+    const result = await getPageBySlug(slug)
+    return <LegalPage slug={slug} doc={result?.doc} />
+  }
+  const result = await getPageBySlug(slug)
+  if (!result || !hasReviewedContent(result.doc)) notFound()
+  return <CmsPage doc={result.doc} />
 }
+
+

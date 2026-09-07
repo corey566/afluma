@@ -1,4 +1,6 @@
-import Link from 'next/link'
-import { generated } from '@/afluma-site/assets'
+import { Action } from '@/site/SitePage'
 
-export default function NotFound(){return <section className="a7-not-found"><div className="a7-shell"><div><span className="a7-kicker">404</span><h1>That route is not part of the system.</h1><p>Use the main navigation, return home or start from Afluma’s core capabilities.</p><div className="a7-actions"><Link href="/" className="a7-button a7-button--primary">Go home →</Link><Link href="/services/" className="a7-button a7-button--ghost">Explore services</Link></div></div><img src={generated.ribbonSculpture} alt=""/></div></section>}
+export default function NotFound() {
+  return <section className="shell not-found"><span className="eyebrow">404 / Page not found</span><h1>Let’s find a useful direction.</h1><p>This page isn’t available. Explore the workforce, browse our products or return to Afluma.</p><div className="actions"><Action href="/">Back to Afluma</Action><Action href="/products" secondary>Explore products</Action></div></section>
+}
+

@@ -1,6 +1,6 @@
 import type { CollectionConfig } from 'payload'
 
-import { adminOnly, contentTeam, hasRole, publicCreate } from '@/access'
+import { adminOnly, contentTeam, hasRole } from '@/access'
 
 export const Enquiries: CollectionConfig = {
   hooks: {
@@ -52,7 +52,9 @@ export const Enquiries: CollectionConfig = {
     defaultColumns: ['name', 'email', 'company', 'enquiryType', 'status', 'createdAt'],
   },
   access: {
-    create: publicCreate,
+    // Public intake uses the validated /api/enquiry endpoint. Direct REST writes
+    // must not bypass input validation or set internal workflow fields.
+    create: contentTeam,
     read: contentTeam,
     update: contentTeam,
     delete: adminOnly,

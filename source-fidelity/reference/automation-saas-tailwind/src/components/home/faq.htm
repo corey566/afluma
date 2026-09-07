@@ -1,0 +1,223 @@
+<!-- faq section  -->
+<section class="pt-20 md:pt-25 lg:pt-39">
+  <div class="main-container">
+    <div
+      class="flex overflow-hidden flex-col lg:flex-row gap-y-6 items-start justify-center lg:gap-y-0 lg:gap-x-18"
+    >
+      <div
+        data-ns-animate
+        data-delay="0.1"
+        data-direction="left"
+        data-offset="100"
+        class="w-full lg:w-1/2"
+      >
+        <div class="space-y-14 text-center lg:text-left">
+          <div class="space-y-5">
+            <div data-ns-animate data-delay="0.1">
+              <Component
+                src="../shared/ui/badge/badge-primary.htm"
+                badge-text="Frequently Asked  Questions"
+              />
+            </div>
+            <div class="space-y-3">
+              <h2 data-text-reveal data-delay="0.2">
+                Frequently asked questions
+              </h2>
+              <p
+                data-text-reveal
+                data-delay="0.3"
+                class="text-background-14/60 max-w-[450px] mx-auto lg:mx-0"
+              >
+                We’ve gathered the most commonly asked questions to help you
+                understand our services, workflow, pricing, and support.
+              </p>
+            </div>
+          </div>
+
+          <a href="./contact.html" class="flex justify-center lg:justify-start">
+            <Component
+              src="../shared/ui/button/button-white.htm"
+              button-text="Contact Us"
+              button-class="w-[80%]! mx-auto md:mx-0 md:w-fit!"
+              button-text-class="text-center max-sm:flex-1 max-sm:px-0! max-sm:pr-8!"
+            />
+          </a>
+        </div>
+      </div>
+
+      <!-- faq  -->
+      <div
+        data-ns-animate
+        data-delay="0.2"
+        data-direction="right"
+        data-offset="100"
+        class="w-full lg:w-1/2"
+      >
+        <div class="accordion space-y-4" aria-label="FAQ">
+          <!-- item one  -->
+          <div
+            class="accordion-item group rounded-[20px] bg-white px-4 md:px-6"
+            data-default-open="true"
+          >
+            <button
+              type="button"
+              class="accordion-action w-full cursor-pointer pt-6 md:pt-8 group-data-[state=open]:pb-4 group-data-[state=closed]:pb-6 md:group-data-[state=closed]:pb-8 transition-all duration-400 ease-in-out text-left"
+            >
+              <span class="flex items-center justify-between gap-x-4">
+                <span
+                  class="text-heading-6 font-inter-tight text-secondary text"
+                >
+                  What does Nexsas automate?
+                </span>
+                <Component
+                  src="../shared/ui/accoridion/accordion-icon.htm"
+                  class="shrink-0"
+                />
+              </span>
+            </button>
+            <Component
+              src="../shared/ui/accoridion/accordion-content.htm"
+              class="accordion-content-text"
+              content="Nexsas connects your tools and automates repetitive tasks like routing requests, updating records, sending notifications, and syncing data across your stack."
+            />
+          </div>
+
+          <!-- item two  -->
+          <div
+            class="accordion-item group rounded-[20px] bg-white px-4 md:px-6"
+          >
+            <button
+              type="button"
+              class="accordion-action w-full cursor-pointer pt-6 md:pt-8 group-data-[state=open]:pb-4 group-data-[state=closed]:pb-6 md:group-data-[state=closed]:pb-8 transition-all duration-400 ease-in-out text-left"
+            >
+              <span class="flex items-center justify-between gap-x-4">
+                <span
+                  class="text-heading-6 font-inter-tight text-secondary text"
+                >
+                  Which apps can I connect?
+                </span>
+                <Component
+                  src="../shared/ui/accoridion/accordion-icon.htm"
+                  class="shrink-0"
+                />
+              </span>
+            </button>
+            <Component
+              src="../shared/ui/accoridion/accordion-content.htm"
+              class="accordion-content-text"
+              content="Connect CRMs, project tools, email, forms, spreadsheets, and databases. Mix multiple integrations in one workflow to keep data synced across teams."
+            />
+          </div>
+
+          <!-- item three  -->
+          <div
+            class="accordion-item group rounded-[20px] bg-white px-4 md:px-6"
+          >
+            <button
+              type="button"
+              class="accordion-action w-full cursor-pointer pt-6 md:pt-8 group-data-[state=open]:pb-4 group-data-[state=closed]:pb-6 md:group-data-[state=closed]:pb-8 transition-all duration-400 ease-in-out text-left"
+            >
+              <span class="flex items-center justify-between gap-x-4">
+                <span
+                  class="text-heading-6 font-inter-tight text-secondary text"
+                >
+                  Can I build multi-step workflows?
+                </span>
+                <Component
+                  src="../shared/ui/accoridion/accordion-icon.htm"
+                  class="shrink-0"
+                />
+              </span>
+            </button>
+            <Component
+              src="../shared/ui/accoridion/accordion-content.htm"
+              class="accordion-content-text"
+              content="Yes. Create triggers, conditions, approvals, delays, and branching logic. You can also retry failed steps and route exceptions to the right person automatically."
+            />
+          </div>
+
+          <!-- item four  -->
+          <div
+            class="accordion-item group rounded-[20px] bg-white px-4 md:px-6"
+          >
+            <button
+              type="button"
+              class="accordion-action w-full cursor-pointer pt-6 md:pt-8 group-data-[state=open]:pb-4 group-data-[state=closed]:pb-6 md:group-data-[state=closed]:pb-8 transition-all duration-400 ease-in-out text-left"
+            >
+              <span class="flex items-center justify-between gap-x-4">
+                <span
+                  class="text-heading-6 font-inter-tight text-secondary text"
+                >
+                  Is my data secure?
+                </span>
+                <Component
+                  src="../shared/ui/accoridion/accordion-icon.htm"
+                  class="shrink-0"
+                />
+              </span>
+            </button>
+            <Component
+              src="../shared/ui/accoridion/accordion-content.htm"
+              class="accordion-content-text"
+              content="We use encryption in transit and at rest, strict access controls, and audit-friendly logs. You decide which connections and actions each workflow is allowed to run."
+            />
+          </div>
+
+          <!-- item five  -->
+          <div
+            class="accordion-item group rounded-[20px] bg-white px-4 md:px-6"
+          >
+            <button
+              type="button"
+              class="accordion-action w-full cursor-pointer pt-6 md:pt-8 group-data-[state=open]:pb-4 group-data-[state=closed]:pb-6 md:group-data-[state=closed]:pb-8 transition-all duration-400 ease-in-out text-left"
+            >
+              <span class="flex items-center justify-between gap-x-4">
+                <span
+                  class="text-heading-6 font-inter-tight text-secondary text"
+                >
+                  Do I need coding skills to use Nexsas?
+                </span>
+                <Component
+                  src="../shared/ui/accoridion/accordion-icon.htm"
+                  class="shrink-0"
+                />
+              </span>
+            </button>
+            <Component
+              src="../shared/ui/accoridion/accordion-content.htm"
+              class="accordion-content-text"
+              content="No. Start with templates and a visual builder. If you want advanced customization, you can add rules, webhooks, and custom fields without changing your existing tools."
+            />
+          </div>
+
+          <!-- item six  -->
+          <div
+            class="accordion-item group rounded-[20px] bg-white px-4 md:px-6"
+          >
+            <button
+              type="button"
+              class="accordion-action w-full cursor-pointer pt-6 md:pt-8 group-data-[state=open]:pb-4 group-data-[state=closed]:pb-6 md:group-data-[state=closed]:pb-8 transition-all duration-400 ease-in-out text-left"
+            >
+              <span class="flex items-center justify-between gap-x-4">
+                <span
+                  class="text-heading-6 font-inter-tight text-secondary text"
+                >
+                  How do I monitor runs and troubleshoot failures?
+                </span>
+                <Component
+                  src="../shared/ui/accoridion/accordion-icon.htm"
+                  class="shrink-0"
+                />
+              </span>
+            </button>
+            <Component
+              src="../shared/ui/accoridion/accordion-content.htm"
+              class="accordion-content-text"
+              content="Every automation stores run history with timestamps, outcomes, and step-level detail. You can filter errors, set notifications when something breaks, pause a workflow safely, and replay or fix failed steps without losing context."
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

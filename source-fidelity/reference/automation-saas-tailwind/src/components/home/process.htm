@@ -1,0 +1,483 @@
+<section class="pt-20 md:pt-25 lg:pt-39">
+  <div class="main-container">
+    <div class="space-y-10 lg:space-y-18">
+      <div
+        class="flex items-center lg:flex-row flex-col justify-center gap-x-18 lg:w-auto md:w-[500px] w-auto md:mx-auto"
+      >
+        <div class="text-center lg:text-left lg:w-1/2 space-y-5">
+          <div data-ns-animate data-delay="0.1">
+            <Component
+              src="../shared/ui/badge/badge-primary.htm"
+              badge-text="Process"
+            />
+          </div>
+          <h2 data-text-reveal data-delay="0.2">
+            From setup to scale — in 4 simple steps
+          </h2>
+        </div>
+        <div class="text-center lg:text-left lg:w-1/2 space-y-8">
+          <p data-text-reveal data-delay="0.3">
+            Follow a guided, step-by-step flow that keeps everything clear and
+            organized from the beginning.
+          </p>
+          <a
+            data-ns-animate
+            data-delay="0.4"
+            href="./process.html"
+            class="inline-block md:w-auto w-full"
+          >
+            <Component
+              src="../shared/ui/button/button-white.htm"
+              button-text="View all process"
+              button-class="w-[80%]! mx-auto  md:w-fit!"
+            />
+          </a>
+        </div>
+      </div>
+
+      <!-- card slider  -->
+      <div data-ns-animate data-delay="0.5">
+        <div
+          data-process-cards
+          class="flex flex-col md:flex-row items-center relative justify-center gap-y-5 md:gap-x-8"
+        >
+          <!-- timeline  for mobile devices -->
+          <div
+            data-process-timeline
+            class="w-full flex flex-row md:hidden items-center justify-center"
+          >
+            <button
+              data-process-step="0"
+              class="size-8 curspor pointer rounded-full border transition-all duration-400 ease-in-out data-[item=active]:bg-primary-500 data-[item=completed]:bg-primary-500 text-background-14/60 data-[item=active]:text-accent data-[item=completed]:text-accent text-tagline-3 border-stroke-3 flex items-center justify-center data-[item=completed]:border-transparent data-[item=active]:border-transparent"
+            >
+              01
+            </button>
+            <div class="h-px relative w-14 bg-stroke-3 inline-block mx-1">
+              <!-- gradient line  -->
+              <div
+                data-process-line-fill
+                class="absolute h-full rounded-r-full w-full bg-linear-to-r from-[#F2F5FA00] to-[#864FFE]"
+              ></div>
+            </div>
+            <button
+              data-process-step="0"
+              class="size-8 curspor pointer rounded-full border transition-all duration-400 ease-in-out data-[item=active]:bg-primary-500 data-[item=completed]:bg-primary-500 text-background-14/60 data-[item=active]:text-accent data-[item=completed]:text-accent text-tagline-3 border-stroke-3 flex items-center justify-center data-[item=completed]:border-transparent data-[item=active]:border-transparent"
+            >
+              02
+            </button>
+            <div class="h-px relative w-14 bg-stroke-3 inline-block mx-1">
+              <!-- gradient line  -->
+              <div
+                data-process-line-fill
+                class="absolute h-full rounded-r-full w-full bg-linear-to-r from-[#F2F5FA00] to-[#864FFE]"
+              ></div>
+            </div>
+            <button
+              data-process-step="0"
+              class="size-8 curspor pointer rounded-full border transition-all duration-400 ease-in-out data-[item=active]:bg-primary-500 data-[item=completed]:bg-primary-500 text-background-14/60 data-[item=active]:text-accent data-[item=completed]:text-accent text-tagline-3 border-stroke-3 flex items-center justify-center data-[item=completed]:border-transparent data-[item=active]:border-transparent"
+            >
+              03
+            </button>
+            <div class="h-px relative w-14 bg-stroke-3 inline-block mx-1">
+              <!-- gradient line  -->
+              <div
+                data-process-line-fill
+                class="absolute h-full rounded-r-full w-full bg-linear-to-r from-[#F2F5FA00] to-[#864FFE]"
+              ></div>
+            </div>
+            <button
+              data-process-step="0"
+              class="size-8 curspor pointer rounded-full border transition-all duration-400 ease-in-out data-[item=active]:bg-primary-500 data-[item=completed]:bg-primary-500 text-background-14/60 data-[item=active]:text-accent data-[item=completed]:text-accent text-tagline-3 border-stroke-3 flex items-center justify-center data-[item=completed]:border-transparent data-[item=active]:border-transparent"
+            >
+              04
+            </button>
+          </div>
+
+          <!-- cards  -->
+          <div class="w-[95%] relative overflow-hidden min-h-[472px]">
+            <!-- card one  -->
+            <div
+              class="bg-white rounded-[20px] p-1 absolute inset-0"
+              data-process-card="0"
+            >
+              <div
+                class="flex flex-col md:flex-row items-center justify-center gap-y-5 md:gap-x-8 w-full"
+              >
+                <!-- img  -->
+                <div
+                  data-process-image-wrap
+                  class="md:w-1/2 w-full overflow-hidden rounded-2xl"
+                >
+                  <figure
+                    data-process-image
+                    class="md:h-[464px] h-fit w-full relative rounded-2xl overflow-hidden"
+                  >
+                    <img
+                      src="./images/ns-img-1.png"
+                      alt="process-card-1"
+                      class="size-full object-cover rounded-2xl"
+                    />
+
+                    <figure
+                      class="absolute z-20 w-[calc(100%-48px)] left-1/2 -translate-x-1/2 bottom-7 backdrop-blur-[20px] rounded-2xl overflow-hidden bg-white/15"
+                      style="
+                        box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.4) inset;
+                      "
+                    >
+                      <img
+                        src="./images/ns-img-12.svg"
+                        alt="process-card-1-img"
+                      />
+                    </figure>
+                  </figure>
+                </div>
+                <!-- info  -->
+                <div
+                  data-process-content-wrap
+                  class="md:w-1/2 w-full py-5 overflow-hidden relative"
+                >
+                  <div
+                    data-process-content
+                    class="md:h-full max-md:p-5 h-fit w-full space-y-8"
+                  >
+                    <div class="space-y-1">
+                      <h3
+                        class="font-inter-tight text-heading-4 text-secondary font-normal"
+                      >
+                        Connect apps
+                      </h3>
+                      <p class="max-w-[400px] text-left text-tagline-2">
+                        Link your favorite tools in seconds and start building
+                        workflows without any setup complexity.
+                      </p>
+                    </div>
+                    <div class="space-y-6 hidden md:block">
+                      <div class="space-y-1">
+                        <h4 class="text-tagline-new">One-Click Integrations</h4>
+                        <p class="max-w-[400px] text-left text-tagline-2">
+                          Connect popular apps instantly - no technical setup
+                          required.
+                        </p>
+                      </div>
+                      <div class="space-y-1">
+                        <h4 class="text-tagline-new">Secure Connections</h4>
+                        <p class="max-w-[400px] text-left text-tagline-2">
+                          Your data stays protected with enterprise-grade
+                          security.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="pointer-events-none absolute inset-x-0 top-0 h-6 bg-linear-to-b from-white to-transparent"
+                  ></div>
+                  <div
+                    class="pointer-events-none absolute inset-x-0 bottom-0 h-6 bg-linear-to-t from-white to-transparent"
+                  ></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- card two  -->
+            <div
+              class="bg-white rounded-[20px] p-1 absolute inset-0"
+              data-process-card="1"
+            >
+              <div
+                class="flex flex-col md:flex-row items-center justify-center gap-y-5 md:gap-x-8 w-full"
+              >
+                <div
+                  data-process-image-wrap
+                  class="md:w-1/2 w-full overflow-hidden rounded-2xl"
+                >
+                  <figure
+                    data-process-image
+                    class="md:h-[464px] h-fit w-full relative rounded-2xl overflow-hidden"
+                  >
+                    <img
+                      src="./images/ns-img-18.jpg"
+                      alt="process-card-2"
+                      class="size-full object-cover rounded-2xl"
+                    />
+
+                    <figure
+                      class="absolute z-20 w-[calc(100%-48px)] left-1/2 -translate-x-1/2 bottom-7 backdrop-blur-[20px] rounded-2xl overflow-hidden bg-white/15"
+                      style="
+                        box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.4) inset;
+                      "
+                    >
+                      <img
+                        src="./images/ns-img-13.png"
+                        alt="process-card-1-img"
+                      />
+                    </figure>
+                  </figure>
+                </div>
+                <div
+                  data-process-content-wrap
+                  class="md:w-1/2 w-full py-5 overflow-hidden relative"
+                >
+                  <div
+                    data-process-content
+                    class="md:h-full max-md:p-5 h-fit w-full space-y-8"
+                  >
+                    <div class="space-y-1">
+                      <h3
+                        class="font-inter-tight text-heading-4 text-secondary font-normal"
+                      >
+                        Build flows
+                      </h3>
+                      <p class="max-w-[400px] text-left text-tagline-2">
+                        Combine your connected apps into clear, repeatable
+                        automation in a few simple steps.
+                      </p>
+                    </div>
+                    <div class="space-y-6 hidden md:block">
+                      <div class="space-y-1">
+                        <h4 class="text-tagline-new">Drag And Drop Builder</h4>
+                        <p class="max-w-[400px] text-left text-tagline-2">
+                          Arrange triggers and actions visually with zero coding
+                          effort.
+                        </p>
+                      </div>
+                      <div class="space-y-1">
+                        <h4 class="text-tagline-new">Reusable Templates</h4>
+                        <p class="max-w-[400px] text-left text-tagline-2">
+                          Start from prebuilt flows and customize them in
+                          minutes.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="pointer-events-none absolute inset-x-0 top-0 h-6 bg-linear-to-b from-white to-transparent"
+                  ></div>
+                  <div
+                    class="pointer-events-none absolute inset-x-0 bottom-0 h-6 bg-linear-to-t from-white to-transparent"
+                  ></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- card three  -->
+            <div
+              class="bg-white rounded-[20px] p-1 absolute inset-0"
+              data-process-card="2"
+            >
+              <div
+                class="flex flex-col md:flex-row items-center justify-center gap-y-5 md:gap-x-8 w-full"
+              >
+                <div
+                  data-process-image-wrap
+                  class="md:w-1/2 w-full overflow-hidden rounded-2xl"
+                >
+                  <figure
+                    data-process-image
+                    class="md:h-[464px] h-fit w-full relative rounded-2xl overflow-hidden"
+                  >
+                    <img
+                      src="./images/ns-img-17.jpg"
+                      alt="process-card-3"
+                      class="size-full object-cover rounded-2xl"
+                    />
+
+                    <figure
+                      class="absolute z-20 w-[calc(100%-48px)] left-1/2 -translate-x-1/2 bottom-7 backdrop-blur-[20px] rounded-2xl overflow-hidden bg-white/15"
+                      style="
+                        box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.4) inset;
+                      "
+                    >
+                      <img
+                        src="./images/ns-img-14.svg"
+                        alt="process-card-1-img"
+                      />
+                    </figure>
+                  </figure>
+                </div>
+                <div
+                  data-process-content-wrap
+                  class="md:w-1/2 w-full py-5 overflow-hidden relative"
+                >
+                  <div
+                    data-process-content
+                    class="md:h-full max-md:p-5 h-fit w-full space-y-8"
+                  >
+                    <div class="space-y-1">
+                      <h3
+                        class="font-inter-tight text-heading-4 text-secondary font-normal"
+                      >
+                        Test and optimize
+                      </h3>
+                      <p class="max-w-[400px] text-left text-tagline-2">
+                        Validate every step, monitor results, and improve your
+                        workflow performance over time.
+                      </p>
+                    </div>
+                    <div class="space-y-6 hidden md:block">
+                      <div class="space-y-1">
+                        <h4 class="text-tagline-new">Live Status Tracking</h4>
+                        <p class="max-w-[400px] text-left text-tagline-2">
+                          See exactly how each run performs and catch issues
+                          instantly.
+                        </p>
+                      </div>
+                      <div class="space-y-1">
+                        <h4 class="text-tagline-new">Smart Insights</h4>
+                        <p class="max-w-[400px] text-left text-tagline-2">
+                          Use actionable analytics to refine every stage of your
+                          flow.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="pointer-events-none absolute inset-x-0 top-0 h-6 bg-linear-to-b from-white to-transparent"
+                  ></div>
+                  <div
+                    class="pointer-events-none absolute inset-x-0 bottom-0 h-6 bg-linear-to-t from-white to-transparent"
+                  ></div>
+                </div>
+              </div>
+            </div>
+            <!-- card four  -->
+            <div
+              data-process-card="3"
+              class="bg-white rounded-[20px] p-1 absolute inset-0"
+            >
+              <div
+                class="flex flex-col md:flex-row items-center justify-center gap-y-5 md:gap-x-8 w-full"
+              >
+                <div
+                  data-process-image-wrap
+                  class="md:w-1/2 w-full overflow-hidden rounded-2xl"
+                >
+                  <figure
+                    data-process-image
+                    class="md:h-[464px] h-fit w-full relative rounded-2xl overflow-hidden"
+                  >
+                    <img
+                      src="./images/ns-img-16.jpg"
+                      alt="process-card-4"
+                      class="size-full object-cover rounded-2xl"
+                    />
+
+                    <figure
+                      class="absolute z-20 w-[calc(100%-48px)] left-1/2 -translate-x-1/2 bottom-7 backdrop-blur-[20px] rounded-2xl overflow-hidden bg-white/15"
+                      style="
+                        box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.4) inset;
+                      "
+                    >
+                      <img
+                        src="./images/ns-img-15.svg"
+                        alt="process-card-1-img"
+                      />
+                    </figure>
+                  </figure>
+                </div>
+                <div
+                  data-process-content-wrap
+                  class="md:w-1/2 w-full py-5 overflow-hidden relative"
+                >
+                  <div
+                    data-process-content
+                    class="md:h-full max-md:p-5 h-fit w-full space-y-8"
+                  >
+                    <div class="space-y-1">
+                      <h3
+                        class="font-inter-tight text-heading-4 text-secondary font-normal"
+                      >
+                        Scale with confidence
+                      </h3>
+                      <p class="max-w-[400px] text-left text-tagline-2">
+                        Launch automation across your team while keeping speed,
+                        reliability, and security under control.
+                      </p>
+                    </div>
+                    <div class="space-y-6 hidden md:block">
+                      <div class="space-y-1">
+                        <h4 class="text-tagline-new">Team Collaboration</h4>
+                        <p class="max-w-[400px] text-left text-tagline-2">
+                          Share workflows and permissions with clear ownership.
+                        </p>
+                      </div>
+                      <div class="space-y-1">
+                        <h4 class="text-tagline-new">Enterprise Ready</h4>
+                        <p class="max-w-[400px] text-left text-tagline-2">
+                          Keep every process compliant and secure as you grow.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="pointer-events-none absolute inset-x-0 top-0 h-6 bg-linear-to-b from-white to-transparent"
+                  ></div>
+                  <div
+                    class="pointer-events-none absolute inset-x-0 bottom-0 h-6 bg-linear-to-t from-white to-transparent"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- timeline  for upper md devices -->
+          <div
+            data-process-timeline
+            class="w-[5%] flex-col hidden md:flex items-center justify-center"
+          >
+            <button
+              data-process-step="0"
+              class="size-8 curspor pointer rounded-full border transition-all duration-400 ease-in-out data-[item=active]:bg-primary-500 data-[item=completed]:bg-primary-500 text-background-14/60 data-[item=active]:text-accent data-[item=completed]:text-accent text-tagline-3 border-stroke-3 flex items-center justify-center data-[item=completed]:border-transparent data-[item=active]:border-transparent"
+            >
+              01
+            </button>
+            <div
+              class="w-px relative h-[114px] bg-stroke-3 inline-block mx-auto"
+            >
+              <!-- gradient line  -->
+              <div
+                data-process-line-fill
+                class="absolute h-full rounded-b-full w-full bg-linear-to-b from-[#F2F5FA00] to-[#864FFE]"
+              ></div>
+            </div>
+            <button
+              data-process-step="1"
+              class="size-8 curspor pointer rounded-full border transition-all duration-400 ease-in-out data-[item=active]:bg-primary-500 data-[item=completed]:bg-primary-500 text-background-14/60 data-[item=active]:text-accent data-[item=completed]:text-accent text-tagline-3 border-stroke-3 flex items-center justify-center data-[item=completed]:border-transparent data-[item=active]:border-transparent"
+            >
+              02
+            </button>
+            <div
+              class="w-px relative h-[114px] bg-stroke-3 inline-block mx-auto"
+            >
+              <!-- gradient line  -->
+              <div
+                data-process-line-fill
+                class="absolute h-full rounded-b-full w-full bg-linear-to-b from-[#F2F5FA00] to-[#864FFE]"
+              ></div>
+            </div>
+            <button
+              data-process-step="2"
+              class="size-8 curspor pointer rounded-full border transition-all duration-400 ease-in-out data-[item=active]:bg-primary-500 data-[item=completed]:bg-primary-500 text-background-14/60 data-[item=active]:text-accent data-[item=completed]:text-accent text-tagline-3 border-stroke-3 flex items-center justify-center data-[item=completed]:border-transparent data-[item=active]:border-transparent"
+            >
+              03
+            </button>
+            <div
+              class="w-px relative h-[114px] bg-stroke-3 inline-block mx-auto"
+            >
+              <!-- gradient line  -->
+              <div
+                data-process-line-fill
+                class="absolute h-full rounded-b-full w-full bg-linear-to-b from-[#F2F5FA00] to-[#864FFE]"
+              ></div>
+            </div>
+            <button
+              data-process-step="3"
+              class="size-8 curspor pointer rounded-full border transition-all duration-400 ease-in-out data-[item=active]:bg-primary-500 data-[item=completed]:bg-primary-500 text-background-14/60 data-[item=active]:text-accent data-[item=completed]:text-accent text-tagline-3 border-stroke-3 flex items-center justify-center data-[item=completed]:border-transparent data-[item=active]:border-transparent"
+            >
+              04
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

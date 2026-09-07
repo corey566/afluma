@@ -1,0 +1,10 @@
+{
+  "testId": "89f9b751-acfb-447f-8a0e-f5297cd3d6a8",
+  "createdAt": "2026-09-07T18:56:28.906Z",
+  "enquiryStored": true,
+  "intakeJobProcessed": true,
+  "leadRoutedToYara": true,
+  "waitlistStored": true,
+  "repeatWaitlistDeduplicated": true,
+  "qaRecordsCleaned": true
+}

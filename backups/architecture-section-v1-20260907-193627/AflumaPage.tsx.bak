@@ -1,0 +1,112 @@
+import config from '@payload-config'
+import { getPayload } from 'payload'
+import { CinematicHero } from './CinematicHero'
+import AflumaHero from '@/components/hero/AflumaHero'
+import { ContactForm } from './ContactForm'
+import { drive, generated, shapeSet } from './assets'
+import { outlineOf, pageHref, sectionBody, summaryOf, titleOf } from './copy'
+import { CapabilityGrid, EditorialSections, PageCards, PrinciplesBand, ProcessRail, SectionHead, VisualPair } from './Primitives'
+import type { AnyDoc } from './types'
+import Link from 'next/link'
+
+type Props={doc:AnyDoc,kind:string}
+
+async function relatedFor(doc:AnyDoc,limit=12):Promise<AnyDoc[]> {
+  const payload=await getPayload({config})
+  const clauses:any[]=[]
+  if(doc.section) clauses.push({section:{equals:doc.section}})
+  else if(doc.pageType) clauses.push({pageType:{equals:doc.pageType}})
+  const res=await payload.find({collection:'pages',draft:false,overrideAccess:true,depth:0,limit:limit+1,sort:'title',where:clauses.length?{and:clauses}:undefined})
+  return (res.docs as AnyDoc[]).filter((p)=>p.id!==doc.id).slice(0,limit)
+}
+
+async function latestArticles(limit=6):Promise<AnyDoc[]> {
+  const payload=await getPayload({config})
+  const res=await payload.find({collection:'pages',draft:false,overrideAccess:true,depth:0,limit,sort:'-updatedAt',where:{pageType:{equals:'article'}}})
+  return res.docs as AnyDoc[]
+}
+
+async function openJobs():Promise<AnyDoc[]> {
+  const payload=await getPayload({config})
+  const res=await payload.find({collection:'jobs',draft:false,overrideAccess:true,depth:0,limit:8,where:{status:{equals:'open'}}})
+  return res.docs as AnyDoc[]
+}
+
+export async function AflumaPage({doc,kind}:Props) {
+  const slug=String(doc.slug||'')
+  if(slug==='home') return <HomePage doc={doc} articles={await latestArticles(3)}/>
+  if(slug==='services') return <ServicesPage doc={doc} related={await relatedFor(doc,12)}/>
+  if(slug==='solutions'||slug==='industries') return <SolutionsPage doc={doc} related={await relatedFor(doc,12)}/>
+  if(slug==='products') return <ProductsPage doc={doc}/>
+  if(slug==='work') return <WorkPage doc={doc} articles={await latestArticles(4)}/>
+  if(slug==='insights') return <InsightsPage doc={doc} articles={await latestArticles(8)}/>
+  if(slug==='about'||doc.template==='about') return <AboutPage doc={doc}/>
+  if(slug==='careers'||doc.template==='careers') return <CareersPage doc={doc} jobs={await openJobs()}/>
+  if(slug==='contact'||slug==='start-project'||doc.template==='contact') return <ContactPage doc={doc}/>
+  if(doc.pageType==='article'||doc.template==='article'||kind==='post') return <ArticlePage doc={doc}/>
+  if(doc.pageType==='product'||kind==='product') return <ProductDetailPage doc={doc} related={await relatedFor(doc,6)}/>
+  if(['service','solution','industry'].includes(doc.pageType)||doc.template==='detail') return <DetailPage doc={doc} related={await relatedFor(doc,8)}/>
+  return <HubPage doc={doc} related={await relatedFor(doc,10)}/>
+}
+
+function HomePage({doc,articles}:{doc:AnyDoc,articles:AnyDoc[]}) {
+  return <>
+    <AflumaHero />
+    <section className="a7-section"><div className="a7-shell"><SectionHead eyebrow="What we do" title="Connected capabilities for modern operations." intro="One partner across product, engineering, automation, data and operational delivery — designed around how the business actually works."/><CapabilityGrid/></div></section>
+    <section className="a7-section a7-section--dark"><div className="a7-shell"><SectionHead eyebrow="One operating system" title="Build. Automate. Operate. Grow." intro="The source interfaces supplied for Afluma use progressive disclosure, strong visual hierarchy and deliberate motion. This implementation keeps those interaction principles while focusing them on Afluma’s actual offer." invert/><VisualPair dark/></div></section>
+    <section className="a7-section"><div className="a7-shell"><ProcessRail/><SectionHead eyebrow="Products" title="Products built for the real operation." intro="Afluma Commerce and SerenOps connect product experiences to the operational systems behind them." action={{label:'Explore products',href:'/products/'}}/><div className="a7-feature-grid"><FeaturePanel title="Afluma Commerce" body="Unified commerce infrastructure for stores, ecommerce, inventory, accounting and operational workflows." href="/products/afluma-commerce/" image={generated.ribbonLoop}/><FeaturePanel title="SerenOps" body="Infrastructure operations designed around secure onboarding, controlled automation and observable fleet workflows." href="/products/serenops/" image={generated.grid}/></div></div></section>
+    <section className="a7-section a7-section--tint"><div className="a7-shell"><SectionHead eyebrow="Insights" title="Useful thinking for what comes next." intro="Research and practical guidance are organised around the same operating problems our products and services are designed to solve." action={{label:'Explore insights',href:'/insights/'}}/><PageCards pages={articles} limit={3}/></div></section>
+    <section className="a7-section"><div className="a7-shell"><PrinciplesBand/><Callout title="Have a system, workflow or product that needs to work better?" body="Start with the operating context. We’ll help map the right product, automation and delivery approach."/></div></section>
+  </>
+}
+
+function ServicesPage({doc,related}:{doc:AnyDoc,related:AnyDoc[]}) {return <>
+  <CinematicHero eyebrow="Services" title="Services that build" accent="what’s next." description={summaryOf(doc,'End-to-end technology services engineered for intelligent automation, scalable systems and measurable operational improvement.')} media={generated.heroAndroid} video actions={[{label:'Explore services',href:'#services'},{label:'Talk to Afluma',href:'/contact/',secondary:true}]}/>
+  <section className="a7-section" id="services"><div className="a7-shell"><SectionHead eyebrow="What we do" title="End-to-end services for modern enterprises." intro="From strategy to scale, Afluma combines product engineering, AI, operations and data capabilities so teams can move faster without fragmenting ownership."/><CapabilityGrid/><PageCards pages={related} limit={6}/></div></section>
+  <section className="a7-section a7-section--dark"><div className="a7-shell"><ProcessRail dark/></div></section>
+  <section className="a7-section"><div className="a7-shell"><SectionHead eyebrow="How engagements work" title="Choose the model around the outcome." intro="Focused projects, embedded product teams and managed operational services can share the same architecture and governance model."/><EngagementGrid/><PrinciplesBand/><Callout title="Ready to build what’s next?" body="Bring the process, product or operating challenge. We’ll help define the system around it."/></div></section>
+</>}
+
+function DetailPage({doc,related}:{doc:AnyDoc,related:AnyDoc[]}) {
+  const outline=outlineOf(doc)
+  const title=titleOf(doc)
+  return <><CinematicHero eyebrow={String(doc.section||doc.pageType||'Capability')} title={title} description={summaryOf(doc)} media={selectHero(doc)} actions={[{label:'Talk to an expert',href:'/contact/'},{label:'Explore related services',href:'/services/',secondary:true}]}/>
+  <section className="a7-section"><div className="a7-shell"><div className="a7-overview-row"><div><span className="a7-kicker">Service overview</span><h2>Designed around the operating problem, not a preset package.</h2><p>{summaryOf(doc)}</p></div><PrincipleCards/></div><EditorialSections doc={doc} outline={outline}/></div></section>
+  <section className="a7-section a7-section--tint"><div className="a7-shell"><SectionHead eyebrow="Related capabilities" title="Connect the surrounding system."/><PageCards pages={related} limit={4}/><Callout title={`Explore ${title} with Afluma.`} body="Scope the workflow, architecture, integrations and operating model before committing to implementation."/></div></section></>
+}
+
+function SolutionsPage({doc,related}:{doc:AnyDoc,related:AnyDoc[]}) {return <>
+  <CinematicHero eyebrow="Solutions & industries" title="Solve complex operational challenges." accent="Across every system." description="Afluma connects software, automation, data and operational expertise around the workflows that create the most friction or opportunity." media={generated.ribbonSculpture} video/>
+  <section className="a7-section"><div className="a7-shell"><SectionHead eyebrow="Explore" title="Solutions organised around outcomes."/><CapabilityGrid/><SectionHead eyebrow="Industries" title="Apply the system to the operating context." intro="Industry pages adapt the same product and automation foundations to different workflows, controls, users and integration environments."/><PageCards pages={related} limit={8}/></div></section>
+  <section className="a7-section a7-section--dark"><div className="a7-shell"><ArchitectureRail/><VisualPair dark/></div></section>
+</>}
+
+function ProductsPage({doc}:{doc:AnyDoc}) {return <div className="a7-page-dark"><CinematicHero theme="dark" eyebrow="Products & platform" title="Built to automate." accent="Designed to scale." description="Afluma products connect customer experiences, business operations and infrastructure workflows without hiding operational control." media={generated.ribbonLoop} video/>
+  <section className="a7-section a7-section--night"><div className="a7-shell"><SectionHead eyebrow="Our products" title="Purpose-built products on a connected foundation." invert/><div className="a7-product-grid"><DarkProduct title="Afluma Commerce" body="Unified commerce for POS, ecommerce, inventory, accounting and connected business operations." href="/products/afluma-commerce/" image={generated.violetRings}/><DarkProduct title="SerenOps" body="Secure infrastructure operations with controlled onboarding, application delivery and policy-bound automation." href="/products/serenops/" image={generated.grid}/><DarkProduct title="Afluma Workflows" body="A workflow layer for connecting systems, approvals and intelligent automation across business processes." href="/products/" image={generated.ribbonSculpture}/></div><ArchitectureRail/><SectionHead eyebrow="Design principles" title="Observable, modular and human-controlled." invert/><PrinciplesBand/></div></section></div>}
+
+function ProductDetailPage({doc,related}:{doc:AnyDoc,related:AnyDoc[]}) {return <div className="a7-page-dark"><CinematicHero theme="dark" eyebrow="Afluma product" title={titleOf(doc)} description={summaryOf(doc)} media={selectHero(doc)} video actions={[{label:'Discuss the product',href:'/contact/'},{label:'Explore products',href:'/products/',secondary:true}]}/><section className="a7-section a7-section--night"><div className="a7-shell"><ArchitectureRail/><EditorialSections doc={doc} outline={outlineOf(doc)}/><PageCards pages={related} limit={3} dark/></div></section></div>}
+
+function WorkPage({doc,articles}:{doc:AnyDoc,articles:AnyDoc[]}) {return <><CinematicHero eyebrow="Afluma work" title="Real systems." accent="Visible outcomes." description="Afluma work is presented with evidence only when the underlying project, result and permission are verified. Until then, this hub focuses on product systems and implementation patterns." media={generated.violetRings} video/>
+  <section className="a7-section"><div className="a7-shell"><SectionHead eyebrow="Product systems" title="What we are building and operating."/><div className="a7-work-grid"><FeaturePanel title="Afluma Commerce" body="A unified commerce platform connecting store operations, ecommerce and business systems." href="/products/afluma-commerce/" image={generated.ribbonLoop}/><FeaturePanel title="SerenOps" body="A secure operations platform being developed around infrastructure control and automation." href="/products/serenops/" image={generated.grid}/><FeaturePanel title="Workflow systems" body="Reusable patterns for connecting intake, approvals, automation, exception handling and reporting." href="/services/ai-automation/" image={generated.orbit}/></div><SectionHead eyebrow="Related thinking" title="The methods behind the systems."/><PageCards pages={articles} limit={4}/></div></section></>}
+
+function InsightsPage({doc,articles}:{doc:AnyDoc,articles:AnyDoc[]}) {return <><CinematicHero eyebrow="Insights" title="Ideas for the" accent="intelligent enterprise." description="Research, explainers and practical operating guidance across AI, product engineering, automation, commerce and infrastructure." media={generated.security}/>
+  <section className="a7-section"><div className="a7-shell"><SectionHead eyebrow="Explore insights" title="Research organised around real operating questions." intro="Editorial briefs remain noindex until reviewed. Published resources are designed to answer a specific question, connect to relevant services and provide a useful next step."/><PageCards pages={articles} limit={8}/><div className="a7-insight-banner"><div><span className="a7-kicker">Editorial standard</span><h2>Evidence before volume.</h2><p>We do not publish 1,500 thin articles just because the architecture contains 1,500 topics. Each brief becomes indexable only after it is written, sourced, reviewed and useful.</p></div><img src={generated.emblem} alt=""/></div></div></section></>}
+
+function ArticlePage({doc}:{doc:AnyDoc}) {return <><section className="a7-report-hero"><div className="a7-shell"><div className="a7-report-hero__panel"><img src={generated.ribbonSculpture} alt=""/><div><span className="a7-kicker a7-kicker--on-dark">Afluma insight</span><h1>{titleOf(doc)}</h1><p>{summaryOf(doc)}</p><div className="a7-report-meta"><span>Afluma Editorial</span><span>Reviewed content only</span></div></div></div></div></section><section className="a7-section"><div className="a7-shell"><EditorialSections doc={doc} outline={outlineOf(doc)}/><Callout title="Connect the insight to your operating context." body="Explore the related service or talk to Afluma about the system behind the problem."/></div></section></>}
+
+function AboutPage({doc}:{doc:AnyDoc}) {return <div className="a7-page-dark"><CinematicHero theme="dark" eyebrow="About Afluma" title="Intelligence with purpose." accent="Systems with impact." description="Afluma is building a technology company around useful digital systems, disciplined delivery, human-centred automation and long-term operational improvement." media={generated.heroAndroid}/><section className="a7-section a7-section--night"><div className="a7-shell"><SectionHead eyebrow="Our story" title="Built around working systems, not presentation theatre." intro="We combine product thinking, engineering, automation and operational discipline because the hardest business problems rarely fit inside a single software category." invert/><PrinciplesBand/><div className="a7-portrait-strip">{[generated.portraitA,generated.portraitB,generated.portraitC,generated.portraitD].map((src,i)=><figure key={src}><img src={src} alt="Stylised Afluma technology portrait"/><figcaption>{['Product systems','Engineering','Automation','Operations'][i]}</figcaption></figure>)}</div><div className="a7-about-photo"><img src={drive.collaborationA} alt="Illustrative workplace photography from the supplied source library"/><div><span className="a7-kicker">How we work</span><h2>Collaboration needs structure.</h2><p>The supplied source library uses photography to create human contrast against technical interfaces. Here it is used as illustrative workplace imagery only, not as a claim about specific Afluma employees or offices.</p></div></div></div></section></div>}
+
+function CareersPage({doc,jobs}:{doc:AnyDoc,jobs:AnyDoc[]}) {return <div className="a7-page-dark"><CinematicHero theme="dark" eyebrow="Careers at Afluma" title="Build the future of" accent="intelligent operations." description="Join the people building products, automation and operating systems around meaningful business problems." media={generated.astronaut}/><section className="a7-section a7-section--night"><div className="a7-shell"><SectionHead eyebrow="Open roles" title={jobs.length?'Current opportunities':'No published openings right now.'} intro={jobs.length?'These roles are live records from Afluma Content Studio.':'We do not invent vacancies for presentation. You can still introduce yourself through the talent enquiry route.'} invert/>{jobs.length?<div className="a7-job-grid">{jobs.map((job)=><Link href={`/careers/${job.slug}/`} key={job.id}><span>{job.department}</span><h3>{job.title}</h3><p>{job.location} · {job.workModel}</p><b>View role →</b></Link>)}</div>:<Callout title="Interested in future opportunities?" body="Send a short introduction, what you work on and the kind of problems you want to solve." dark href="/contact/"/>}<SectionHead eyebrow="Life at Afluma" title="A place to build useful things carefully." invert/><PrinciplesBand/><ProcessRail dark/></div></section></div>}
+
+function ContactPage({doc}:{doc:AnyDoc}) {return <><section className="a7-contact-hero"><div className="a7-shell"><div className="a7-contact-layout"><div><span className="a7-kicker">Start with the operating problem</span><h1>{titleOf(doc,'Build what needs to work next.')}</h1><p>{summaryOf(doc,'Tell us what you are trying to improve, automate, connect or operate. Enough context helps us route the conversation without turning the first contact into a giant questionnaire.')}</p><div className="a7-contact-visual"><img src={generated.orbitTiles} alt=""/></div></div><div><ContactForm/></div></div></div></section></>}
+
+function HubPage({doc,related}:{doc:AnyDoc,related:AnyDoc[]}) {return <><CinematicHero eyebrow={String(doc.section||doc.pageType||'Afluma')} title={titleOf(doc)} description={summaryOf(doc)} media={selectHero(doc)}/><section className="a7-section"><div className="a7-shell"><SectionHead eyebrow="Explore" title="Find the next useful path." intro="The information architecture is broad, but each hub is designed to narrow the visitor toward a useful service, solution, product or resource."/><PageCards pages={related} limit={8}/><EditorialSections doc={doc} outline={outlineOf(doc)}/></div></section></>}
+
+function selectHero(doc:AnyDoc){const key=`${doc.slug||''} ${doc.title||''} ${doc.pageType||''}`.toLowerCase(); if(key.includes('security')||key.includes('risk')) return generated.security; if(key.includes('data')||key.includes('analytic')) return generated.grid; if(key.includes('commerce')||key.includes('retail')) return generated.ribbonLoop; if(key.includes('automation')||key.includes('ai')) return generated.heroAndroid; if(key.includes('cloud')||key.includes('infrastructure')) return generated.nebula; return shapeSet[Math.abs(key.length)%shapeSet.length]}
+
+function FeaturePanel({title,body,href,image}:{title:string,body:string,href:string,image:string}) {return <Link href={href} className="a7-feature-panel"><div><span className="a7-kicker">Afluma system</span><h3>{title}</h3><p>{body}</p><b>Explore →</b></div><img src={image} alt=""/></Link>}
+function DarkProduct({title,body,href,image}:{title:string,body:string,href:string,image:string}) {return <Link href={href} className="a7-dark-product"><div><span>Product</span><h3>{title}</h3><p>{body}</p><b>Explore →</b></div><img src={image} alt=""/></Link>}
+function PrincipleCards(){return <div className="a7-mini-principles">{[['End-to-end ownership','One delivery path from discovery through operation.'],['Human control','Approvals and exceptions remain visible.'],['Secure design','Trust boundaries are considered from the start.'],['Outcome focus','The system is judged by whether the workflow improves.']].map(([h,p])=><div key={h}><span>✦</span><h3>{h}</h3><p>{p}</p></div>)}</div>}
+function EngagementGrid(){return <div className="a7-engagement-grid">{[['Focused project','A defined outcome, scope and delivery window.'],['Embedded team','Product and engineering capacity integrated with the client team.'],['Managed service','Ongoing operational ownership, reporting and improvement.']].map(([h,p],i)=><div className={i===1?'is-featured':''} key={h}><span>0{i+1}</span><h3>{h}</h3><p>{p}</p></div>)}</div>}
+function ArchitectureRail(){return <div className="a7-architecture"><div><span className="a7-kicker">Connected architecture</span><h2>One system. Clear boundaries.</h2><p>Experience, intelligence, integration and infrastructure remain distinct enough to govern, but connected enough to operate as one system.</p></div>{['Experience','Intelligence','Integration','Infrastructure'].map((h,i)=><div key={h}><span>0{i+1}</span><strong>{h}</strong><small>{['Interfaces and user journeys','Automation, rules and decision support','APIs, events and data flows','Cloud, runtime and observability'][i]}</small></div>)}</div>}
+function Callout({title,body,dark=false,href='/start-project/'}:{title:string,body:string,dark?:boolean,href?:string}){return <div className={`a7-callout ${dark?'a7-callout--dark':''}`}><div><h2>{title}</h2><p>{body}</p></div><Link href={href} className="a7-button a7-button--primary">Start a conversation →</Link></div>}

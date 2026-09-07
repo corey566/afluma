@@ -1,0 +1,49 @@
+<!-- 404 not found -->
+<section class="pt-20 md:pt-25 lg:pt-39">
+  <div class="main-container">
+    <div
+      data-ns-animate
+      data-delay="0.1"
+      class="relative w-full overflow-hidden rounded-2xl bg-[url('/images/opai-img-138.jpg')] bg-cover bg-center bg-no-repeat p-8"
+    >
+      <div
+        class="flex flex-col items-center gap-14 rounded-xl bg-white/5 px-8 py-20 backdrop-blur-[60px] md:gap-16 md:px-20 md:py-28 lg:px-39 lg:py-39"
+      >
+        <div class="flex flex-col items-center gap-4 text-center">
+          <h2
+            data-text-reveal
+            data-delay="0.2"
+            class="text-[100px] leading-[1.2] text-secondary/90 md:text-[150px] lg:text-[175px] xl:text-[200px]"
+          >
+            404
+          </h2>
+          <div class="flex flex-col items-center gap-3">
+            <h3 data-text-reveal data-delay="0.3">Oops! Page not found</h3>
+            <p
+              data-text-reveal
+              data-delay="0.4"
+              class="max-w-[420px] text-center text-tagline-1 text-secondary/60"
+            >
+              The page does not exist or was moved. Use the button below to get
+              back to the homepage.
+            </p>
+          </div>
+        </div>
+
+        <a
+          href="./index.html"
+          class="inline-flex"
+          data-ns-animate
+          data-delay="0.5"
+        >
+          <Component
+            src="src/components/shared/ui/button/button-primary.htm"
+            button-text="Go back home"
+            button-class="w-full md:w-auto"
+            button-text-class="text-center text-nowrap max-sm:flex-1 max-sm:pr-8!"
+          />
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

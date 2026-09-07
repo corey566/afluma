@@ -1,0 +1,298 @@
+import Link from 'next/link'
+import architecture from '@/generated/architecture.json'
+import assetMap from '@/generated/asset-map.json'
+
+type ArchitectureRow = {
+  'Page ID'?: string
+  'Page Type'?: string
+  'H1 / Page Title'?: string
+  'Meta Description'?: string
+  'SEO Title'?: string
+  'Primary Keyword'?: string
+  'Draft Content Direction'?: string
+  'Primary CTA'?: string
+  'CTA URL'?: string
+  Section?: string
+  slug?: string
+  h2s?: string[]
+  indexable?: boolean
+}
+
+type Asset = {
+  assetId?: string
+  publicPath?: string | null
+  kind?: string | null
+  status?: string | null
+  slot?: string | null
+  bytes?: number
+}
+
+type PageDoc = {
+  sourceId?: string | null
+  title?: string | null
+  slug?: string | null
+  pageType?: string | null
+  template?: string | null
+  section?: string | null
+  summary?: string | null
+  presentationMode?: string | null
+  assetAssignments?: unknown[]
+  layout?: any[]
+  seo?: { primaryKeyword?: string | null; description?: string | null }
+}
+
+const rows = architecture as ArchitectureRow[]
+const architectureById = new Map(rows.map((row) => [String(row['Page ID'] || ''), row]))
+const generatedAssets = (assetMap as { byPageId?: Record<string, Asset[]> }).byPageId || {}
+
+const curated = [
+  '/source-media/ai-agency/images/ns-img-169.png',
+  '/source-media/ai-agency/images/ns-img-78.png',
+  '/source-media/ai-agency/images/ns-img-509.png',
+  '/source-media/ai-agency/images/ns-img-508.png',
+  '/source-media/ai-agency/images/ns-img-504.png',
+  '/source-media/ai-agency/images/ns-img-498.png',
+  '/source-media/ai-agency/images/ns-img-515.png',
+  '/source-media/ai-agency/images/ns-img-510.png',
+  '/source-media/ai-agency/images/ns-img-496.png',
+  '/source-media/automation-saas/images/ns-img-3.png',
+]
+
+const cleanHref = (value?: string | null) => {
+  const raw = String(value || '').trim()
+  if (!raw) return '/start-project'
+  return raw.replace(/^https?:\/\/(www\.)?afluma\.com/i, '') || '/'
+}
+
+const titleCase = (value: string) => value
+  .replace(/[-_]+/g, ' ')
+  .replace(/\b\w/g, (char) => char.toUpperCase())
+
+const asAsset = (value: unknown): Asset | null => {
+  if (!value || typeof value !== 'object') return null
+  const item = value as Record<string, unknown>
+  if (!item.publicPath || item.status === 'excluded') return null
+  return {
+    assetId: String(item.assetId || ''),
+    publicPath: String(item.publicPath),
+    kind: String(item.kind || ''),
+    status: String(item.status || ''),
+    slot: String(item.assignedSlot || item.slot || ''),
+  }
+}
+
+const usableAssets = (doc: PageDoc): Asset[] => {
+  const id = String(doc.sourceId || '')
+  const db = (doc.assetAssignments || []).map(asAsset).filter(Boolean) as Asset[]
+  const generated = generatedAssets[id] || []
+  const seen = new Set<string>()
+  const merged: Asset[] = []
+  for (const asset of [...db, ...generated]) {
+    const path = String(asset.publicPath || '')
+    if (!path || seen.has(path)) continue
+    if (asset.status && asset.status !== 'production-candidate') continue
+    seen.add(path)
+    merged.push(asset)
+  }
+  return merged
+}
+
+const displayAssets = (doc: PageDoc) => usableAssets(doc).filter((asset) => {
+  const kind = String(asset.kind || '')
+  return ['image', 'gradient', 'vector', 'icon'].includes(kind)
+})
+
+const imageAssets = (doc: PageDoc) => displayAssets(doc).filter((asset) => !['icon'].includes(String(asset.kind || '')))
+
+const imagePath = (assets: Asset[], index: number, fallbackIndex = index) => {
+  const path = assets[index]?.publicPath
+  return path || curated[fallbackIndex % curated.length]
+}
+
+const rowFor = (doc: PageDoc): ArchitectureRow => {
+  const base = architectureById.get(String(doc.sourceId || '')) || {}
+  const layout = Array.isArray(doc.layout) ? doc.layout : []
+  const hero = layout.find((block: any) => block?.blockType === 'cinematicHero')
+  const intro = layout.find((block: any) => block?.blockType === 'editorialIntro')
+  const bento = layout.find((block: any) => block?.blockType === 'bentoGrid')
+  const editableHeadings = [intro?.heading, ...(Array.isArray(bento?.items) ? bento.items.map((item: any) => item?.title) : [])].filter(Boolean)
+  return {
+    ...base,
+    'H1 / Page Title': hero?.headline || doc.title || base['H1 / Page Title'],
+    'Draft Content Direction': hero?.description || doc.summary || base['Draft Content Direction'],
+    'Primary CTA': hero?.actions?.[0]?.label || base['Primary CTA'],
+    'CTA URL': hero?.actions?.[0]?.href || base['CTA URL'],
+    h2s: editableHeadings.length > 1 ? editableHeadings : base.h2s,
+  }
+}
+
+const PageImage = ({ src, alt = '', className = '' }: { src: string; alt?: string; className?: string }) => (
+  <img className={className} src={src} alt={alt} loading="lazy" />
+)
+
+const Arrow = () => <span aria-hidden="true">→</span>
+
+function Buttons({ row, secondary = true }: { row: ArchitectureRow; secondary?: boolean }) {
+  const label = String(row['Primary CTA'] || 'Start a project')
+  const href = cleanHref(row['CTA URL'])
+  return <div className="afp-actions">
+    <Link className="afp-button afp-button--primary" href={href}>{label}<Arrow /></Link>
+    {secondary && <Link className="afp-button afp-button--ghost" href="/work">Explore our work</Link>}
+  </div>
+}
+
+function PremiumHero({ doc, row, assets, variant = 'default' }: { doc: PageDoc; row: ArchitectureRow; assets: Asset[]; variant?: 'default'|'report'|'dark' }) {
+  const title = String(doc.title || row['H1 / Page Title'] || 'Afluma')
+  const summary = String(doc.summary || row['Meta Description'] || row['Draft Content Direction'] || '')
+  const eyebrow = String(row.Section || row['Page Type'] || doc.pageType || 'Afluma')
+  const primary = imagePath(assets, 0, 0)
+  const report = variant === 'report'
+  return <section className={`afp-hero afp-hero--${variant}`}>
+    <div className="afp-shell">
+      <div className="afp-hero-frame">
+        <PageImage className="afp-hero-media" src={primary} alt="" />
+        <div className="afp-hero-scrim" />
+        <div className="afp-hero-toolbar">
+          <div className="afp-chip-row"><span>Overview</span><span>{report ? 'Report' : 'Platform'}</span><span>{doc.section || 'Solutions'}</span></div>
+          <div className="afp-tool-row"><button type="button" aria-label="Save page">⌑</button><button type="button" aria-label="Share page">↗</button></div>
+        </div>
+        <div className="afp-hero-copy">
+          <span className="afp-kicker">{eyebrow}</span>
+          <h1>{title}</h1>
+          <p>{summary}</p>
+          <Buttons row={row} secondary={!report} />
+        </div>
+        <aside className="afp-status-card" aria-label="Afluma delivery principles">
+          <small>{report ? 'Reading experience' : 'Operating principle'}</small>
+          <strong>{report ? 'Focused' : 'Connected'}</strong>
+          <p>{report ? 'Structured for useful depth.' : 'Design, engineering and operations in one system.'}</p>
+        </aside>
+        <div className="afp-hero-rail"><span>01 <b>Discover</b></span><span>02 <b>Design</b></span><span>03 <b>Build</b></span><span>04 <b>Operate</b></span></div>
+      </div>
+    </div>
+  </section>
+}
+
+const sectionBody = (heading: string, row: ArchitectureRow, doc: PageDoc) => {
+  const base = String(row['Draft Content Direction'] || doc.summary || row['Meta Description'] || '')
+  const keyword = String(row['Primary Keyword'] || doc.seo?.primaryKeyword || '').trim()
+  const lower = heading.toLowerCase()
+  if (/security|risk|governance|compliance|privacy/.test(lower)) return `Afluma treats ${heading.toLowerCase()} as part of the operating design, not a final checklist. Access, data handling, approval paths, observability and change control are considered alongside the workflow itself so teams can adopt the system with clearer responsibility and fewer hidden dependencies.`
+  if (/process|approach|delivery|how/.test(lower)) return `The approach starts with the operating reality: users, systems, constraints and the outcome that matters. From there, Afluma defines the workflow, designs the experience, integrates the required systems, tests the critical paths and establishes a practical operating model for continuous improvement.`
+  if (/integration|architecture|platform|technology/.test(lower)) return `The solution is designed to work with the existing technology environment rather than forcing unnecessary replacement. APIs, data flows, identity, permissions, monitoring and ownership are mapped explicitly so the implementation can evolve without becoming a fragile collection of disconnected tools.`
+  if (/outcome|benefit|impact|value|result/.test(lower)) return `The goal is a useful operational change: less repetitive work, clearer handoffs, faster access to information and better control over exceptions. Any quantified result published on Afluma is tied to verified evidence; where evidence is not yet available, the site describes the intended business outcome without inventing metrics.`
+  if (/faq|question/.test(lower)) return `This section addresses the practical questions buyers and operators usually need answered before committing to an initiative, including scope, ownership, integrations, security, delivery expectations and what happens after launch.`
+  return `${base}${base ? ' ' : ''}${keyword ? `The page is structured around ${keyword} with enough context for both decision-makers and implementation teams.` : 'The section connects the business need to a practical implementation path, with clear ownership, measurable checkpoints and room for future iteration.'}`
+}
+
+function SourceAssetDeck({ doc, assets, heading = 'Visual system' }: { doc: PageDoc; assets: Asset[]; heading?: string }) {
+  if (!assets.length) return null
+  return <section className="afp-section afp-section--visuals">
+    <div className="afp-shell">
+      <div className="afp-section-head"><div><span className="afp-kicker">NextSaaS source media</span><h2>{heading}</h2></div><p>Production-safe source media assigned to this route is rendered directly instead of sitting unused in the project.</p></div>
+      <div className="afp-asset-grid">
+        {assets.map((asset, index) => <figure className={`afp-asset-card afp-asset-card--${index % 5}`} key={`${asset.assetId || asset.publicPath}-${index}`}>
+          <PageImage src={String(asset.publicPath)} alt="" />
+        </figure>)}
+      </div>
+    </div>
+  </section>
+}
+
+function OutlineSections({ doc, row, assets }: { doc: PageDoc; row: ArchitectureRow; assets: Asset[] }) {
+  const headings = (Array.isArray(row.h2s) ? row.h2s : []).filter(Boolean)
+  const usable = headings.length ? headings : ['Business context', 'What Afluma delivers', 'How the system works', 'Delivery approach', 'Security and governance', 'Next steps']
+  return <section className="afp-section afp-section--content"><div className="afp-shell afp-content-layout">
+    <aside className="afp-toc"><strong>On this page</strong>{usable.slice(0, 8).map((heading, index) => <a key={heading} href={`#afp-section-${index + 1}`}>{String(index + 1).padStart(2, '0')} {heading}</a>)}</aside>
+    <div className="afp-longform">
+      {usable.slice(0, 10).map((heading, index) => <section id={`afp-section-${index + 1}`} className="afp-longform-section" key={heading}>
+        <div className="afp-longform-copy"><span className="afp-index">{String(index + 1).padStart(2, '0')}</span><h2>{heading}</h2><p>{sectionBody(heading, row, doc)}</p></div>
+        {index % 2 === 1 && <PageImage className="afp-inline-visual" src={imagePath(assets, index + 1, index + 2)} alt="" />}
+      </section>)}
+    </div>
+  </div></section>
+}
+
+function CapabilityCards({ assets }: { assets: Asset[] }) {
+  const cards = [
+    ['Custom software', 'Design and engineer software around real operating needs.', '/services/custom-software-development'],
+    ['AI & automation', 'Connect systems, decisions and human approval into useful workflows.', '/services/ai-automation'],
+    ['Managed operations', 'Run defined business processes with reporting, exceptions and accountability.', '/services/managed-business-operations'],
+    ['Data & intelligence', 'Turn operational data into information teams can actually use.', '/services/data-analytics-reporting'],
+  ]
+  return <section className="afp-section"><div className="afp-shell"><div className="afp-section-head"><div><span className="afp-kicker">What we do</span><h2>Connected capabilities for modern operations.</h2></div><p>Afluma combines strategy, product engineering, automation and managed delivery so the handoff between advice and execution does not become another source of friction.</p></div><div className="afp-cap-grid">{cards.map((card, index) => <Link href={card[2]} className="afp-cap-card" key={card[0]}><div><span>0{index + 1}</span><h3>{card[0]}</h3><p>{card[1]}</p></div><PageImage src={imagePath(assets, index + 1, index + 2)} alt="" /><b>Explore <Arrow /></b></Link>)}</div></div></section>
+}
+
+function ProcessBand() {
+  const steps = [['Discover','Understand the operating reality.'],['Define','Align outcomes, ownership and constraints.'],['Design','Shape the experience and workflow.'],['Build','Engineer, integrate and test.'],['Operate','Measure, support and improve.']]
+  return <section className="afp-process-band"><div className="afp-shell"><div className="afp-process-copy"><span className="afp-kicker">Our approach</span><h2>A proven process. Predictable control.</h2></div><div className="afp-process-grid">{steps.map((step,index)=><article key={step[0]}><span>0{index+1}</span><h3>{step[0]}</h3><p>{step[1]}</p></article>)}</div></div></section>
+}
+
+function TrustBand() {
+  const items = [['Human oversight','Approvals and accountability stay visible.'],['Secure by design','Identity, access and data boundaries are considered early.'],['Evidence over claims','Metrics and certifications appear only when verified.'],['Operational ownership','The system includes what happens after launch.']]
+  return <section className="afp-section afp-section--soft"><div className="afp-shell"><div className="afp-trust-grid">{items.map((item,index)=><article key={item[0]}><span className="afp-trust-icon">{['◇','⌁','◎','↻'][index]}</span><h3>{item[0]}</h3><p>{item[1]}</p></article>)}</div></div></section>
+}
+
+function HomePage({ doc, row, assets }: { doc: PageDoc; row: ArchitectureRow; assets: Asset[] }) {
+  return <div className="afp-page afp-page--home"><PremiumHero doc={doc} row={row} assets={assets}/><CapabilityCards assets={assets}/><ProcessBand/><section className="afp-section afp-section--dark"><div className="afp-shell afp-platform-grid"><div><span className="afp-kicker">One operating system</span><h2>Build. Automate. Operate. Grow.</h2><p>Afluma connects product delivery with the day-to-day workflows that determine whether technology actually creates value. The public site now mirrors that model: each page has a clear job, a visual hierarchy and a path to the next useful decision.</p><Buttons row={row}/></div><div className="afp-platform-visual"><PageImage src={imagePath(assets, 5, 6)} alt=""/><div className="afp-orbit afp-orbit--one"/><div className="afp-orbit afp-orbit--two"/></div></div></section><SourceAssetDeck doc={doc} assets={assets.slice(0, 12)} heading="Source media, used deliberately"/><TrustBand/><OutlineSections doc={doc} row={row} assets={assets}/></div>
+}
+
+function HubPage({ doc, row, assets }: { doc: PageDoc; row: ArchitectureRow; assets: Asset[] }) {
+  return <div className="afp-page"><PremiumHero doc={doc} row={row} assets={assets}/><section className="afp-section"><div className="afp-shell"><div className="afp-section-head"><div><span className="afp-kicker">Explore</span><h2>Designed around the decision you need to make next.</h2></div><p>{row['Meta Description'] || doc.summary}</p></div><div className="afp-feature-grid">{(row.h2s || []).slice(0,6).map((heading,index)=><article key={heading} className="afp-feature-card"><div className="afp-feature-media"><PageImage src={imagePath(assets,index+1,index+2)} alt=""/></div><span>0{index+1}</span><h3>{heading}</h3><p>{sectionBody(heading,row,doc)}</p></article>)}</div></div></section><ProcessBand/><SourceAssetDeck doc={doc} assets={assets.slice(0,18)} heading="Relevant visual references"/><OutlineSections doc={doc} row={row} assets={assets}/></div>
+}
+
+function DetailPage({ doc, row, assets }: { doc: PageDoc; row: ArchitectureRow; assets: Asset[] }) {
+  const cards=(row.h2s||['Service overview','Operating model','Workflow','Delivery options']).slice(0,4)
+  return <div className="afp-page"><PremiumHero doc={doc} row={row} assets={assets}/><section className="afp-section"><div className="afp-shell"><div className="afp-detail-overview"><div><span className="afp-kicker">Overview</span><h2>{cards[0] || 'Service overview'}</h2><p>{doc.summary}</p></div><div className="afp-mini-grid">{cards.map((heading,index)=><article key={heading}><span>0{index+1}</span><h3>{heading}</h3><p>{sectionBody(heading,row,doc)}</p></article>)}</div></div></div></section><ProcessBand/><section className="afp-section afp-section--dark"><div className="afp-shell afp-workflow"><div className="afp-workflow-visual"><PageImage src={imagePath(assets,2,4)} alt=""/></div><div className="afp-workflow-copy"><span className="afp-kicker">Connected delivery</span><h2>From request to outcome, without losing the operating context.</h2><p>The workflow is designed around real systems, people, approvals and exceptions rather than a disconnected demo path.</p><ol><li>Capture and validate the request</li><li>Orchestrate systems and decisions</li><li>Keep human approval where it matters</li><li>Report outcomes and exceptions</li></ol></div></div></section><SourceAssetDeck doc={doc} assets={assets.slice(0,16)} heading="Source media assigned to this capability"/><OutlineSections doc={doc} row={row} assets={assets}/></div>
+}
+
+function ProductPage({ doc, row, assets }: { doc: PageDoc; row: ArchitectureRow; assets: Asset[] }) {
+  return <div className="afp-page afp-page--night"><PremiumHero doc={doc} row={row} assets={assets} variant="dark"/><section className="afp-section afp-section--night"><div className="afp-shell"><div className="afp-section-head"><div><span className="afp-kicker">Products & platform</span><h2>Purpose-built products on a connected foundation.</h2></div><p>Afluma products are presented with their real maturity state. Features, screenshots and availability should be updated from Content Studio as the product evolves.</p></div><div className="afp-product-grid">{['Afluma Commerce','SerenOps','Workflow Systems'].map((name,index)=><article key={name}><PageImage src={imagePath(assets,index+1,index+4)} alt=""/><span>{index===0?'Commerce':index===1?'Operations':'Automation'}</span><h3>{name}</h3><p>{index===0?'Unified commerce operations across channels, inventory and customer workflows.':index===1?'Policy-bound operational control for infrastructure and application delivery.':'Reusable workflow orchestration for business-critical processes.'}</p><Link href={index===0?'/products/afluma-commerce':index===1?'/products/serenops':'/services/ai-automation'}>Explore <Arrow/></Link></article>)}</div></div></section><SourceAssetDeck doc={doc} assets={assets.slice(0,18)} heading="Platform visual system"/><OutlineSections doc={doc} row={row} assets={assets}/></div>
+}
+
+function WorkPage({ doc, row, assets }: { doc: PageDoc; row: ArchitectureRow; assets: Asset[] }) {
+  return <div className="afp-page"><PremiumHero doc={doc} row={row} assets={assets}/><section className="afp-section"><div className="afp-shell"><div className="afp-section-head"><div><span className="afp-kicker">Evidence</span><h2>Work should show what changed, not just what was designed.</h2></div><p>Case studies remain evidence-gated. Until a client, result and permission are verified, the UI shows the structure without inventing proof.</p></div><div className="afp-case-grid">{assets.slice(1,7).map((asset,index)=><article key={asset.assetId||index}><PageImage src={String(asset.publicPath)} alt=""/><div><span>{index===0?'Featured system':'Capability example'}</span><h3>{(row.h2s||[])[index] || ['Automation workflow','Product platform','Managed operations','Data system','Commerce experience','Security control'][index]}</h3><p>Illustrative visual from the approved source library. Replace with verified project media when client permission is available.</p></div></article>)}</div></div></section><TrustBand/><OutlineSections doc={doc} row={row} assets={assets}/></div>
+}
+
+function InsightsPage({ doc, row, assets }: { doc: PageDoc; row: ArchitectureRow; assets: Asset[] }) {
+  return <div className="afp-page"><PremiumHero doc={doc} row={row} assets={assets}/><section className="afp-section"><div className="afp-shell"><div className="afp-section-head"><div><span className="afp-kicker">Explore insights</span><h2>Research, perspectives and practical operating guidance.</h2></div><p>The 1,500-topic roadmap is treated as an editorial pipeline. Briefs stay noindex until they become reviewed, useful and original articles.</p></div><div className="afp-insight-grid">{(row.h2s||['AI & automation','Digital products','Operations','Commerce','Data & analytics','Security']).slice(0,6).map((heading,index)=><article key={heading}><PageImage src={imagePath(assets,index+1,index+3)} alt=""/><span>Perspective</span><h3>{heading}</h3><p>{sectionBody(heading,row,doc)}</p><Link href="/insights">Explore topic <Arrow/></Link></article>)}</div></div></section><SourceAssetDeck doc={doc} assets={assets.slice(0,16)} heading="Editorial visual library"/><TrustBand/></div>
+}
+
+function ArticlePage({ doc, row, assets }: { doc: PageDoc; row: ArchitectureRow; assets: Asset[] }) {
+  const headings=(row.h2s||['Executive summary','The current operating context','What is changing','A practical implementation model','Trust, risk and governance','The road ahead']).slice(0,9)
+  return <div className="afp-page"><PremiumHero doc={doc} row={row} assets={assets} variant="report"/><section className="afp-section"><div className="afp-shell afp-report-layout"><aside className="afp-report-nav"><strong>On this page</strong>{headings.map((h,i)=><a key={h} href={`#report-${i}`}>{i+1}. {h}</a>)}<div className="afp-report-promo"><span>Explore Afluma</span><p>See how the related capability is designed and operated.</p><Link href="/services">Explore services <Arrow/></Link></div></aside><article className="afp-report-body">{headings.map((h,i)=><section id={`report-${i}`} key={h}><h2>{i+1}. {h}</h2><p>{sectionBody(h,row,doc)}</p>{i===1&&<div className="afp-stat-row"><div><strong>Clarity</strong><span>Defined ownership</span></div><div><strong>Control</strong><span>Visible exceptions</span></div><div><strong>Learning</strong><span>Continuous improvement</span></div></div>}{i%2===0&&<PageImage className="afp-report-media" src={imagePath(assets,i+1,i+2)} alt=""/>}</section>)}</article><aside className="afp-report-side"><div><span className="afp-kicker">Report details</span><dl><div><dt>Format</dt><dd>Long-form insight</dd></div><div><dt>Topic</dt><dd>{row['Primary Keyword']||doc.section||'Afluma'}</dd></div><div><dt>Status</dt><dd>{row.indexable?'Reviewed route':'Editorial pipeline'}</dd></div></dl></div><div><span className="afp-kicker">Key takeaways</span><ul><li>Start from the operating outcome.</li><li>Keep human accountability visible.</li><li>Design data and security into the workflow.</li><li>Measure what changes after launch.</li></ul></div></aside></div></section><SourceAssetDeck doc={doc} assets={assets} heading="Report visual references"/></div>
+}
+
+function AboutPage({ doc, row, assets }: { doc: PageDoc; row: ArchitectureRow; assets: Asset[] }) {
+  return <div className="afp-page afp-page--night"><PremiumHero doc={doc} row={row} assets={assets} variant="dark"/><section className="afp-section afp-section--night"><div className="afp-shell"><div className="afp-section-head"><div><span className="afp-kicker">Our story</span><h2>Built for useful technology, not technology theatre.</h2></div><p>Afluma is building a company around practical systems, disciplined delivery and long-term operating value.</p></div><div className="afp-value-grid">{[['Customer impact','Start with the outcome and measure what changes.'],['Relentless learning','Improve the system as the operating context changes.'],['Trust & transparency','Make responsibilities, limitations and evidence visible.'],['Better together','Design with the people who use and operate the system.'],['Sustainable value','Prefer durable improvements over short-lived novelty.']].map((v,i)=><article key={v[0]}><PageImage src={imagePath(assets,i+1,i+2)} alt=""/><h3>{v[0]}</h3><p>{v[1]}</p></article>)}</div></div></section><SourceAssetDeck doc={doc} assets={assets.slice(0,20)} heading="Afluma visual language"/><OutlineSections doc={doc} row={row} assets={assets}/></div>
+}
+
+function CareersPage({ doc, row, assets }: { doc: PageDoc; row: ArchitectureRow; assets: Asset[] }) {
+  return <div className="afp-page afp-page--night"><PremiumHero doc={doc} row={row} assets={assets} variant="dark"/><section className="afp-section afp-section--night"><div className="afp-shell"><div className="afp-section-head"><div><span className="afp-kicker">Careers at Afluma</span><h2>Build serious systems with curious people.</h2></div><p>Roles are published only when they are real and approved. The experience can still show how Afluma works, what teams value and how to join the talent network.</p></div><div className="afp-role-grid">{['Engineering','Product & design','AI & automation','Operations','Growth & commerce','Business functions'].map((name,index)=><article key={name}><span>0{index+1}</span><h3>{name}</h3><p>Explore future opportunities and the skills Afluma values in this discipline.</p><Link href="/contact">Join the talent network <Arrow/></Link></article>)}</div></div></section><SourceAssetDeck doc={doc} assets={assets.slice(0,18)} heading="Life at Afluma — illustrative source media"/><OutlineSections doc={doc} row={row} assets={assets}/></div>
+}
+
+function ContactPage({ doc, row, assets }: { doc: PageDoc; row: ArchitectureRow; assets: Asset[] }) {
+  return <div className="afp-page"><PremiumHero doc={doc} row={row} assets={assets}/><section className="afp-section"><div className="afp-shell afp-contact-grid"><div><span className="afp-kicker">Start a conversation</span><h2>Tell us what needs to work better.</h2><p>Share the operating context, the outcome you want and the systems already involved. That is enough to start a useful conversation.</p><div className="afp-contact-visual"><PageImage src={imagePath(assets,1,5)} alt=""/></div></div><form className="afp-form" action="/api/enquiries" method="post"><input type="hidden" name="enquiryType" value="project"/><label>Name<input name="name" required/></label><label>Work email<input type="email" name="email" required/></label><label>Company<input name="company"/></label><label>Project type<select name="projectType"><option>Software or product</option><option>AI and automation</option><option>Managed operations</option><option>Commerce and growth</option><option>Other</option></select></label><label className="afp-form-wide">What are you trying to improve?<textarea name="message" required/></label><button className="afp-button afp-button--primary afp-form-wide" type="submit">Send project brief <Arrow/></button></form></div></section><SourceAssetDeck doc={doc} assets={assets} heading="Project visual references"/></div>
+}
+
+function StandardPage({ doc, row, assets }: { doc: PageDoc; row: ArchitectureRow; assets: Asset[] }) {
+  return <div className="afp-page"><PremiumHero doc={doc} row={row} assets={assets}/><OutlineSections doc={doc} row={row} assets={assets}/><SourceAssetDeck doc={doc} assets={assets.slice(0,16)} heading="Related visual references"/></div>
+}
+
+export function PremiumPage({ doc }: { doc: PageDoc }) {
+  const row = rowFor(doc)
+  const assets = displayAssets(doc)
+  const pageType = String(doc.pageType || '').toLowerCase()
+  const slug = String(doc.slug || '')
+  if (pageType === 'home' || slug === 'home') return <HomePage doc={doc} row={row} assets={assets}/>
+  if (pageType === 'article') return <ArticlePage doc={doc} row={row} assets={assets}/>
+  if (pageType === 'product' || slug === 'products') return <ProductPage doc={doc} row={row} assets={assets}/>
+  if (pageType === 'work' || pageType === 'case-study') return <WorkPage doc={doc} row={row} assets={assets}/>
+  if (pageType === 'insights') return <InsightsPage doc={doc} row={row} assets={assets}/>
+  if (slug === 'about' || pageType === 'company' || pageType === 'team') return <AboutPage doc={doc} row={row} assets={assets}/>
+  if (pageType === 'careers' || pageType === 'job' || slug.startsWith('careers')) return <CareersPage doc={doc} row={row} assets={assets}/>
+  if (slug === 'contact' || slug === 'start-project') return <ContactPage doc={doc} row={row} assets={assets}/>
+  if (pageType === 'hub' || pageType === 'solution' && slug === 'solutions') return <HubPage doc={doc} row={row} assets={assets}/>
+  if (['service','solution','industry'].includes(pageType)) return <DetailPage doc={doc} row={row} assets={assets}/>
+  return <StandardPage doc={doc} row={row} assets={assets}/>
+}

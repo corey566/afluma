@@ -1,0 +1,3521 @@
+[
+  {
+    "key": "creative-portfolio:404",
+    "family": "creative-portfolio",
+    "page": "404",
+    "sourcePath": "404.html",
+    "resolvedPath": "source-fidelity/templates/creative-portfolio/404.html",
+    "sourceBytes": 467,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/pages/creative-portfolio/header.htm",
+      "src/components/shared/not-found.htm",
+      "src/components/pages/creative-portfolio/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-direction",
+      "data-instant",
+      "data-ns-animate",
+      "data-offset"
+    ]
+  },
+  {
+    "key": "creative-portfolio:about",
+    "family": "creative-portfolio",
+    "page": "about",
+    "sourcePath": "about.html",
+    "resolvedPath": "source-fidelity/templates/creative-portfolio/about.html",
+    "sourceBytes": 1253,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/pages/creative-portfolio/header.htm",
+      "src/components/pages/about-page-02/vision-statement.htm",
+      "src/components/pages/about-page-02/our-mission.htm",
+      "src/components/pages/about-page-02/review.htm",
+      "src/components/pages/creative-portfolio/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-counter",
+      "data-delay",
+      "data-direction",
+      "data-height-space",
+      "data-instant",
+      "data-interval",
+      "data-ns-animate",
+      "data-number",
+      "data-offset",
+      "data-progress-bar",
+      "data-progress-duration",
+      "data-progress-item",
+      "data-progress-text",
+      "data-progress-value",
+      "data-rooms",
+      "data-speed"
+    ]
+  },
+  {
+    "key": "creative-portfolio:affiliate-policy",
+    "family": "creative-portfolio",
+    "page": "affiliate-policy",
+    "sourcePath": "affiliate-policy.html",
+    "resolvedPath": "source-fidelity/templates/creative-portfolio/affiliate-policy.html",
+    "sourceBytes": 1094,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/pages/creative-portfolio/header.htm",
+      "src/components/pages/affiliate-policy-page/affiliate-guidelines.htm",
+      "src/components/pages/affiliate-policy-page/affiliate-body.htm",
+      "src/components/pages/creative-portfolio/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-instant",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "creative-portfolio:affiliates",
+    "family": "creative-portfolio",
+    "page": "affiliates",
+    "sourcePath": "affiliates.html",
+    "resolvedPath": "source-fidelity/templates/creative-portfolio/affiliates.html",
+    "sourceBytes": 1113,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/pages/creative-portfolio/header.htm",
+      "src/components/pages/affiliate-policy-page/affiliate-process.htm",
+      "src/components/pages/creative-portfolio/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "creative-portfolio:analytics",
+    "family": "creative-portfolio",
+    "page": "analytics",
+    "sourcePath": "analytics.html",
+    "resolvedPath": "source-fidelity/templates/creative-portfolio/analytics.html",
+    "sourceBytes": 1193,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/pages/creative-portfolio/header.htm",
+      "src/components/pages/analytics/hero.htm",
+      "src/components/pages/analytics/analytics-details.htm",
+      "src/components/pages/creative-portfolio/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-direction",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "creative-portfolio:blog-details",
+    "family": "creative-portfolio",
+    "page": "blog-details",
+    "sourcePath": "blog-details.html",
+    "resolvedPath": "source-fidelity/templates/creative-portfolio/blog-details.html",
+    "sourceBytes": 1026,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/pages/creative-portfolio/header.htm",
+      "src/components/pages/blog-details/details-body.htm",
+      "src/components/pages/creative-portfolio/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "creative-portfolio:blog",
+    "family": "creative-portfolio",
+    "page": "blog",
+    "sourcePath": "blog.html",
+    "resolvedPath": "source-fidelity/templates/creative-portfolio/blog.html",
+    "sourceBytes": 1104,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/pages/creative-portfolio/header.htm",
+      "src/components/pages/creative-portfolio/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": []
+  },
+  {
+    "key": "creative-portfolio:brandkit",
+    "family": "creative-portfolio",
+    "page": "brandkit",
+    "sourcePath": "brandkit.html",
+    "resolvedPath": "source-fidelity/templates/creative-portfolio/brandkit.html",
+    "sourceBytes": 565,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/pages/creative-portfolio/header.htm",
+      "src/components/pages/brandkit/hero.htm",
+      "src/components/pages/brandkit/content.htm",
+      "src/components/pages/creative-portfolio/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "creative-portfolio:career-details",
+    "family": "creative-portfolio",
+    "page": "career-details",
+    "sourcePath": "career-details.html",
+    "resolvedPath": "source-fidelity/templates/creative-portfolio/career-details.html",
+    "sourceBytes": 1016,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/pages/creative-portfolio/header.htm",
+      "src/components/pages/career-details/details.htm",
+      "src/components/pages/creative-portfolio/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-direction",
+      "data-duration",
+      "data-ns-animate",
+      "data-offset"
+    ]
+  },
+  {
+    "key": "creative-portfolio:career",
+    "family": "creative-portfolio",
+    "page": "career",
+    "sourcePath": "career.html",
+    "resolvedPath": "source-fidelity/templates/creative-portfolio/career.html",
+    "sourceBytes": 1234,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/pages/creative-portfolio/header.htm",
+      "src/components/pages/career-page/career.htm",
+      "src/components/pages/creative-portfolio/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "creative-portfolio:case-study-details",
+    "family": "creative-portfolio",
+    "page": "case-study-details",
+    "sourcePath": "case-study-details.html",
+    "resolvedPath": "source-fidelity/templates/creative-portfolio/case-study-details.html",
+    "sourceBytes": 1033,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/pages/creative-portfolio/header.htm",
+      "src/components/pages/case-study-details/case-study-details.htm",
+      "src/components/pages/creative-portfolio/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "creative-portfolio:case-study",
+    "family": "creative-portfolio",
+    "page": "case-study",
+    "sourcePath": "case-study.html",
+    "resolvedPath": "source-fidelity/templates/creative-portfolio/case-study.html",
+    "sourceBytes": 1368,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/pages/creative-portfolio/header.htm",
+      "src/components/pages/case-study/case-study.htm",
+      "src/components/pages/creative-portfolio/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-instant",
+      "data-ns-animate",
+      "data-start"
+    ]
+  },
+  {
+    "key": "creative-portfolio:changelog",
+    "family": "creative-portfolio",
+    "page": "changelog",
+    "sourcePath": "changelog.html",
+    "resolvedPath": "source-fidelity/templates/creative-portfolio/changelog.html",
+    "sourceBytes": 568,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/pages/creative-portfolio/header.htm",
+      "src/components/pages/changelog/hero.htm",
+      "src/components/pages/changelog/content.htm",
+      "src/components/pages/creative-portfolio/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-month",
+      "data-month-link",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "creative-portfolio:contact",
+    "family": "creative-portfolio",
+    "page": "contact",
+    "sourcePath": "contact.html",
+    "resolvedPath": "source-fidelity/templates/creative-portfolio/contact.html",
+    "sourceBytes": 1078,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/pages/creative-portfolio/header.htm",
+      "src/components/pages/contact-us/contact.htm",
+      "src/components/pages/contact-us/contact-map.htm",
+      "src/components/pages/creative-portfolio/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "creative-portfolio:customer-details",
+    "family": "creative-portfolio",
+    "page": "customer-details",
+    "sourcePath": "customer-details.html",
+    "resolvedPath": "source-fidelity/templates/creative-portfolio/customer-details.html",
+    "sourceBytes": 523,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/pages/creative-portfolio/header.htm",
+      "src/components/pages/customer/customer-details-info.htm",
+      "src/components/pages/creative-portfolio/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "creative-portfolio:customers",
+    "family": "creative-portfolio",
+    "page": "customers",
+    "sourcePath": "customers.html",
+    "resolvedPath": "source-fidelity/templates/creative-portfolio/customers.html",
+    "sourceBytes": 750,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/pages/creative-portfolio/header.htm",
+      "src/components/pages/customer/hero.htm",
+      "src/components/pages/creative-portfolio/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "creative-portfolio:documentation",
+    "family": "creative-portfolio",
+    "page": "documentation",
+    "sourcePath": "documentation.html",
+    "resolvedPath": "source-fidelity/templates/creative-portfolio/documentation.html",
+    "sourceBytes": 988,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/pages/creative-portfolio/header.htm",
+      "src/components/pages/documentation/documentation.htm",
+      "src/components/pages/creative-portfolio/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "creative-portfolio:download",
+    "family": "creative-portfolio",
+    "page": "download",
+    "sourcePath": "download.html",
+    "resolvedPath": "source-fidelity/templates/creative-portfolio/download.html",
+    "sourceBytes": 558,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/pages/creative-portfolio/header.htm",
+      "src/components/pages/dawnload/hero.htm",
+      "src/components/pages/dawnload/content.htm",
+      "src/components/pages/creative-portfolio/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "creative-portfolio:faq",
+    "family": "creative-portfolio",
+    "page": "faq",
+    "sourcePath": "faq.html",
+    "resolvedPath": "source-fidelity/templates/creative-portfolio/faq.html",
+    "sourceBytes": 1047,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/pages/creative-portfolio/header.htm",
+      "src/components/pages/faq/faq.htm",
+      "src/components/pages/faq/contact.htm",
+      "src/components/pages/creative-portfolio/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "creative-portfolio:features",
+    "family": "creative-portfolio",
+    "page": "features",
+    "sourcePath": "features.html",
+    "resolvedPath": "source-fidelity/templates/creative-portfolio/features.html",
+    "sourceBytes": 1509,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/pages/creative-portfolio/header.htm",
+      "src/components/pages/features-page-01/features.htm",
+      "src/components/pages/features-page-01/features-v2.htm",
+      "src/components/pages/creative-portfolio/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-counter",
+      "data-delay",
+      "data-direction",
+      "data-interval",
+      "data-ns-animate",
+      "data-number",
+      "data-offset",
+      "data-rooms",
+      "data-speed"
+    ]
+  },
+  {
+    "key": "creative-portfolio:gdpr",
+    "family": "creative-portfolio",
+    "page": "gdpr",
+    "sourcePath": "gdpr.html",
+    "resolvedPath": "source-fidelity/templates/creative-portfolio/gdpr.html",
+    "sourceBytes": 966,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/pages/creative-portfolio/header.htm",
+      "src/components/pages/gdpr-page/gdpr.htm",
+      "src/components/pages/creative-portfolio/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data--",
+      "data-afluma-slot",
+      "data-delay",
+      "data-management",
+      "data-ns-animate",
+      "data-purpose",
+      "data-rights"
+    ]
+  },
+  {
+    "key": "creative-portfolio:glossary",
+    "family": "creative-portfolio",
+    "page": "glossary",
+    "sourcePath": "glossary.html",
+    "resolvedPath": "source-fidelity/templates/creative-portfolio/glossary.html",
+    "sourceBytes": 593,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/pages/creative-portfolio/header.htm",
+      "src/components/pages/glossary-page-01/heading.htm",
+      "src/components/pages/glossary-page-01/glossary-index.htm",
+      "src/components/pages/creative-portfolio/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "creative-portfolio:index",
+    "family": "creative-portfolio",
+    "page": "index",
+    "sourcePath": "index.html",
+    "resolvedPath": "source-fidelity/templates/creative-portfolio/index.html",
+    "sourceBytes": 1060,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/pages/creative-portfolio/header.htm",
+      "src/components/pages/creative-portfolio/hero.htm",
+      "src/components/pages/creative-portfolio/about.htm",
+      "src/components/pages/creative-portfolio/work.htm",
+      "src/components/pages/creative-portfolio/services.htm",
+      "src/components/pages/creative-portfolio/process.htm",
+      "src/components/pages/creative-portfolio/testimonials.htm",
+      "src/components/pages/creative-portfolio/blog.htm",
+      "src/components/pages/creative-portfolio/cta.htm",
+      "src/components/pages/creative-portfolio/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-direction",
+      "data-hero-line",
+      "data-ns-animate",
+      "data-offset"
+    ]
+  },
+  {
+    "key": "creative-portfolio:integration",
+    "family": "creative-portfolio",
+    "page": "integration",
+    "sourcePath": "integration.html",
+    "resolvedPath": "source-fidelity/templates/creative-portfolio/integration.html",
+    "sourceBytes": 1085,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/pages/creative-portfolio/header.htm",
+      "src/components/pages/integration/integration-v2.htm",
+      "src/components/pages/integration/process.htm",
+      "src/components/pages/creative-portfolio/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-instant",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "creative-portfolio:legal",
+    "family": "creative-portfolio",
+    "page": "legal",
+    "sourcePath": "legal.html",
+    "resolvedPath": "source-fidelity/templates/creative-portfolio/legal.html",
+    "sourceBytes": 563,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/pages/creative-portfolio/header.htm",
+      "src/components/pages/legal-notice/hero.htm",
+      "src/components/pages/legal-notice/content.htm",
+      "src/components/pages/creative-portfolio/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "creative-portfolio:login",
+    "family": "creative-portfolio",
+    "page": "login",
+    "sourcePath": "login.html",
+    "resolvedPath": "source-fidelity/templates/creative-portfolio/login.html",
+    "sourceBytes": 1016,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/pages/creative-portfolio/header.htm",
+      "src/components/pages/authentication-page/login-hero-v4.htm",
+      "src/components/pages/creative-portfolio/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-direction",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "creative-portfolio:our-manifesto",
+    "family": "creative-portfolio",
+    "page": "our-manifesto",
+    "sourcePath": "our-manifesto.html",
+    "resolvedPath": "source-fidelity/templates/creative-portfolio/our-manifesto.html",
+    "sourceBytes": 580,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/pages/creative-portfolio/header.htm",
+      "src/components/pages/our-manifesto/hero.htm",
+      "src/components/pages/our-manifesto/content.htm",
+      "src/components/pages/creative-portfolio/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "creative-portfolio:press",
+    "family": "creative-portfolio",
+    "page": "press",
+    "sourcePath": "press.html",
+    "resolvedPath": "source-fidelity/templates/creative-portfolio/press.html",
+    "sourceBytes": 780,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/pages/creative-portfolio/header.htm",
+      "src/components/pages/press/client.htm",
+      "src/components/pages/press/saas-innovation.htm",
+      "src/components/pages/press/awards.htm",
+      "src/components/pages/creative-portfolio/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "creative-portfolio:pricing",
+    "family": "creative-portfolio",
+    "page": "pricing",
+    "sourcePath": "pricing.html",
+    "resolvedPath": "source-fidelity/templates/creative-portfolio/pricing.html",
+    "sourceBytes": 1225,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/pages/creative-portfolio/header.htm",
+      "src/components/pages/price-page-02/client.htm",
+      "src/components/pages/price-page-02/faq.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "creative-portfolio:privacy-policy",
+    "family": "creative-portfolio",
+    "page": "privacy-policy",
+    "sourcePath": "privacy-policy.html",
+    "resolvedPath": "source-fidelity/templates/creative-portfolio/privacy-policy.html",
+    "sourceBytes": 984,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/pages/creative-portfolio/header.htm",
+      "src/components/pages/privacy-policy/privacy.htm",
+      "src/components/pages/creative-portfolio/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "creative-portfolio:process",
+    "family": "creative-portfolio",
+    "page": "process",
+    "sourcePath": "process.html",
+    "resolvedPath": "source-fidelity/templates/creative-portfolio/process.html",
+    "sourceBytes": 1086,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/pages/creative-portfolio/header.htm",
+      "src/components/pages/process-page-01/process-steps.htm",
+      "src/components/pages/process-page-01/faq.htm",
+      "src/components/pages/creative-portfolio/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "creative-portfolio:referral-program",
+    "family": "creative-portfolio",
+    "page": "referral-program",
+    "sourcePath": "referral-program.html",
+    "resolvedPath": "source-fidelity/templates/creative-portfolio/referral-program.html",
+    "sourceBytes": 766,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/pages/creative-portfolio/header.htm",
+      "src/components/pages/referral-program/steps.htm",
+      "src/components/pages/referral-program/testimonial.htm",
+      "src/components/pages/referral-program/faq.htm",
+      "src/components/pages/creative-portfolio/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "creative-portfolio:refund-policy",
+    "family": "creative-portfolio",
+    "page": "refund-policy",
+    "sourcePath": "refund-policy.html",
+    "resolvedPath": "source-fidelity/templates/creative-portfolio/refund-policy.html",
+    "sourceBytes": 999,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/pages/creative-portfolio/header.htm",
+      "src/components/pages/refund-policy-page/refund-guidelines.htm",
+      "src/components/pages/creative-portfolio/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "creative-portfolio:security",
+    "family": "creative-portfolio",
+    "page": "security",
+    "sourcePath": "security.html",
+    "resolvedPath": "source-fidelity/templates/creative-portfolio/security.html",
+    "sourceBytes": 580,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/pages/creative-portfolio/header.htm",
+      "src/components/pages/security-compliance/hero.htm",
+      "src/components/pages/security-compliance/content.htm",
+      "src/components/pages/creative-portfolio/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "creative-portfolio:service-details",
+    "family": "creative-portfolio",
+    "page": "service-details",
+    "sourcePath": "service-details.html",
+    "resolvedPath": "source-fidelity/templates/creative-portfolio/service-details.html",
+    "sourceBytes": 966,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/pages/creative-portfolio/header.htm",
+      "src/components/pages/services-details/content.htm",
+      "src/components/pages/creative-portfolio/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-insights",
+      "data-instant",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "creative-portfolio:services",
+    "family": "creative-portfolio",
+    "page": "services",
+    "sourcePath": "services.html",
+    "resolvedPath": "source-fidelity/templates/creative-portfolio/services.html",
+    "sourceBytes": 1514,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/pages/creative-portfolio/header.htm",
+      "src/components/pages/creative-portfolio/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": []
+  },
+  {
+    "key": "creative-portfolio:signup",
+    "family": "creative-portfolio",
+    "page": "signup",
+    "sourcePath": "signup.html",
+    "resolvedPath": "source-fidelity/templates/creative-portfolio/signup.html",
+    "sourceBytes": 1018,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/pages/creative-portfolio/header.htm",
+      "src/components/pages/authentication-page/signup-hero-v3.htm",
+      "src/components/pages/creative-portfolio/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-direction",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "creative-portfolio:success-stories",
+    "family": "creative-portfolio",
+    "page": "success-stories",
+    "sourcePath": "success-stories.html",
+    "resolvedPath": "source-fidelity/templates/creative-portfolio/success-stories.html",
+    "sourceBytes": 910,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/pages/creative-portfolio/header.htm",
+      "src/components/pages/success-stories/hero.htm",
+      "src/components/pages/success-stories/global-stories-performance.htm",
+      "src/components/pages/creative-portfolio/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-counter",
+      "data-delay",
+      "data-height-space",
+      "data-instant",
+      "data-interval",
+      "data-ns-animate",
+      "data-number",
+      "data-rooms",
+      "data-speed"
+    ]
+  },
+  {
+    "key": "creative-portfolio:support",
+    "family": "creative-portfolio",
+    "page": "support",
+    "sourcePath": "support.html",
+    "resolvedPath": "source-fidelity/templates/creative-portfolio/support.html",
+    "sourceBytes": 1190,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/pages/creative-portfolio/header.htm",
+      "src/components/pages/support-page/contact.htm",
+      "src/components/pages/creative-portfolio/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "creative-portfolio:team-details",
+    "family": "creative-portfolio",
+    "page": "team-details",
+    "sourcePath": "team-details.html",
+    "resolvedPath": "source-fidelity/templates/creative-portfolio/team-details.html",
+    "sourceBytes": 649,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/pages/creative-portfolio/header.htm",
+      "src/components/pages/team-details/details.htm",
+      "src/components/pages/team-details/contact.htm",
+      "src/components/pages/team-details/cta.htm",
+      "src/components/pages/creative-portfolio/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-direction",
+      "data-duration",
+      "data-ns-animate",
+      "data-offset"
+    ]
+  },
+  {
+    "key": "creative-portfolio:team",
+    "family": "creative-portfolio",
+    "page": "team",
+    "sourcePath": "team.html",
+    "resolvedPath": "source-fidelity/templates/creative-portfolio/team.html",
+    "sourceBytes": 745,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/pages/creative-portfolio/header.htm",
+      "src/components/pages/our-team-02/experience.htm",
+      "src/components/pages/our-team-02/features-v3.htm",
+      "src/components/pages/our-team-02/cta.htm",
+      "src/components/pages/creative-portfolio/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-counter",
+      "data-delay",
+      "data-direction",
+      "data-height-space",
+      "data-interval",
+      "data-ns-animate",
+      "data-number",
+      "data-rooms",
+      "data-speed"
+    ]
+  },
+  {
+    "key": "creative-portfolio:terms-conditions",
+    "family": "creative-portfolio",
+    "page": "terms-conditions",
+    "sourcePath": "terms-conditions.html",
+    "resolvedPath": "source-fidelity/templates/creative-portfolio/terms-conditions.html",
+    "sourceBytes": 1090,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/pages/creative-portfolio/header.htm",
+      "src/components/pages/creative-portfolio/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": []
+  },
+  {
+    "key": "creative-portfolio:testimonial",
+    "family": "creative-portfolio",
+    "page": "testimonial",
+    "sourcePath": "testimonial.html",
+    "resolvedPath": "source-fidelity/templates/creative-portfolio/testimonial.html",
+    "sourceBytes": 1166,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/pages/creative-portfolio/header.htm",
+      "src/components/pages/testimonial-01/testimonial.htm",
+      "src/components/pages/testimonial-01/clients.htm",
+      "src/components/pages/testimonial-01/intregration.htm",
+      "src/components/pages/creative-portfolio/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "creative-portfolio:tutorial",
+    "family": "creative-portfolio",
+    "page": "tutorial",
+    "sourcePath": "tutorial.html",
+    "resolvedPath": "source-fidelity/templates/creative-portfolio/tutorial.html",
+    "sourceBytes": 1589,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/pages/creative-portfolio/header.htm",
+      "src/components/pages/learn-page/features.htm",
+      "src/components/pages/learn-page/tutorials.htm",
+      "src/components/pages/learn-page/services.htm",
+      "src/components/pages/learn-page/community.htm",
+      "src/components/pages/creative-portfolio/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "creative-portfolio:use-case",
+    "family": "creative-portfolio",
+    "page": "use-case",
+    "sourcePath": "use-case.html",
+    "resolvedPath": "source-fidelity/templates/creative-portfolio/use-case.html",
+    "sourceBytes": 1071,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/pages/creative-portfolio/header.htm",
+      "src/components/pages/use-case-page/feature-intro.htm",
+      "src/components/pages/use-case-page/finance-and-operation.htm",
+      "src/components/pages/creative-portfolio/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-driven",
+      "data-management",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "creative-portfolio:whitepaper-details",
+    "family": "creative-portfolio",
+    "page": "whitepaper-details",
+    "sourcePath": "whitepaper-details.html",
+    "resolvedPath": "source-fidelity/templates/creative-portfolio/whitepaper-details.html",
+    "sourceBytes": 674,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/pages/creative-portfolio/header.htm",
+      "src/components/pages/whitepaper-details/hero.htm",
+      "src/components/pages/whitepaper-details/overview.htm",
+      "src/components/pages/whitepaper-details/key-takeaways.htm",
+      "src/components/pages/creative-portfolio/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-direction",
+      "data-instant",
+      "data-ns-animate",
+      "data-offset"
+    ]
+  },
+  {
+    "key": "creative-portfolio:whitepaper",
+    "family": "creative-portfolio",
+    "page": "whitepaper",
+    "sourcePath": "whitepaper.html",
+    "resolvedPath": "source-fidelity/templates/creative-portfolio/whitepaper.html",
+    "sourceBytes": 683,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/pages/creative-portfolio/header.htm",
+      "src/components/pages/whitepapers/hero.htm",
+      "src/components/pages/whitepapers/client.htm",
+      "src/components/pages/creative-portfolio/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "creative-portfolio:why-choose-us",
+    "family": "creative-portfolio",
+    "page": "why-choose-us",
+    "sourcePath": "why-choose-us.html",
+    "resolvedPath": "source-fidelity/templates/creative-portfolio/why-choose-us.html",
+    "sourceBytes": 782,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/pages/creative-portfolio/header.htm",
+      "src/components/pages/why/hero.htm",
+      "src/components/pages/why/counter.htm",
+      "src/components/pages/why/feature.htm",
+      "src/components/pages/why/service-compliance.htm",
+      "src/components/pages/creative-portfolio/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-counter",
+      "data-delay",
+      "data-interval",
+      "data-ns-animate",
+      "data-number",
+      "data-offset",
+      "data-rooms",
+      "data-speed"
+    ]
+  },
+  {
+    "key": "ai-agency:404",
+    "family": "ai-agency",
+    "page": "404",
+    "sourcePath": "404.html",
+    "resolvedPath": "source-fidelity/templates/ai-agency/404.html",
+    "sourceBytes": 431,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/shared/header.htm",
+      "src/components/shared/not-found.htm",
+      "src/components/shared/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-direction",
+      "data-instant",
+      "data-ns-animate",
+      "data-offset"
+    ]
+  },
+  {
+    "key": "ai-agency:about",
+    "family": "ai-agency",
+    "page": "about",
+    "sourcePath": "about.html",
+    "resolvedPath": "source-fidelity/templates/ai-agency/about.html",
+    "sourceBytes": 850,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/shared/header.htm",
+      "src/components/pages/about/features.htm",
+      "src/components/pages/about/our-mission.htm",
+      "src/components/pages/about/our-vision.htm",
+      "src/components/pages/about/innovation.htm",
+      "src/components/pages/about/teams.htm",
+      "src/components/pages/about/map-area.htm",
+      "src/components/pages/about/cta.htm",
+      "src/components/shared/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-counter",
+      "data-delay",
+      "data-direction",
+      "data-duration",
+      "data-height-space",
+      "data-interval",
+      "data-ns-animate",
+      "data-number",
+      "data-offset",
+      "data-rooms",
+      "data-speed",
+      "data-spring"
+    ]
+  },
+  {
+    "key": "ai-agency:affiliate-policy",
+    "family": "ai-agency",
+    "page": "affiliate-policy",
+    "sourcePath": "affiliate-policy.html",
+    "resolvedPath": "source-fidelity/templates/ai-agency/affiliate-policy.html",
+    "sourceBytes": 1030,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/shared/header.htm",
+      "src/components/pages/affiliate-policy/affiliate-guidelines.htm",
+      "src/components/pages/affiliate-policy/affiliate-body.htm",
+      "src/components/shared/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-instant",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "ai-agency:affiliates",
+    "family": "ai-agency",
+    "page": "affiliates",
+    "sourcePath": "affiliates.html",
+    "resolvedPath": "source-fidelity/templates/ai-agency/affiliates.html",
+    "sourceBytes": 1027,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/shared/header.htm",
+      "src/components/pages/affiliate-policy/affiliate-program.htm",
+      "src/components/pages/affiliate-policy/affiliate-process.htm",
+      "src/components/shared/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-instant",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "ai-agency:analytics",
+    "family": "ai-agency",
+    "page": "analytics",
+    "sourcePath": "analytics.html",
+    "resolvedPath": "source-fidelity/templates/ai-agency/analytics.html",
+    "sourceBytes": 1115,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/shared/header.htm",
+      "src/components/pages/analytics/hero.htm",
+      "src/components/pages/analytics/analytics-details.htm",
+      "src/components/pages/analytics/testimonial.htm",
+      "src/components/shared/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-direction",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "ai-agency:blog-details",
+    "family": "ai-agency",
+    "page": "blog-details",
+    "sourcePath": "blog-details.html",
+    "resolvedPath": "source-fidelity/templates/ai-agency/blog-details.html",
+    "sourceBytes": 974,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/shared/header.htm",
+      "src/components/pages/blog-details/details-body.htm",
+      "src/components/shared/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "ai-agency:blog",
+    "family": "ai-agency",
+    "page": "blog",
+    "sourcePath": "blog.html",
+    "resolvedPath": "source-fidelity/templates/ai-agency/blog.html",
+    "sourceBytes": 954,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/shared/header.htm",
+      "src/components/pages/blog/featured-blog.htm",
+      "src/components/pages/blog/our-blogs.htm",
+      "src/components/shared/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "ai-agency:brandkit",
+    "family": "ai-agency",
+    "page": "brandkit",
+    "sourcePath": "brandkit.html",
+    "resolvedPath": "source-fidelity/templates/ai-agency/brandkit.html",
+    "sourceBytes": 520,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/shared/header.htm",
+      "src/components/pages/brandkit/hero.htm",
+      "src/components/pages/brandkit/content.htm",
+      "src/components/shared/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "ai-agency:career-details",
+    "family": "ai-agency",
+    "page": "career-details",
+    "sourcePath": "career-details.html",
+    "resolvedPath": "source-fidelity/templates/ai-agency/career-details.html",
+    "sourceBytes": 962,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/shared/header.htm",
+      "src/components/pages/career-details/details.htm",
+      "src/components/shared/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-direction",
+      "data-duration",
+      "data-ns-animate",
+      "data-offset"
+    ]
+  },
+  {
+    "key": "ai-agency:career",
+    "family": "ai-agency",
+    "page": "career",
+    "sourcePath": "career.html",
+    "resolvedPath": "source-fidelity/templates/ai-agency/career.html",
+    "sourceBytes": 1078,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/shared/header.htm",
+      "src/components/pages/career/career.htm",
+      "src/components/pages/career/features.htm",
+      "src/components/pages/career/positions.htm",
+      "src/components/shared/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "ai-agency:case-study-details",
+    "family": "ai-agency",
+    "page": "case-study-details",
+    "sourcePath": "case-study-details.html",
+    "resolvedPath": "source-fidelity/templates/ai-agency/case-study-details.html",
+    "sourceBytes": 981,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/shared/header.htm",
+      "src/components/pages/case-study-details/case-study-details.htm",
+      "src/components/shared/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "ai-agency:case-study",
+    "family": "ai-agency",
+    "page": "case-study",
+    "sourcePath": "case-study.html",
+    "resolvedPath": "source-fidelity/templates/ai-agency/case-study.html",
+    "sourceBytes": 1174,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/shared/header.htm",
+      "src/components/pages/case-study/case-study.htm",
+      "src/components/pages/case-study/testimonial.htm",
+      "src/components/pages/case-study/success.htm",
+      "src/components/pages/case-study/feature.htm",
+      "src/components/shared/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-instant",
+      "data-ns-animate",
+      "data-start"
+    ]
+  },
+  {
+    "key": "ai-agency:changelog",
+    "family": "ai-agency",
+    "page": "changelog",
+    "sourcePath": "changelog.html",
+    "resolvedPath": "source-fidelity/templates/ai-agency/changelog.html",
+    "sourceBytes": 523,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/shared/header.htm",
+      "src/components/pages/changelog/hero.htm",
+      "src/components/pages/changelog/content.htm",
+      "src/components/shared/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-month",
+      "data-month-link",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "ai-agency:contact",
+    "family": "ai-agency",
+    "page": "contact",
+    "sourcePath": "contact.html",
+    "resolvedPath": "source-fidelity/templates/ai-agency/contact.html",
+    "sourceBytes": 1026,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/shared/header.htm",
+      "src/components/pages/contact-us/contact.htm",
+      "src/components/pages/contact-us/contact-map.htm",
+      "src/components/shared/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "ai-agency:customer-details",
+    "family": "ai-agency",
+    "page": "customer-details",
+    "sourcePath": "customer-details.html",
+    "resolvedPath": "source-fidelity/templates/ai-agency/customer-details.html",
+    "sourceBytes": 476,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/shared/header.htm",
+      "src/components/pages/customer/customer-details-info.htm",
+      "src/components/shared/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "ai-agency:customers",
+    "family": "ai-agency",
+    "page": "customers",
+    "sourcePath": "customers.html",
+    "resolvedPath": "source-fidelity/templates/ai-agency/customers.html",
+    "sourceBytes": 612,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/shared/header.htm",
+      "src/components/pages/customer/hero.htm",
+      "src/components/pages/customer/customer-success-stories.htm",
+      "src/components/pages/customer/customer-cta.htm",
+      "src/components/shared/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-filter-type",
+      "data-industry",
+      "data-ns-animate",
+      "data-product",
+      "data-service",
+      "data-solution",
+      "data-value"
+    ]
+  },
+  {
+    "key": "ai-agency:documentation",
+    "family": "ai-agency",
+    "page": "documentation",
+    "sourcePath": "documentation.html",
+    "resolvedPath": "source-fidelity/templates/ai-agency/documentation.html",
+    "sourceBytes": 936,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/shared/header.htm",
+      "src/components/pages/documentation/documentation.htm",
+      "src/components/shared/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "ai-agency:download",
+    "family": "ai-agency",
+    "page": "download",
+    "sourcePath": "download.html",
+    "resolvedPath": "source-fidelity/templates/ai-agency/download.html",
+    "sourceBytes": 513,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/shared/header.htm",
+      "src/components/pages/dawnload/hero.htm",
+      "src/components/pages/dawnload/content.htm",
+      "src/components/shared/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "ai-agency:faq",
+    "family": "ai-agency",
+    "page": "faq",
+    "sourcePath": "faq.html",
+    "resolvedPath": "source-fidelity/templates/ai-agency/faq.html",
+    "sourceBytes": 995,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/shared/header.htm",
+      "src/components/pages/faq/faq.htm",
+      "src/components/pages/faq/contact.htm",
+      "src/components/shared/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "ai-agency:features",
+    "family": "ai-agency",
+    "page": "features",
+    "sourcePath": "features.html",
+    "resolvedPath": "source-fidelity/templates/ai-agency/features.html",
+    "sourceBytes": 1186,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/shared/header.htm",
+      "src/components/pages/features/features.htm",
+      "src/components/pages/features/team.htm",
+      "src/components/pages/features/features-v3.htm",
+      "src/components/pages/features/features-v2.htm",
+      "src/components/pages/features/testimonials.htm",
+      "src/components/shared/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-counter",
+      "data-delay",
+      "data-direction",
+      "data-interval",
+      "data-ns-animate",
+      "data-number",
+      "data-offset",
+      "data-rooms",
+      "data-speed"
+    ]
+  },
+  {
+    "key": "ai-agency:gdpr",
+    "family": "ai-agency",
+    "page": "gdpr",
+    "sourcePath": "gdpr.html",
+    "resolvedPath": "source-fidelity/templates/ai-agency/gdpr.html",
+    "sourceBytes": 909,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/shared/header.htm",
+      "src/components/pages/gdpr/gdpr.htm",
+      "src/components/shared/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data--",
+      "data-afluma-slot",
+      "data-delay",
+      "data-management",
+      "data-ns-animate",
+      "data-purpose",
+      "data-rights"
+    ]
+  },
+  {
+    "key": "ai-agency:glossary",
+    "family": "ai-agency",
+    "page": "glossary",
+    "sourcePath": "glossary.html",
+    "resolvedPath": "source-fidelity/templates/ai-agency/glossary.html",
+    "sourceBytes": 530,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/shared/header.htm",
+      "src/components/pages/glossary/heading.htm",
+      "src/components/pages/glossary/glossary-index.htm",
+      "src/components/shared/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "ai-agency:index",
+    "family": "ai-agency",
+    "page": "index",
+    "sourcePath": "index.html",
+    "resolvedPath": "source-fidelity/templates/ai-agency/index.html",
+    "sourceBytes": 985,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/shared/header.htm",
+      "src/components/pages/home/hero.htm",
+      "src/components/pages/home/feature.htm",
+      "src/components/pages/home/services.htm",
+      "src/components/pages/home/integration.htm",
+      "src/components/pages/home/projects.htm",
+      "src/components/pages/home/counter.htm",
+      "src/components/pages/home/reviews.htm",
+      "src/components/pages/home/pricing.htm",
+      "src/components/pages/home/newsletter.htm",
+      "src/components/shared/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-counter",
+      "data-delay",
+      "data-direction",
+      "data-duration",
+      "data-height-space",
+      "data-instant",
+      "data-interval",
+      "data-led",
+      "data-ns-animate",
+      "data-number",
+      "data-offset",
+      "data-parallax-value",
+      "data-parallax-x",
+      "data-parallax-y",
+      "data-progress-bar",
+      "data-progress-item",
+      "data-progress-text",
+      "data-progress-value",
+      "data-rooms",
+      "data-speed",
+      "data-spring"
+    ]
+  },
+  {
+    "key": "ai-agency:integration",
+    "family": "ai-agency",
+    "page": "integration",
+    "sourcePath": "integration.html",
+    "resolvedPath": "source-fidelity/templates/ai-agency/integration.html",
+    "sourceBytes": 963,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/shared/header.htm",
+      "src/components/pages/integration/integration-v3.htm",
+      "src/components/shared/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate",
+      "data-offset"
+    ]
+  },
+  {
+    "key": "ai-agency:legal",
+    "family": "ai-agency",
+    "page": "legal",
+    "sourcePath": "legal.html",
+    "resolvedPath": "source-fidelity/templates/ai-agency/legal.html",
+    "sourceBytes": 518,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/shared/header.htm",
+      "src/components/pages/legal-notice/hero.htm",
+      "src/components/pages/legal-notice/content.htm",
+      "src/components/shared/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "ai-agency:login",
+    "family": "ai-agency",
+    "page": "login",
+    "sourcePath": "login.html",
+    "resolvedPath": "source-fidelity/templates/ai-agency/login.html",
+    "sourceBytes": 959,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/shared/header.htm",
+      "src/components/pages/authentication/login-hero-v2.htm",
+      "src/components/shared/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "ai-agency:our-manifesto",
+    "family": "ai-agency",
+    "page": "our-manifesto",
+    "sourcePath": "our-manifesto.html",
+    "resolvedPath": "source-fidelity/templates/ai-agency/our-manifesto.html",
+    "sourceBytes": 535,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/shared/header.htm",
+      "src/components/pages/our-manifesto/hero.htm",
+      "src/components/pages/our-manifesto/content.htm",
+      "src/components/shared/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "ai-agency:press",
+    "family": "ai-agency",
+    "page": "press",
+    "sourcePath": "press.html",
+    "resolvedPath": "source-fidelity/templates/ai-agency/press.html",
+    "sourceBytes": 756,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/shared/header.htm",
+      "src/components/pages/press/client.htm",
+      "src/components/pages/press/saas-innovation.htm",
+      "src/components/pages/press/awards.htm",
+      "src/components/shared/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "ai-agency:pricing",
+    "family": "ai-agency",
+    "page": "pricing",
+    "sourcePath": "pricing.html",
+    "resolvedPath": "source-fidelity/templates/ai-agency/pricing.html",
+    "sourceBytes": 1087,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/shared/header.htm",
+      "src/components/pages/pricing/pricing.htm",
+      "src/components/pages/pricing/client.htm",
+      "src/components/pages/pricing/faq.htm",
+      "src/components/shared/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "ai-agency:privacy-policy",
+    "family": "ai-agency",
+    "page": "privacy-policy",
+    "sourcePath": "privacy-policy.html",
+    "resolvedPath": "source-fidelity/templates/ai-agency/privacy-policy.html",
+    "sourceBytes": 932,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/shared/header.htm",
+      "src/components/pages/privacy-policy/privacy.htm",
+      "src/components/shared/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "ai-agency:process",
+    "family": "ai-agency",
+    "page": "process",
+    "sourcePath": "process.html",
+    "resolvedPath": "source-fidelity/templates/ai-agency/process.html",
+    "sourceBytes": 1018,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/shared/header.htm",
+      "src/components/pages/process/process-steps.htm",
+      "src/components/pages/process/faq.htm",
+      "src/components/shared/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "ai-agency:referral-program",
+    "family": "ai-agency",
+    "page": "referral-program",
+    "sourcePath": "referral-program.html",
+    "resolvedPath": "source-fidelity/templates/ai-agency/referral-program.html",
+    "sourceBytes": 689,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/shared/header.htm",
+      "src/components/pages/referral-program/hero.htm",
+      "src/components/pages/referral-program/steps.htm",
+      "src/components/pages/referral-program/testimonial.htm",
+      "src/components/pages/referral-program/faq.htm",
+      "src/components/shared/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-direction",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "ai-agency:refund-policy",
+    "family": "ai-agency",
+    "page": "refund-policy",
+    "sourcePath": "refund-policy.html",
+    "resolvedPath": "source-fidelity/templates/ai-agency/refund-policy.html",
+    "sourceBytes": 940,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/shared/header.htm",
+      "src/components/pages/refund-policy/refund-guidelines.htm",
+      "src/components/shared/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "ai-agency:security",
+    "family": "ai-agency",
+    "page": "security",
+    "sourcePath": "security.html",
+    "resolvedPath": "source-fidelity/templates/ai-agency/security.html",
+    "sourceBytes": 535,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/shared/header.htm",
+      "src/components/pages/security-compliance/hero.htm",
+      "src/components/pages/security-compliance/content.htm",
+      "src/components/shared/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "ai-agency:service-details",
+    "family": "ai-agency",
+    "page": "service-details",
+    "sourcePath": "service-details.html",
+    "resolvedPath": "source-fidelity/templates/ai-agency/service-details.html",
+    "sourceBytes": 914,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/shared/header.htm",
+      "src/components/pages/services-details/content.htm",
+      "src/components/shared/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-insights",
+      "data-instant",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "ai-agency:services",
+    "family": "ai-agency",
+    "page": "services",
+    "sourcePath": "services.html",
+    "resolvedPath": "source-fidelity/templates/ai-agency/services.html",
+    "sourceBytes": 1054,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/shared/header.htm",
+      "src/components/pages/our-services/services.htm",
+      "src/components/pages/our-services/services-v2.htm",
+      "src/components/pages/our-services/feature.htm",
+      "src/components/shared/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-direction",
+      "data-ns-animate",
+      "data-offset"
+    ]
+  },
+  {
+    "key": "ai-agency:signup",
+    "family": "ai-agency",
+    "page": "signup",
+    "sourcePath": "signup.html",
+    "resolvedPath": "source-fidelity/templates/ai-agency/signup.html",
+    "sourceBytes": 961,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/shared/header.htm",
+      "src/components/pages/authentication/signup-hero-v2.htm",
+      "src/components/shared/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "ai-agency:success-stories",
+    "family": "ai-agency",
+    "page": "success-stories",
+    "sourcePath": "success-stories.html",
+    "resolvedPath": "source-fidelity/templates/ai-agency/success-stories.html",
+    "sourceBytes": 712,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/shared/header.htm",
+      "src/components/pages/success-stories/hero.htm",
+      "src/components/pages/success-stories/clients.htm",
+      "src/components/pages/success-stories/spotlight-stories.htm",
+      "src/components/pages/success-stories/global-stories-performance.htm",
+      "src/components/shared/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-counter",
+      "data-delay",
+      "data-direction",
+      "data-height-space",
+      "data-instant",
+      "data-interval",
+      "data-ns-animate",
+      "data-number",
+      "data-offset",
+      "data-rooms",
+      "data-speed"
+    ]
+  },
+  {
+    "key": "ai-agency:support",
+    "family": "ai-agency",
+    "page": "support",
+    "sourcePath": "support.html",
+    "resolvedPath": "source-fidelity/templates/ai-agency/support.html",
+    "sourceBytes": 1053,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/shared/header.htm",
+      "src/components/pages/support/need-help.htm",
+      "src/components/pages/support/services.htm",
+      "src/components/pages/support/contact.htm",
+      "src/components/shared/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-instant",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "ai-agency:team-details",
+    "family": "ai-agency",
+    "page": "team-details",
+    "sourcePath": "team-details.html",
+    "resolvedPath": "source-fidelity/templates/ai-agency/team-details.html",
+    "sourceBytes": 604,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/shared/header.htm",
+      "src/components/pages/team-details/details.htm",
+      "src/components/pages/team-details/contact.htm",
+      "src/components/pages/team-details/cta.htm",
+      "src/components/shared/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-direction",
+      "data-duration",
+      "data-ns-animate",
+      "data-offset"
+    ]
+  },
+  {
+    "key": "ai-agency:team",
+    "family": "ai-agency",
+    "page": "team",
+    "sourcePath": "team.html",
+    "resolvedPath": "source-fidelity/templates/ai-agency/team.html",
+    "sourceBytes": 651,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/shared/header.htm",
+      "src/components/pages/our-team/teams.htm",
+      "src/components/pages/our-team/experience.htm",
+      "src/components/pages/our-team/features-v3.htm",
+      "src/components/pages/our-team/cta.htm",
+      "src/components/shared/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-counter",
+      "data-delay",
+      "data-direction",
+      "data-height-space",
+      "data-instant",
+      "data-interval",
+      "data-ns-animate",
+      "data-number",
+      "data-rooms",
+      "data-speed"
+    ]
+  },
+  {
+    "key": "ai-agency:terms-conditions",
+    "family": "ai-agency",
+    "page": "terms-conditions",
+    "sourcePath": "terms-conditions.html",
+    "resolvedPath": "source-fidelity/templates/ai-agency/terms-conditions.html",
+    "sourceBytes": 950,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/shared/header.htm",
+      "src/components/pages/terms-conditions/terms-conditions-body.htm",
+      "src/components/shared/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "ai-agency:testimonial",
+    "family": "ai-agency",
+    "page": "testimonial",
+    "sourcePath": "testimonial.html",
+    "resolvedPath": "source-fidelity/templates/ai-agency/testimonial.html",
+    "sourceBytes": 1182,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/shared/header.htm",
+      "src/components/pages/testimonial/testimonial.htm",
+      "src/components/pages/testimonial/testimonial-marquee.htm",
+      "src/components/pages/testimonial/experience.htm",
+      "src/components/pages/testimonial/integration.htm",
+      "src/components/shared/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-counter",
+      "data-delay",
+      "data-direction",
+      "data-du",
+      "data-height-space",
+      "data-instant",
+      "data-integration",
+      "data-interval",
+      "data-ns-animate",
+      "data-number",
+      "data-offset",
+      "data-rooms",
+      "data-speed"
+    ]
+  },
+  {
+    "key": "ai-agency:tutorial",
+    "family": "ai-agency",
+    "page": "tutorial",
+    "sourcePath": "tutorial.html",
+    "resolvedPath": "source-fidelity/templates/ai-agency/tutorial.html",
+    "sourceBytes": 1339,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/shared/header.htm",
+      "src/components/pages/learn/learn-banner.htm",
+      "src/components/pages/learn/blog.htm",
+      "src/components/pages/learn/features.htm",
+      "src/components/pages/learn/tutorials.htm",
+      "src/components/pages/learn/services.htm",
+      "src/components/pages/learn/integration.htm",
+      "src/components/pages/learn/community.htm",
+      "src/components/shared/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-active-tab-bar",
+      "data-afluma-slot",
+      "data-delay",
+      "data-filter-category",
+      "data-filter-item",
+      "data-instant",
+      "data-mobile-tab-button",
+      "data-ns-animate",
+      "data-tab-bar",
+      "data-tab-button"
+    ]
+  },
+  {
+    "key": "ai-agency:use-case",
+    "family": "ai-agency",
+    "page": "use-case",
+    "sourcePath": "use-case.html",
+    "resolvedPath": "source-fidelity/templates/ai-agency/use-case.html",
+    "sourceBytes": 1009,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/shared/header.htm",
+      "src/components/pages/use-case/feature-intro.htm",
+      "src/components/pages/use-case/finance-and-operation.htm",
+      "src/components/shared/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-driven",
+      "data-management",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "ai-agency:whitepaper-details",
+    "family": "ai-agency",
+    "page": "whitepaper-details",
+    "sourcePath": "whitepaper-details.html",
+    "resolvedPath": "source-fidelity/templates/ai-agency/whitepaper-details.html",
+    "sourceBytes": 629,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/shared/header.htm",
+      "src/components/pages/whitepaper-details/hero.htm",
+      "src/components/pages/whitepaper-details/overview.htm",
+      "src/components/pages/whitepaper-details/key-takeaways.htm",
+      "src/components/shared/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-direction",
+      "data-instant",
+      "data-ns-animate",
+      "data-offset"
+    ]
+  },
+  {
+    "key": "ai-agency:whitepaper",
+    "family": "ai-agency",
+    "page": "whitepaper",
+    "sourcePath": "whitepaper.html",
+    "resolvedPath": "source-fidelity/templates/ai-agency/whitepaper.html",
+    "sourceBytes": 594,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/shared/header.htm",
+      "src/components/pages/whitepapers/hero.htm",
+      "src/components/pages/whitepapers/researchs.htm",
+      "src/components/pages/whitepapers/client.htm",
+      "src/components/shared/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-driven",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "ai-agency:why-choose-us",
+    "family": "ai-agency",
+    "page": "why-choose-us",
+    "sourcePath": "why-choose-us.html",
+    "resolvedPath": "source-fidelity/templates/ai-agency/why-choose-us.html",
+    "sourceBytes": 707,
+    "componentIncludes": [
+      "src/components/shared/head-links.htm",
+      "src/components/shared/header.htm",
+      "src/components/pages/why/hero.htm",
+      "src/components/pages/why/counter.htm",
+      "src/components/pages/why/feature.htm",
+      "src/components/pages/why/service-compliance.htm",
+      "src/components/pages/why/cta.htm",
+      "src/components/shared/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-counter",
+      "data-delay",
+      "data-direction",
+      "data-duration",
+      "data-interval",
+      "data-ns-animate",
+      "data-number",
+      "data-offset",
+      "data-rooms",
+      "data-speed",
+      "data-spring"
+    ]
+  },
+  {
+    "key": "automation-saas:404",
+    "family": "automation-saas",
+    "page": "404",
+    "sourcePath": "404.html",
+    "resolvedPath": "source-fidelity/templates/automation-saas/404.html",
+    "sourceBytes": 413,
+    "componentIncludes": [
+      "src/components/shared/layout/navbar/header.htm",
+      "src/components/shared/not-found.htm",
+      "src/components/shared/footer/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate",
+      "data-text-reveal"
+    ]
+  },
+  {
+    "key": "automation-saas:about",
+    "family": "automation-saas",
+    "page": "about",
+    "sourcePath": "about.html",
+    "resolvedPath": "source-fidelity/templates/automation-saas/about.html",
+    "sourceBytes": 726,
+    "componentIncludes": [
+      "src/components/shared/layout/navbar/header.htm",
+      "src/components/about/hero.htm",
+      "src/components/about/clients.htm",
+      "src/components/about/our-mission.htm",
+      "src/components/about/team.htm",
+      "src/components/home/integration.htm",
+      "src/components/shared/cta.htm",
+      "src/components/shared/footer/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-count",
+      "data-counter-duration",
+      "data-counter-number",
+      "data-counter-trigger",
+      "data-counter-value",
+      "data-delay",
+      "data-direction",
+      "data-duration",
+      "data-group-class",
+      "data-initial-delay",
+      "data-interval",
+      "data-logo-item",
+      "data-logos-carousel",
+      "data-ns-animate",
+      "data-offset",
+      "data-stagger",
+      "data-text-reveal"
+    ]
+  },
+  {
+    "key": "automation-saas:blog-details",
+    "family": "automation-saas",
+    "page": "blog-details",
+    "sourcePath": "blog-details.html",
+    "resolvedPath": "source-fidelity/templates/automation-saas/blog-details.html",
+    "sourceBytes": 558,
+    "componentIncludes": [
+      "src/components/shared/layout/navbar/header.htm",
+      "src/components/blog-details/details-info.htm",
+      "src/components/blog-details/related-blog.htm",
+      "src/components/shared/cta.htm",
+      "src/components/shared/footer/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-direction",
+      "data-ns-animate",
+      "data-text-reveal"
+    ]
+  },
+  {
+    "key": "automation-saas:blog",
+    "family": "automation-saas",
+    "page": "blog",
+    "sourcePath": "blog.html",
+    "resolvedPath": "source-fidelity/templates/automation-saas/blog.html",
+    "sourceBytes": 525,
+    "componentIncludes": [
+      "src/components/shared/layout/navbar/header.htm",
+      "src/components/blog/blog.htm",
+      "src/components/home/testimonial.htm",
+      "src/components/shared/cta.htm",
+      "src/components/shared/footer/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-avatar-delay",
+      "data-avatar-direction",
+      "data-counter-duration",
+      "data-counter-number",
+      "data-counter-trigger",
+      "data-counter-value",
+      "data-delay",
+      "data-direction",
+      "data-instant",
+      "data-ns-animate",
+      "data-ns-avatar",
+      "data-offset",
+      "data-slice-image",
+      "data-slice-tile",
+      "data-slide",
+      "data-slide-content",
+      "data-slider",
+      "data-slider-current",
+      "data-slider-next",
+      "data-slider-prev",
+      "data-slider-track",
+      "data-text-reveal"
+    ]
+  },
+  {
+    "key": "automation-saas:contact",
+    "family": "automation-saas",
+    "page": "contact",
+    "sourcePath": "contact.html",
+    "resolvedPath": "source-fidelity/templates/automation-saas/contact.html",
+    "sourceBytes": 475,
+    "componentIncludes": [
+      "src/components/shared/layout/navbar/header.htm",
+      "src/components/contact/contact-us.htm",
+      "src/components/shared/cta.htm",
+      "src/components/shared/footer/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate",
+      "data-text-reveal"
+    ]
+  },
+  {
+    "key": "automation-saas:features",
+    "family": "automation-saas",
+    "page": "features",
+    "sourcePath": "features.html",
+    "resolvedPath": "source-fidelity/templates/automation-saas/features.html",
+    "sourceBytes": 601,
+    "componentIncludes": [
+      "src/components/shared/layout/navbar/header.htm",
+      "src/components/features/features.htm",
+      "src/components/features/work-flow.htm",
+      "src/components/home/testimonial.htm",
+      "src/components/shared/cta.htm",
+      "src/components/shared/footer/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-avatar-delay",
+      "data-avatar-direction",
+      "data-counter-duration",
+      "data-counter-number",
+      "data-counter-trigger",
+      "data-counter-value",
+      "data-delay",
+      "data-direction",
+      "data-instant",
+      "data-ns-animate",
+      "data-ns-avatar",
+      "data-offset",
+      "data-slice-image",
+      "data-slice-tile",
+      "data-slide",
+      "data-slide-content",
+      "data-slider",
+      "data-slider-current",
+      "data-slider-next",
+      "data-slider-prev",
+      "data-slider-track",
+      "data-text-reveal"
+    ]
+  },
+  {
+    "key": "automation-saas:index",
+    "family": "automation-saas",
+    "page": "index",
+    "sourcePath": "index.html",
+    "resolvedPath": "source-fidelity/templates/automation-saas/index.html",
+    "sourceBytes": 1143,
+    "componentIncludes": [
+      "src/components/shared/layout/navbar/header.htm",
+      "src/components/home/hero.htm",
+      "src/components/home/about-us.htm",
+      "src/components/home/features.htm",
+      "src/components/home/process.htm",
+      "src/components/home/core-features.htm",
+      "src/components/home/benefits.htm",
+      "src/components/home/pricing.htm",
+      "src/components/home/integration.htm",
+      "src/components/home/testimonial.htm",
+      "src/components/home/faq.htm",
+      "src/components/shared/cta.htm",
+      "src/components/home/mini-prompt-form.htm",
+      "src/components/shared/auth-modal.htm",
+      "src/components/shared/footer/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-active",
+      "data-afluma-slot",
+      "data-auth-email-form",
+      "data-auth-modal-backdrop",
+      "data-auth-modal-close",
+      "data-auth-modal-item",
+      "data-auth-modal-open",
+      "data-auth-modal-overlay",
+      "data-auth-modal-panel",
+      "data-auth-modal-root",
+      "data-auth-provider",
+      "data-avatar-delay",
+      "data-avatar-direction",
+      "data-colored-border",
+      "data-counter-duration",
+      "data-counter-fraction-digits",
+      "data-counter-number",
+      "data-counter-trigger",
+      "data-counter-value",
+      "data-default-open",
+      "data-del",
+      "data-delay",
+      "data-direction",
+      "data-duration",
+      "data-instant",
+      "data-mini-prompt-form",
+      "data-ns-animate",
+      "data-ns-avatar",
+      "data-offset",
+      "data-pricing",
+      "data-pricing-badge",
+      "data-pricing-badge-wrap",
+      "data-pricing-billing-toggle",
+      "data-pricing-desc",
+      "data-pricing-desc-wrap",
+      "data-pricing-item",
+      "data-pricing-item-text",
+      "data-pricing-period",
+      "data-pricing-price",
+      "data-pricing-tab",
+      "data-process-card",
+      "data-process-cards",
+      "data-process-content",
+      "data-process-content-wrap",
+      "data-process-image",
+      "data-process-image-wrap",
+      "data-process-line-fill",
+      "data-process-step",
+      "data-process-timeline",
+      "data-selected",
+      "data-shift",
+      "data-shine-color",
+      "data-slice-image",
+      "data-slice-tile",
+      "data-slide",
+      "data-slide-content",
+      "data-slider",
+      "data-slider-current",
+      "data-slider-next",
+      "data-slider-prev",
+      "data-slider-track",
+      "data-slightly-move",
+      "data-slightly-move-root",
+      "data-text-reveal",
+      "data-typewriter",
+      "data-typewriter-text"
+    ]
+  },
+  {
+    "key": "automation-saas:login",
+    "family": "automation-saas",
+    "page": "login",
+    "sourcePath": "login.html",
+    "resolvedPath": "source-fidelity/templates/automation-saas/login.html",
+    "sourceBytes": 409,
+    "componentIncludes": [
+      "src/components/shared/layout/navbar/header.htm",
+      "src/components/auth/login.htm",
+      "src/components/shared/footer/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate",
+      "data-text-reveal"
+    ]
+  },
+  {
+    "key": "automation-saas:pricing",
+    "family": "automation-saas",
+    "page": "pricing",
+    "sourcePath": "pricing.html",
+    "resolvedPath": "source-fidelity/templates/automation-saas/pricing.html",
+    "sourceBytes": 531,
+    "componentIncludes": [
+      "src/components/shared/layout/navbar/header.htm",
+      "src/components/home/pricing.htm",
+      "src/components/home/testimonial.htm",
+      "src/components/shared/cta.htm",
+      "src/components/shared/footer/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-active",
+      "data-afluma-slot",
+      "data-avatar-delay",
+      "data-avatar-direction",
+      "data-counter-duration",
+      "data-counter-number",
+      "data-counter-trigger",
+      "data-counter-value",
+      "data-delay",
+      "data-direction",
+      "data-instant",
+      "data-ns-animate",
+      "data-ns-avatar",
+      "data-offset",
+      "data-pricing",
+      "data-pricing-badge",
+      "data-pricing-badge-wrap",
+      "data-pricing-billing-toggle",
+      "data-pricing-desc",
+      "data-pricing-desc-wrap",
+      "data-pricing-item",
+      "data-pricing-item-text",
+      "data-pricing-period",
+      "data-pricing-price",
+      "data-pricing-tab",
+      "data-selected",
+      "data-slice-image",
+      "data-slice-tile",
+      "data-slide",
+      "data-slide-content",
+      "data-slider",
+      "data-slider-current",
+      "data-slider-next",
+      "data-slider-prev",
+      "data-slider-track",
+      "data-text-reveal"
+    ]
+  },
+  {
+    "key": "automation-saas:service-details",
+    "family": "automation-saas",
+    "page": "service-details",
+    "sourcePath": "service-details.html",
+    "resolvedPath": "source-fidelity/templates/automation-saas/service-details.html",
+    "sourceBytes": 562,
+    "componentIncludes": [
+      "src/components/shared/layout/navbar/header.htm",
+      "src/components/service-details/details-info.htm",
+      "src/components/service-details/why-use.htm",
+      "src/components/shared/cta.htm",
+      "src/components/shared/footer/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate",
+      "data-text-reveal"
+    ]
+  },
+  {
+    "key": "automation-saas:services",
+    "family": "automation-saas",
+    "page": "services",
+    "sourcePath": "services.html",
+    "resolvedPath": "source-fidelity/templates/automation-saas/services.html",
+    "sourceBytes": 599,
+    "componentIncludes": [
+      "src/components/shared/layout/navbar/header.htm",
+      "src/components/services/hero.htm",
+      "src/components/services/services.htm",
+      "src/components/services/why-choose.htm",
+      "src/components/shared/cta.htm",
+      "src/components/shared/footer/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate",
+      "data-text-reveal"
+    ]
+  },
+  {
+    "key": "automation-saas:signup",
+    "family": "automation-saas",
+    "page": "signup",
+    "sourcePath": "signup.html",
+    "resolvedPath": "source-fidelity/templates/automation-saas/signup.html",
+    "sourceBytes": 413,
+    "componentIncludes": [
+      "src/components/shared/layout/navbar/header.htm",
+      "src/components/auth/sign-up.htm",
+      "src/components/shared/footer/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate",
+      "data-text-reveal"
+    ]
+  },
+  {
+    "key": "automation-saas:team-details",
+    "family": "automation-saas",
+    "page": "team-details",
+    "sourcePath": "team-details.html",
+    "resolvedPath": "source-fidelity/templates/automation-saas/team-details.html",
+    "sourceBytes": 548,
+    "componentIncludes": [
+      "src/components/shared/layout/navbar/header.htm",
+      "src/components/team-details/details-info.htm",
+      "src/components/team/core-value.htm",
+      "src/components/shared/cta.htm",
+      "src/components/shared/footer/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate",
+      "data-offset",
+      "data-text-reveal"
+    ]
+  },
+  {
+    "key": "automation-saas:team",
+    "family": "automation-saas",
+    "page": "team",
+    "sourcePath": "team.html",
+    "resolvedPath": "source-fidelity/templates/automation-saas/team.html",
+    "sourceBytes": 528,
+    "componentIncludes": [
+      "src/components/shared/layout/navbar/header.htm",
+      "src/components/team/our-team.htm",
+      "src/components/team/core-value.htm",
+      "src/components/shared/cta.htm",
+      "src/components/shared/footer/footer.htm"
+    ],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate",
+      "data-offset",
+      "data-text-reveal"
+    ]
+  },
+  {
+    "key": "app-development:404",
+    "family": "app-development",
+    "page": "404",
+    "sourcePath": "404.html",
+    "resolvedPath": "source-fidelity/templates/app-development/404.html",
+    "sourceBytes": 134411,
+    "componentIncludes": [],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-direction",
+      "data-instant",
+      "data-ns-animate",
+      "data-offset"
+    ]
+  },
+  {
+    "key": "app-development:about",
+    "family": "app-development",
+    "page": "about",
+    "sourcePath": "about.html",
+    "resolvedPath": "source-fidelity/templates/app-development/about.html",
+    "sourceBytes": 231650,
+    "componentIncludes": [],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-counter",
+      "data-delay",
+      "data-direction",
+      "data-duration",
+      "data-height-space",
+      "data-interval",
+      "data-ns-animate",
+      "data-number",
+      "data-offset",
+      "data-rooms",
+      "data-speed",
+      "data-spring"
+    ]
+  },
+  {
+    "key": "app-development:affiliate-policy",
+    "family": "app-development",
+    "page": "affiliate-policy",
+    "sourcePath": "affiliate-policy.html",
+    "resolvedPath": "source-fidelity/templates/app-development/affiliate-policy.html",
+    "sourceBytes": 132529,
+    "componentIncludes": [],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-instant",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "app-development:affiliates",
+    "family": "app-development",
+    "page": "affiliates",
+    "sourcePath": "affiliates.html",
+    "resolvedPath": "source-fidelity/templates/app-development/affiliates.html",
+    "sourceBytes": 142331,
+    "componentIncludes": [],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-instant",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "app-development:analytics",
+    "family": "app-development",
+    "page": "analytics",
+    "sourcePath": "analytics.html",
+    "resolvedPath": "source-fidelity/templates/app-development/analytics.html",
+    "sourceBytes": 145060,
+    "componentIncludes": [],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-direction",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "app-development:blog-details",
+    "family": "app-development",
+    "page": "blog-details",
+    "sourcePath": "blog-details.html",
+    "resolvedPath": "source-fidelity/templates/app-development/blog-details.html",
+    "sourceBytes": 149028,
+    "componentIncludes": [],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "app-development:blog",
+    "family": "app-development",
+    "page": "blog",
+    "sourcePath": "blog.html",
+    "resolvedPath": "source-fidelity/templates/app-development/blog.html",
+    "sourceBytes": 179926,
+    "componentIncludes": [],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "app-development:brandkit",
+    "family": "app-development",
+    "page": "brandkit",
+    "sourcePath": "brandkit.html",
+    "resolvedPath": "source-fidelity/templates/app-development/brandkit.html",
+    "sourceBytes": 130869,
+    "componentIncludes": [],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "app-development:career-details",
+    "family": "app-development",
+    "page": "career-details",
+    "sourcePath": "career-details.html",
+    "resolvedPath": "source-fidelity/templates/app-development/career-details.html",
+    "sourceBytes": 146768,
+    "componentIncludes": [],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-direction",
+      "data-duration",
+      "data-ns-animate",
+      "data-offset"
+    ]
+  },
+  {
+    "key": "app-development:career",
+    "family": "app-development",
+    "page": "career",
+    "sourcePath": "career.html",
+    "resolvedPath": "source-fidelity/templates/app-development/career.html",
+    "sourceBytes": 142960,
+    "componentIncludes": [],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "app-development:case-studies-details",
+    "family": "app-development",
+    "page": "case-studies-details",
+    "sourcePath": "case-studies-details.html",
+    "resolvedPath": "source-fidelity/templates/app-development/case-studies-details.html",
+    "sourceBytes": 134808,
+    "componentIncludes": [],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "app-development:case-study",
+    "family": "app-development",
+    "page": "case-study",
+    "sourcePath": "case-study.html",
+    "resolvedPath": "source-fidelity/templates/app-development/case-study.html",
+    "sourceBytes": 153614,
+    "componentIncludes": [],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-instant",
+      "data-ns-animate",
+      "data-start"
+    ]
+  },
+  {
+    "key": "app-development:changelog",
+    "family": "app-development",
+    "page": "changelog",
+    "sourcePath": "changelog.html",
+    "resolvedPath": "source-fidelity/templates/app-development/changelog.html",
+    "sourceBytes": 174115,
+    "componentIncludes": [],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-month",
+      "data-month-link",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "app-development:contact",
+    "family": "app-development",
+    "page": "contact",
+    "sourcePath": "contact.html",
+    "resolvedPath": "source-fidelity/templates/app-development/contact.html",
+    "sourceBytes": 138628,
+    "componentIncludes": [],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "app-development:customer-details",
+    "family": "app-development",
+    "page": "customer-details",
+    "sourcePath": "customer-details.html",
+    "resolvedPath": "source-fidelity/templates/app-development/customer-details.html",
+    "sourceBytes": 148663,
+    "componentIncludes": [],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "app-development:customers",
+    "family": "app-development",
+    "page": "customers",
+    "sourcePath": "customers.html",
+    "resolvedPath": "source-fidelity/templates/app-development/customers.html",
+    "sourceBytes": 156167,
+    "componentIncludes": [],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-filter-type",
+      "data-industry",
+      "data-ns-animate",
+      "data-product",
+      "data-service",
+      "data-solution",
+      "data-value"
+    ]
+  },
+  {
+    "key": "app-development:documentation",
+    "family": "app-development",
+    "page": "documentation",
+    "sourcePath": "documentation.html",
+    "resolvedPath": "source-fidelity/templates/app-development/documentation.html",
+    "sourceBytes": 138655,
+    "componentIncludes": [],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "app-development:download",
+    "family": "app-development",
+    "page": "download",
+    "sourcePath": "download.html",
+    "resolvedPath": "source-fidelity/templates/app-development/download.html",
+    "sourceBytes": 187117,
+    "componentIncludes": [],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "app-development:faq",
+    "family": "app-development",
+    "page": "faq",
+    "sourcePath": "faq.html",
+    "resolvedPath": "source-fidelity/templates/app-development/faq.html",
+    "sourceBytes": 174433,
+    "componentIncludes": [],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-active-tab-bar",
+      "data-afluma-slot",
+      "data-delay",
+      "data-instant",
+      "data-mobile-tab-button",
+      "data-ns-animate",
+      "data-tab-bar",
+      "data-tab-button",
+      "data-tab-content"
+    ]
+  },
+  {
+    "key": "app-development:features",
+    "family": "app-development",
+    "page": "features",
+    "sourcePath": "features.html",
+    "resolvedPath": "source-fidelity/templates/app-development/features.html",
+    "sourceBytes": 150986,
+    "componentIncludes": [],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-counter",
+      "data-delay",
+      "data-direction",
+      "data-duration",
+      "data-interval",
+      "data-ns-animate",
+      "data-number",
+      "data-offset",
+      "data-rooms",
+      "data-speed",
+      "data-spring"
+    ]
+  },
+  {
+    "key": "app-development:gdpr",
+    "family": "app-development",
+    "page": "gdpr",
+    "sourcePath": "gdpr.html",
+    "resolvedPath": "source-fidelity/templates/app-development/gdpr.html",
+    "sourceBytes": 140170,
+    "componentIncludes": [],
+    "imageRefs": [],
+    "animationHooks": [
+      "data--",
+      "data-afluma-slot",
+      "data-delay",
+      "data-management",
+      "data-ns-animate",
+      "data-purpose",
+      "data-rights"
+    ]
+  },
+  {
+    "key": "app-development:glossary",
+    "family": "app-development",
+    "page": "glossary",
+    "sourcePath": "glossary.html",
+    "resolvedPath": "source-fidelity/templates/app-development/glossary.html",
+    "sourceBytes": 174925,
+    "componentIncludes": [],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "app-development:index",
+    "family": "app-development",
+    "page": "index",
+    "sourcePath": "index.html",
+    "resolvedPath": "source-fidelity/templates/app-development/index.html",
+    "sourceBytes": 203946,
+    "componentIncludes": [],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-direction",
+      "data-ns-animate",
+      "data-offset"
+    ]
+  },
+  {
+    "key": "app-development:integration",
+    "family": "app-development",
+    "page": "integration",
+    "sourcePath": "integration.html",
+    "resolvedPath": "source-fidelity/templates/app-development/integration.html",
+    "sourceBytes": 213734,
+    "componentIncludes": [],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-instant",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "app-development:legal",
+    "family": "app-development",
+    "page": "legal",
+    "sourcePath": "legal.html",
+    "resolvedPath": "source-fidelity/templates/app-development/legal.html",
+    "sourceBytes": 124688,
+    "componentIncludes": [],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "app-development:login",
+    "family": "app-development",
+    "page": "login",
+    "sourcePath": "login.html",
+    "resolvedPath": "source-fidelity/templates/app-development/login.html",
+    "sourceBytes": 132562,
+    "componentIncludes": [],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-direction",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "app-development:our-manifesto",
+    "family": "app-development",
+    "page": "our-manifesto",
+    "sourcePath": "our-manifesto.html",
+    "resolvedPath": "source-fidelity/templates/app-development/our-manifesto.html",
+    "sourceBytes": 132259,
+    "componentIncludes": [],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "app-development:press",
+    "family": "app-development",
+    "page": "press",
+    "sourcePath": "press.html",
+    "resolvedPath": "source-fidelity/templates/app-development/press.html",
+    "sourceBytes": 191384,
+    "componentIncludes": [],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-direction",
+      "data-instant",
+      "data-ns-animate",
+      "data-offset"
+    ]
+  },
+  {
+    "key": "app-development:pricing",
+    "family": "app-development",
+    "page": "pricing",
+    "sourcePath": "pricing.html",
+    "resolvedPath": "source-fidelity/templates/app-development/pricing.html",
+    "sourceBytes": 199361,
+    "componentIncludes": [],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "app-development:privacy-policy",
+    "family": "app-development",
+    "page": "privacy-policy",
+    "sourcePath": "privacy-policy.html",
+    "resolvedPath": "source-fidelity/templates/app-development/privacy-policy.html",
+    "sourceBytes": 140741,
+    "componentIncludes": [],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "app-development:process",
+    "family": "app-development",
+    "page": "process",
+    "sourcePath": "process.html",
+    "resolvedPath": "source-fidelity/templates/app-development/process.html",
+    "sourceBytes": 144902,
+    "componentIncludes": [],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-instant",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "app-development:referral-program",
+    "family": "app-development",
+    "page": "referral-program",
+    "sourcePath": "referral-program.html",
+    "resolvedPath": "source-fidelity/templates/app-development/referral-program.html",
+    "sourceBytes": 239486,
+    "componentIncludes": [],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-direction",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "app-development:refund-policy",
+    "family": "app-development",
+    "page": "refund-policy",
+    "sourcePath": "refund-policy.html",
+    "resolvedPath": "source-fidelity/templates/app-development/refund-policy.html",
+    "sourceBytes": 133854,
+    "componentIncludes": [],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "app-development:security",
+    "family": "app-development",
+    "page": "security",
+    "sourcePath": "security.html",
+    "resolvedPath": "source-fidelity/templates/app-development/security.html",
+    "sourceBytes": 129039,
+    "componentIncludes": [],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "app-development:service-details",
+    "family": "app-development",
+    "page": "service-details",
+    "sourcePath": "service-details.html",
+    "resolvedPath": "source-fidelity/templates/app-development/service-details.html",
+    "sourceBytes": 146349,
+    "componentIncludes": [],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-insights",
+      "data-instant",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "app-development:services",
+    "family": "app-development",
+    "page": "services",
+    "sourcePath": "services.html",
+    "resolvedPath": "source-fidelity/templates/app-development/services.html",
+    "sourceBytes": 151033,
+    "componentIncludes": [],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-direction",
+      "data-integration",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "app-development:signup",
+    "family": "app-development",
+    "page": "signup",
+    "sourcePath": "signup.html",
+    "resolvedPath": "source-fidelity/templates/app-development/signup.html",
+    "sourceBytes": 132230,
+    "componentIncludes": [],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-direction",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "app-development:success-stories",
+    "family": "app-development",
+    "page": "success-stories",
+    "sourcePath": "success-stories.html",
+    "resolvedPath": "source-fidelity/templates/app-development/success-stories.html",
+    "sourceBytes": 146802,
+    "componentIncludes": [],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-counter",
+      "data-delay",
+      "data-direction",
+      "data-height-space",
+      "data-instant",
+      "data-interval",
+      "data-ns-animate",
+      "data-number",
+      "data-offset",
+      "data-rooms",
+      "data-speed"
+    ]
+  },
+  {
+    "key": "app-development:support",
+    "family": "app-development",
+    "page": "support",
+    "sourcePath": "support.html",
+    "resolvedPath": "source-fidelity/templates/app-development/support.html",
+    "sourceBytes": 138170,
+    "componentIncludes": [],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-instant",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "app-development:team-details",
+    "family": "app-development",
+    "page": "team-details",
+    "sourcePath": "team-details.html",
+    "resolvedPath": "source-fidelity/templates/app-development/team-details.html",
+    "sourceBytes": 144662,
+    "componentIncludes": [],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-direction",
+      "data-duration",
+      "data-ns-animate",
+      "data-offset"
+    ]
+  },
+  {
+    "key": "app-development:team",
+    "family": "app-development",
+    "page": "team",
+    "sourcePath": "team.html",
+    "resolvedPath": "source-fidelity/templates/app-development/team.html",
+    "sourceBytes": 292545,
+    "componentIncludes": [],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-counter",
+      "data-delay",
+      "data-direction",
+      "data-height-space",
+      "data-instant",
+      "data-interval",
+      "data-ns-animate",
+      "data-number",
+      "data-rooms",
+      "data-speed"
+    ]
+  },
+  {
+    "key": "app-development:terms-conditions",
+    "family": "app-development",
+    "page": "terms-conditions",
+    "sourcePath": "terms-conditions.html",
+    "resolvedPath": "source-fidelity/templates/app-development/terms-conditions.html",
+    "sourceBytes": 133640,
+    "componentIncludes": [],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "app-development:testimonial",
+    "family": "app-development",
+    "page": "testimonial",
+    "sourcePath": "testimonial.html",
+    "resolvedPath": "source-fidelity/templates/app-development/testimonial.html",
+    "sourceBytes": 157024,
+    "componentIncludes": [],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-counter",
+      "data-delay",
+      "data-direction",
+      "data-du",
+      "data-height-space",
+      "data-instant",
+      "data-integration",
+      "data-interval",
+      "data-ns-animate",
+      "data-number",
+      "data-offset",
+      "data-rooms",
+      "data-speed"
+    ]
+  },
+  {
+    "key": "app-development:tutorial",
+    "family": "app-development",
+    "page": "tutorial",
+    "sourcePath": "tutorial.html",
+    "resolvedPath": "source-fidelity/templates/app-development/tutorial.html",
+    "sourceBytes": 194395,
+    "componentIncludes": [],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-active-tab-bar",
+      "data-afluma-slot",
+      "data-delay",
+      "data-filter-category",
+      "data-filter-item",
+      "data-instant",
+      "data-mobile-tab-button",
+      "data-ns-animate",
+      "data-tab-bar",
+      "data-tab-button"
+    ]
+  },
+  {
+    "key": "app-development:use-case",
+    "family": "app-development",
+    "page": "use-case",
+    "sourcePath": "use-case.html",
+    "resolvedPath": "source-fidelity/templates/app-development/use-case.html",
+    "sourceBytes": 144068,
+    "componentIncludes": [],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-driven",
+      "data-management",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "app-development:whitepaper-details",
+    "family": "app-development",
+    "page": "whitepaper-details",
+    "sourcePath": "whitepaper-details.html",
+    "resolvedPath": "source-fidelity/templates/app-development/whitepaper-details.html",
+    "sourceBytes": 132372,
+    "componentIncludes": [],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-direction",
+      "data-instant",
+      "data-ns-animate",
+      "data-offset"
+    ]
+  },
+  {
+    "key": "app-development:whitepaper",
+    "family": "app-development",
+    "page": "whitepaper",
+    "sourcePath": "whitepaper.html",
+    "resolvedPath": "source-fidelity/templates/app-development/whitepaper.html",
+    "sourceBytes": 142355,
+    "componentIncludes": [],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-delay",
+      "data-driven",
+      "data-ns-animate"
+    ]
+  },
+  {
+    "key": "app-development:why-choose-us",
+    "family": "app-development",
+    "page": "why-choose-us",
+    "sourcePath": "why-choose-us.html",
+    "resolvedPath": "source-fidelity/templates/app-development/why-choose-us.html",
+    "sourceBytes": 131365,
+    "componentIncludes": [],
+    "imageRefs": [],
+    "animationHooks": [
+      "data-afluma-slot",
+      "data-counter",
+      "data-delay",
+      "data-direction",
+      "data-duration",
+      "data-interval",
+      "data-ns-animate",
+      "data-number",
+      "data-offset",
+      "data-rooms",
+      "data-speed",
+      "data-spring"
+    ]
+  }
+]

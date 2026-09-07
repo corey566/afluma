@@ -1,0 +1,122 @@
+<!-- about us section  -->
+<section class="pt-20 md:pt-25 lg:pt-39">
+  <div class="main-container">
+    <div
+      class="grid grid-cols-12 items-center justify-center xl:gap-x-14 gap-y-8 lg:gap-x-8"
+    >
+      <div
+        data-ns-animate
+        data-delay="0.1"
+        data-direction="left"
+        data-offset="100"
+        class="lg:col-span-3 col-span-12"
+      >
+        <figure class="h-[520px] w-full rounded-[20px] overflow-hidden">
+          <img
+            src="/nexsas-runtime/automation-saas/images/ns-img-6.jpg"
+            alt="about-us-img"
+            class="size-full object-cover"
+          />
+        </figure>
+      </div>
+
+      <div class="lg:col-span-9 col-span-12">
+        <div class="flex flex-col gap-y-8 xl:gap-y-14 w-full">
+          <!-- first row  -->
+          <div
+            data-ns-animate
+            data-delay="0.2"
+            class="flex items-center lg:flex-row flex-col gap-y-8 justify-center xl:gap-x-14 md:gap-x-8"
+          >
+            <div class="space-y-5 w-full lg:w-1/2">
+              <Component
+                src="../shared/ui/badge/badge-primary.htm"
+                badge-text="About Us"
+              />
+              <h2 data-text-reveal data-delay="0.3">
+                The team behind smarter automation
+              </h2>
+            </div>
+
+            <div class="space-y-8 lg:space-y-14 w-full lg:w-1/2">
+              <p data-text-reveal data-delay="0.4">
+                We created this platform to solve one simple problem — too much
+                time is wasted on repetitive work.
+              </p>
+
+              <a href="./about.html">
+                <Component
+                  src="../shared/ui/button/button-white.htm"
+                  button-text="Learn more"
+                  button-class="w-[80%]! mx-auto md:mx-0 md:w-fit!"
+                  button-text-class="text-center text-nowrap max-sm:flex-1  max-sm:pr-8!"
+                />
+              </a>
+            </div>
+          </div>
+
+          <!-- 2nd row  -->
+          <div
+            data-ns-animate
+            data-delay="0.3"
+            class="flex items-end flex-col md:flex-row justify-end xl:gap-x-14 gap-y-5 md:gap-x-8"
+          >
+            <div class="w-full md:w-1/2 space-y-8">
+              <div class="flex items-center justify-start gap-x-8">
+                <div class="space-y-1">
+                  <h3
+                    class="text-heading-5"
+                    data-counter-trigger
+                    data-counter-value="90"
+                  >
+                    <number-flow data-counter-number></number-flow
+                    ><span>%</span>
+                  </h3>
+                  <p class="text-background-14/60">Client Satisfaction</p>
+                </div>
+                <div class="space-y-1">
+                  <h3
+                    class="text-heading-5"
+                    data-counter-trigger
+                    data-counter-value="10"
+                  >
+                    <number-flow data-counter-number></number-flow
+                    ><span>M+</span>
+                  </h3>
+                  <p class="text-background-14/60">automated workflows</p>
+                </div>
+              </div>
+
+              <!-- review  -->
+              <div class="space-y-1">
+                <h3
+                  class="text-heading-5 flex items-center gap-x-2"
+                  data-counter-trigger
+                  data-counter-value="4.9"
+                  data-counter-fraction-digits="1"
+                >
+                  <number-flow data-counter-number></number-flow>
+                  <span class="size-5"
+                    ><Component
+                      src="../shared/icon/star-icon.htm"
+                      class="size-4 fill-primary-500"
+                  /></span>
+                </h3>
+                <p class="text-background-14/60">user rating</p>
+              </div>
+            </div>
+            <figure
+              class="h-[290px] w-full md:w-1/2 rounded-[20px] overflow-hidden"
+            >
+              <img
+                src="/nexsas-runtime/automation-saas/images/ns-img-7.jpg"
+                alt="about-us-img"
+                class="size-full object-cover"
+              />
+            </figure>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

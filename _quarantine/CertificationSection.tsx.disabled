@@ -1,0 +1,144 @@
+import { Link } from 'react-router-dom';
+import { ArrowRight, ArrowUpRight, BadgeCheck, ExternalLink, Film, MapPin, Phone, ShieldCheck } from 'lucide-react';
+import { useContent } from '../App';
+import type { CertificationLab } from '../types';
+import SmartImage from './SmartImage';
+
+const LAB_LOGOS: Record<string, string> = {
+  'ggtl-sri-lanka': '/assets/certifications/ggtl.png',
+};
+
+const SUPPLIED_LOCAL_MARKS = [
+  { id: 'ggtl', name: 'GGTL Sri Lanka', image: '/assets/certifications/ggtl.png' },
+  { id: 'cgl', name: 'CGL', image: '/assets/certifications/cgl.png' },
+  { id: 'eg-lab', name: 'E G Lab · Emteem Gem Laboratory', image: '/assets/certifications/eg-lab.png' },
+  { id: 'lanka-gem-lab', name: 'Lanka Gem Lab', image: '/assets/certifications/lanka-gem-lab.png' },
+];
+
+const FOOTER_REFERENCE_ART = [
+  {
+    id: 'international-reference',
+    name: 'International laboratory references',
+    image: '/assets/certifications/international-labs-reference.png',
+    note: 'Reference montage supplied for international laboratory marks including GIA, GRS, AGL, Gübelin and SSEF.',
+  },
+];
+
+function LabLogo({ lab, compact = false }: { lab: CertificationLab; compact?: boolean }) {
+  const logo = LAB_LOGOS[lab.id];
+  return <div className={`ref-lab-logo ${compact ? 'compact' : ''}`}>
+    {logo ? <img src={logo} alt={`${lab.name} logo`} loading="lazy" /> : <span>{lab.mark}</span>}
+  </div>;
+}
+
+function LabCard({ lab, featured = false }: { lab: CertificationLab; featured?: boolean }) {
+  return <article className={`ref-lab-card ${featured ? 'featured' : ''}`}>
+    {lab.image && <div className="ref-lab-card-media"><SmartImage src={lab.image} alt={`${lab.name} laboratory`} fallbackLabel="Laboratory image unavailable" /></div>}
+    <div className="ref-lab-card-body">
+      <LabLogo lab={lab} />
+      <small>{lab.scope}</small>
+      <h3>{lab.name}</h3>
+      <p>{lab.description}</p>
+      <div className="ref-lab-meta">
+        {lab.city && <span><MapPin /> {lab.city}</span>}
+        {lab.phone && <a href={`tel:${lab.phone.replace(/[^+\d]/g, '')}`}><Phone /> {lab.phone}</a>}
+      </div>
+      <div className="ref-lab-actions">
+        <a href={lab.website} target="_blank" rel="noreferrer">Official site <ArrowUpRight /></a>
+        {lab.verifyUrl && <a href={lab.verifyUrl} target="_blank" rel="noreferrer">Verify report <BadgeCheck /></a>}
+        {lab.videoUrl && <a href={lab.videoUrl} target="_blank" rel="noreferrer">Official video <Film /></a>}
+      </div>
+      {lab.note && <em>{lab.note}</em>}
+    </div>
+  </article>;
+}
+
+export default function CertificationSection({ compact = false }: { compact?: boolean }) {
+  const { certifications } = useContent();
+  const visible = certifications.filter((lab) => lab.published !== false);
+  const local = visible.filter((lab) => /Sri Lanka/i.test(lab.scope));
+  const international = visible.filter((lab) => !/Sri Lanka/i.test(lab.scope));
+  if (!visible.length) return null;
+
+  return <section className={`ref-certifications ref-certifications-visible ${compact ? 'compact' : ''}`} id="laboratory-reports" data-ref-reveal>
+    <div className="ref-shell ref-cert-head">
+      <div><span className="ref-kicker">CERTIFICATION & LABORATORY VERIFICATION</span><h2>See the laboratory. See the report. Know which stone it belongs to.</h2></div>
+      <p>LuckGem does not issue independent gemological reports. When a report exists, its laboratory, report number and verification link should stay attached to that exact gemstone. The laboratories below are reference and verification destinations—not endorsements or blanket certifications for every stone.</p>
+    </div>
+
+    <div className="ref-shell ref-cert-local">
+      <div className="ref-cert-label"><ShieldCheck /><div><small>SRI LANKA</small><strong>Local gem-testing and report-verification references</strong></div></div>
+      <div className="ref-cert-local-grid">{local.map((lab, index) => <LabCard key={lab.id} lab={lab} featured={index === 1} />)}</div>
+
+      <div className="ref-client-lab-marks">
+        <div><small>ADDITIONAL SRI LANKAN LAB MARKS</small><strong>Reference marks supplied for the LuckGem site</strong><p>These marks are shown as identification references only. A report should only be presented against a gemstone when that report actually belongs to the stone.</p></div>
+        <div className="ref-client-lab-grid">{SUPPLIED_LOCAL_MARKS.map((item) => <div className="ref-client-lab-tile" key={item.id}><img src={item.image} alt={item.name} loading="lazy" /><span>{item.name}</span></div>)}</div>
+      </div>
+    </div>
+
+    <div className="ref-shell ref-cert-international">
+      <div className="ref-cert-label"><ExternalLink /><div><small>INTERNATIONAL</small><strong>Global report issuers clients may request or encounter</strong></div></div>
+      <div className="ref-cert-international-layout">
+        <div className="ref-cert-logo-grid">{international.map((lab) => <a key={lab.id} href={lab.website} target="_blank" rel="noreferrer" className="ref-cert-logo-tile"><LabLogo lab={lab} compact /><strong>{lab.name}</strong><small>{lab.country}</small><span className="ref-cert-tile-action">Official laboratory <ArrowUpRight /></span></a>)}</div>
+        <figure className="ref-international-reference-art"><img src="/assets/certifications/international-labs-reference.png" alt="International gem laboratory reference marks" loading="lazy" /><figcaption>Reference artwork supplied for the site. Verify the actual report through the issuing laboratory.</figcaption></figure>
+      </div>
+    </div>
+  </section>;
+}
+
+export function CertificationFooterStrip() {
+  const { certifications } = useContent();
+  const visible = certifications.filter((lab) => lab.published !== false);
+  const local = visible.filter((lab) => /Sri Lanka/i.test(lab.scope));
+  const international = visible.filter((lab) => !/Sri Lanka/i.test(lab.scope));
+  if (!visible.length) return null;
+
+  const tiles = (labs: CertificationLab[]) => labs.map((lab) => <a className="ref-footer-cert-tile" key={lab.id} href={lab.verifyUrl || lab.website} target="_blank" rel="noreferrer" title={`Open ${lab.name}`}>
+    <LabLogo lab={lab} compact />
+    <span><strong>{lab.mark}</strong><small>{lab.verifyUrl ? 'Verify report' : 'Official site'}</small></span>
+    <ArrowUpRight />
+  </a>);
+
+  return <section className="ref-footer-certifications" aria-label="Certification and laboratory references">
+    <div className="ref-footer-cert-head">
+      <div><span>CERTIFICATION & REPORT VERIFICATION</span><h2>Independent laboratory references, with visible lab marks in the footer.</h2><p>Use the issuing laboratory to verify a report. The report issuer varies by stone and no affiliation is implied.</p></div>
+      <Link to="/learn#laboratory-reports">Understand gemstone reports <ArrowRight /></Link>
+    </div>
+    <div className="ref-footer-cert-groups">
+      <div className="ref-footer-cert-group"><div className="ref-footer-cert-group-title"><small>SRI LANKA</small><strong>Local laboratories</strong></div><div className="ref-footer-cert-grid">{tiles(local)}</div></div>
+      <div className="ref-footer-cert-group"><div className="ref-footer-cert-group-title"><small>INTERNATIONAL</small><strong>Global laboratories</strong></div><div className="ref-footer-cert-grid international">{tiles(international)}</div></div>
+    </div>
+
+    <div className="ref-footer-logo-wall">
+      <div className="ref-footer-logo-wall-copy">
+        <small>VISIBLE LABORATORY MARKS</small>
+        <strong>Real reference marks shown in the footer</strong>
+        <p>These logo panels are shown as recognition references only. The gemstone report still needs to be verified on the issuing laboratory website.</p>
+      </div>
+
+      <div className="ref-footer-logo-wall-grid">
+        {SUPPLIED_LOCAL_MARKS.map((item) => (
+          <div className="ref-footer-logo-card" key={item.id}>
+            <img src={item.image} alt={item.name} loading="lazy" />
+            <span>{item.name}</span>
+          </div>
+        ))}
+
+        {FOOTER_REFERENCE_ART.map((item) => (
+          <div className="ref-footer-logo-card wide" key={item.id}>
+            <img src={item.image} alt={item.name} loading="lazy" />
+            <span>{item.note}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>;
+}
+
+export function LaboratoryReportCard({ item }: { item: { labName?: string; labReportNumber?: string; labReportUrl?: string; labReportImage?: string; certificate?: string } }) {
+  if (!item.labName && !item.labReportNumber && !item.labReportUrl && !item.labReportImage) return null;
+  return <section className="ref-shell ref-item-lab-report" data-ref-reveal>
+    <div className="ref-item-lab-copy"><span className="ref-kicker">INDIVIDUAL LABORATORY REPORT</span><h2>The report belongs to this stone.</h2><p>{item.certificate || 'Laboratory details are recorded against this exact gemstone or jewellery reference.'}</p><div>{item.labName && <span><small>Laboratory</small><strong>{item.labName}</strong></span>}{item.labReportNumber && <span><small>Report no.</small><strong>{item.labReportNumber}</strong></span>}</div>{item.labReportUrl && <a href={item.labReportUrl} target="_blank" rel="noreferrer">Verify on the laboratory website <ArrowUpRight /></a>}</div>
+    {item.labReportImage && <div className="ref-item-lab-image"><SmartImage src={item.labReportImage} alt={`${item.labName || 'Laboratory'} report`} fallbackLabel="Report image unavailable" /></div>}
+  </section>;
+}

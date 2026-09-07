@@ -1,0 +1,22 @@
+{
+  "sourceFamilies": [
+    "creative-portfolio",
+    "ai-agency",
+    "automation-saas",
+    "app-development"
+  ],
+  "sourcePages": 158,
+  "sourceComponents": 565,
+  "uniqueMediaAssets": 1544,
+  "assetStatusCounts": {
+    "production-candidate": 1354,
+    "replace-before-launch": 47,
+    "editorial-placeholder-only": 127,
+    "excluded": 16
+  },
+  "architectureRoutes": 1669,
+  "assetAssignments": 1528,
+  "routesWithTemplates": 1669,
+  "unassignedEligibleAssets": 0,
+  "routesWithoutTemplate": 0
+}

@@ -24,6 +24,8 @@
     "verify:runtime": "node --env-file=.env --import tsx scripts/verify-runtime.ts",
     "typecheck:app": "tsc --noEmit --pretty false",
     "typecheck:source": "tsc --noEmit -p tsconfig.scripts.json --pretty false",
+    "lint": "eslint src/site \"src/app/(frontend)\" src/afluma-site/ContactForm.tsx scripts/test-site.ts --max-warnings 0",
+    "test:site": "node --import tsx --test scripts/test-site.ts",
     "verify:source-import": "payload run scripts/verify-source-import.ts",
     "core:seed": "payload run scripts/seed-afluma-core.ts",
     "core:verify": "payload run scripts/verify-afluma-core.ts",
@@ -51,6 +53,8 @@
     "@types/react": "19.1.8",
     "@types/react-dom": "19.1.6",
     "@types/three": "^0.185.4",
+    "eslint": "9.39.5",
+    "eslint-config-next": "16.2.6",
     "tsx": "4.20.3",
     "typescript": "5.8.3"
   }

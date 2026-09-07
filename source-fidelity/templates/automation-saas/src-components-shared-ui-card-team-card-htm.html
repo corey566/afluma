@@ -1,0 +1,18 @@
+<div
+  class="group relative mx-auto max-h-[395px] w-full max-w-[708px] overflow-hidden rounded-[20px] bg-background-5 lg:max-w-[409px]"
+  aria-label="Team member profile"
+>
+  <figure
+    class="h-full w-full overflow-hidden transition-transform duration-400 ease-out group-hover:scale-[1.03]"
+  >
+    <img src="{=$image}" alt="{=$name}" class="h-full w-full object-cover" />
+  </figure>
+  <div
+    class="absolute bottom-5 left-1/2 w-[calc(100%-40px)] -translate-x-1/2 space-y-0.5 rounded-md bg-white/50 p-5 backdrop-blur-[15px] transition-all duration-400 ease-out lg:translate-y-[30%] lg:scale-[90%] lg:opacity-0 lg:group-hover:translate-y-0 lg:group-hover:scale-100 lg:group-hover:opacity-100"
+  >
+    <a href="{=$href}">
+      <h3 class="text-heading-6 font-medium text-secondary">{=$name}</h3>
+    </a>
+    <p class="text-tagline-3 font-normal text-secondary/50">{=$title}</p>
+  </div>
+</div>

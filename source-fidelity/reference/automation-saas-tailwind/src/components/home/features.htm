@@ -1,0 +1,67 @@
+<!-- features section  -->
+<section class="pt-20 md:pt-25 lg:pt-39">
+  <div class="main-container">
+    <div class="space-y-18">
+      <div class="space-y-8 text-center">
+        <div class="space-y-5">
+          <div data-ns-animate data-del="0.1">
+            <Component
+              src="../shared/ui/badge/badge-primary.htm"
+              badge-text="Features"
+            />
+          </div>
+
+          <div class="space-y-3">
+            <h2 data-text-reveal data-delay="0.2">
+              Real results teams experience
+            </h2>
+            <p
+              data-text-reveal
+              data-delay="0.3"
+              class="max-w-[550px] text-background-14/60 mx-auto"
+            >
+              From faster workflows to improved collaboration, every feature is
+              designed to deliver real, trackable results that teams can rely on
+              every day.
+            </p>
+          </div>
+        </div>
+
+        <!-- btn  -->
+        <div data-ns-animate data-delay="0.4">
+          <a href="./features.html">
+            <Component
+              src="../shared/ui/button/button-white.htm"
+              button-text="View all features"
+              button-class="w-[80%]! mx-auto  md:w-fit!"
+              button-text-class="text-center text-nowrap max-sm:flex-1  max-sm:pr-8!"
+            />
+          </a>
+        </div>
+      </div>
+
+      <!-- cards  -->
+      <div
+        class="grid grid-cols-12 items-center justify-center gap-y-5 md:gap-4"
+      >
+        <!-- App integrations  -->
+        <div data-ns-animate data-delay="0.5" class="col-span-12 md:col-span-6">
+          <Component src="./app-integrations.htm" />
+        </div>
+        <!-- Smart conditions  -->
+        <div data-ns-animate data-delay="0.6" class="col-span-12 md:col-span-6">
+          <Component src="./smart-conditions.htm" />
+        </div>
+        <!-- Real-time triggers  -->
+        <div data-ns-animate data-delay="0.7" class="col-span-12 md:col-span-6">
+          <Component src="./real-time-triggers.htm" />
+        </div>
+
+        <!-- multi-step automation  -->
+        <div data-ns-animate data-delay="0.8" class="col-span-12 md:col-span-6">
+          <Component src="./multi-step-automation.htm" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

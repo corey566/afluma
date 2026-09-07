@@ -1,0 +1,53 @@
+<!-- integration section  -->
+<section class="pt-20 md:pt-25 lg:pt-39 relative">
+  <div class="main-container relative overflow-hidden pb-35">
+    <div class="space-y-8 lg:space-y-14 relative z-30">
+      <div class="space-y-5 text-center">
+        <div data-ns-animate data-delay="0.1">
+          <Component
+            src="../shared/ui/badge/badge-primary.htm"
+            badge-text="Integration"
+          />
+        </div>
+        <div class="space-y-3">
+          <h2 data-text-reveal data-delay="0.2" class="max-w-[600px] mx-auto">
+            Your entire tech stack — fully connected
+          </h2>
+          <p
+            data-text-reveal
+            data-delay="0.3"
+            class="max-w-[592px] mx-auto text-background-14/60"
+          >
+            Integrate your favorite apps and build workflows that move data,
+            trigger actions, and keep everything in sync — automatically.
+          </p>
+        </div>
+      </div>
+
+      <a
+        data-ns-animate
+        data-delay="0.4"
+        href="./integration.html"
+        class="flex items-center justify-center"
+      >
+        <Component
+          src="../shared/ui/button/button-white.htm"
+          button-text="Start free"
+        />
+      </a>
+    </div>
+
+    <!-- circle  -->
+    <div
+      data-ns-animate
+      data-delay="0.5"
+      class="absolute left-1/2 -translate-x-1/2 top-[-18%] md:top-[-72%] lg:top-[-115%] xl:top-[-137%]"
+    >
+      <Component src="../shared/integration-circle.htm" />
+    </div>
+
+    <div
+      class="pointer-events-none w-full h-[300px] absolute top-0 left-0 z-20 bg-[linear-gradient(to_bottom,#f2f5fa,transparent)]"
+    ></div>
+  </div>
+</section>

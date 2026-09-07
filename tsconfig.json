@@ -40,6 +40,7 @@
     ".next/dev/types/**/*.ts"
   ],
   "exclude": [
+    "work",
     "node_modules",
     "legacy-static",
     "scripts/**/*.ts",

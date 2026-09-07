@@ -66,13 +66,15 @@ function assertResult(value: unknown): asserts value is MeiIntakeResult {
   const result = value as Partial<MeiIntakeResult>
 
   if (
-    !result.intent ||
-    !result.summary ||
-    !result.businessNeed ||
-    !result.urgency ||
-    !result.recommendedNextAgent ||
+    !schema.properties.intent.enum.includes(result.intent as MeiIntakeResult['intent']) ||
+    typeof result.summary !== 'string' || !result.summary.trim() ||
+    typeof result.businessNeed !== 'string' || !result.businessNeed.trim() ||
+    !schema.properties.urgency.enum.includes(result.urgency as MeiIntakeResult['urgency']) ||
+    !schema.properties.recommendedNextAgent.enum.includes(result.recommendedNextAgent as MeiIntakeResult['recommendedNextAgent']) ||
     !Array.isArray(result.missingInformation) ||
-    !Array.isArray(result.safetyFlags)
+    !Array.isArray(result.safetyFlags) ||
+    !result.missingInformation.every((item) => typeof item === 'string') ||
+    !result.safetyFlags.every((item) => typeof item === 'string')
   ) {
     throw new Error('Mei intake output is missing required fields')
   }
