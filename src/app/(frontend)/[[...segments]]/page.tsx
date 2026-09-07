@@ -6,6 +6,7 @@ import { getPageBySlug, normalizeSlug } from '@/lib/content'
 import { aliases, findPage, findPersona, products } from '@/site/content'
 import { SitePage, LaunchPage } from '@/site/SitePage'
 import { AflumaCorePage, corePageMeta, isAflumaCoreRoute } from '@/site/AflumaCorePages'
+import { AflumaOverviewPage, isAflumaOverviewRoute } from '@/site/AflumaOverviewPages'
 import { AflumaProductPage, isAflumaProductRoute, productPageMeta } from '@/site/AflumaProductPages'
 import { AflumaPersonaPage } from '@/site/AflumaPersonaPage'
 import { AflumaUtilityPage, isAflumaUtilityRoute, utilityPageMeta } from '@/site/AflumaUtilityPages'
@@ -47,6 +48,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function DynamicPage({ params }: Props) {
   const { segments } = await params
   const slug = normalizeSlug(segments)
+
+  if (isAflumaOverviewRoute(slug)) {
+    const meta = corePageMeta[slug]
+    return <><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredPage(slug, meta.title, meta.description)).replace(/</g, '\u003c') }} /><AflumaOverviewPage slug={slug} /></>
+  }
 
   if (isAflumaCoreRoute(slug)) {
     const meta = corePageMeta[slug]
