@@ -38,6 +38,7 @@ function Get-Text([string]$Url) {
 }
 
 function Test-AuthorityPage([string]$Path) {
+    $Before = $Failures.Count
     $Url = if ($Path -eq '/') { "$BaseUrl/" } else { "$BaseUrl$Path" }
     $Result = Get-Text $Url
 
@@ -62,7 +63,9 @@ function Test-AuthorityPage([string]$Path) {
         Add-Failure "$Path is missing an H1."
     }
 
-    Write-Host "PASS HTTP/metadata check: $Path" -ForegroundColor Green
+    if ($Failures.Count -eq $Before) {
+        Write-Host "PASS: $Path returned 200 with title, canonical, indexable robots state and H1." -ForegroundColor Green
+    }
 }
 
 Write-Host "`n=== AFLUMA v0.6 LIVE SEARCH READINESS AUDIT ===" -ForegroundColor Cyan
@@ -88,6 +91,7 @@ foreach ($Path in $AuthorityPaths) {
 }
 
 Write-Host "`n--- robots.txt ---" -ForegroundColor Cyan
+$RobotsBefore = $Failures.Count
 $Robots = Get-Text "$BaseUrl/robots.txt"
 if ($Robots.Status -ne 200) {
     Add-Failure "robots.txt returned HTTP $($Robots.Status)."
@@ -108,10 +112,13 @@ else {
         Add-Warning 'robots.txt does not advertise an absolute sitemap URL.'
     }
 
-    Write-Host 'robots.txt fetched.' -ForegroundColor Green
+    if ($Failures.Count -eq $RobotsBefore) {
+        Write-Host 'PASS: robots.txt is reachable and no full-site crawler block was detected.' -ForegroundColor Green
+    }
 }
 
 Write-Host "`n--- sitemap.xml ---" -ForegroundColor Cyan
+$SitemapBefore = $Failures.Count
 $Sitemap = Get-Text "$BaseUrl/sitemap.xml"
 if ($Sitemap.Status -ne 200) {
     Add-Failure "sitemap.xml returned HTTP $($Sitemap.Status)."
@@ -123,13 +130,16 @@ else {
             Add-Failure "Authority URL is missing from sitemap.xml: $Absolute"
         }
     }
-    Write-Host 'sitemap.xml fetched and authority URLs checked.' -ForegroundColor Green
+
+    if ($Failures.Count -eq $SitemapBefore) {
+        Write-Host 'PASS: sitemap.xml contains every v0.6 authority URL checked by this gate.' -ForegroundColor Green
+    }
 }
 
 Write-Host "`n--- llms.txt (informational only) ---" -ForegroundColor Cyan
 $Llms = Get-Text "$BaseUrl/llms.txt"
 if ($Llms.Status -eq 200) {
-    Write-Host 'llms.txt exists. Treat it as supplemental documentation, not a Google ranking requirement.' -ForegroundColor DarkGray
+    Write-Host 'INFO: llms.txt exists. Treat it as supplemental documentation, not a Google ranking requirement.' -ForegroundColor DarkGray
 }
 else {
     Add-Warning 'llms.txt was not found. This does not block Google Search or AI search discovery.'
