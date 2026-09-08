@@ -14,6 +14,7 @@ import {
   SectionJumpNav,
   WorkforceExplorer,
 } from './ExpandedAflumaClient'
+import { SearchProductUpgrade } from './SearchProductUpgrade'
 import styles from './ExpandedAflumaPage.module.css'
 
 function Arrow() {
@@ -200,6 +201,7 @@ export function ExpandedAflumaPage({ slug, doc }: { slug: string; doc?: any }) {
       ) : (
         page.sections.map((section, index) => <StandardSection key={section.id} section={section} index={index} />)
       )}
+      {!isLegal ? <SearchProductUpgrade slug={page.slug} /> : null}
       <ClosingCta page={page} />
     </main>
   )
